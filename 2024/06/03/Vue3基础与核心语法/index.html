@@ -1,0 +1,1136 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. Vue3简介 2020年9月18日，Vue.js发布版3.0版本，代号：One Piece（n  经历了：4800+次提交、40+个RFC、600+次PR、300+贡献者  官方发版地址：Release v3.0.0 One Piece · vuejs&#x2F;core  截止2023年10月，最新的公开版本为：3.3.4   1.1. 【性能的提升】 打包大小减少41%。  初次渲染快5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3基础与核心语法">
+<meta property="og:url" content="http://example.com/2024/06/03/Vue3%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="1. Vue3简介 2020年9月18日，Vue.js发布版3.0版本，代号：One Piece（n  经历了：4800+次提交、40+个RFC、600+次PR、300+贡献者  官方发版地址：Release v3.0.0 One Piece · vuejs&#x2F;core  截止2023年10月，最新的公开版本为：3.3.4   1.1. 【性能的提升】 打包大小减少41%。  初次渲染快5">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/images/1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png">
+<meta property="og:image" content="http://example.com/img/images/1683167182037-71c78210-8217-4e7d-9a83-e463035efbbe.png">
+<meta property="og:image" content="http://example.com/img/images/1683167204081-582dc237-72bc-499e-9589-2cdfd452e62f.png">
+<meta property="og:image" content="http://example.com/img/images/volar.png">
+<meta property="og:image" content="http://example.com/img/images/image-20231218085906380.png">
+<meta property="og:image" content="http://example.com/img/images/1696662197101-55d2b251-f6e5-47f4-b3f1-d8531bbf9279.gif">
+<meta property="og:image" content="http://example.com/img/images/1696662200734-1bad8249-d7a2-423e-a3c3-ab4c110628be.gif">
+<meta property="og:image" content="http://example.com/img/images/1696662249851-db6403a1-acb5-481a-88e0-e1e34d2ef53a.gif">
+<meta property="og:image" content="http://example.com/img/images/1696662256560-7239b9f9-a770-43c1-9386-6cc12ef1e9c0.gif">
+<meta property="og:image" content="http://example.com/img/images/%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%85value.png">
+<meta property="og:image" content="http://example.com/img/images/computed.gif">
+<meta property="article:published_time" content="2024-06-03T08:34:23.000Z">
+<meta property="article:modified_time" content="2026-01-21T05:52:09.153Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="Vue3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/images/1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Vue3基础与核心语法 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/3.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue3基础与核心语法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-03 16:34" pubdate>
+          2024年6月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue3基础与核心语法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Vue3简介"><a href="#1-Vue3简介" class="headerlink" title="1. Vue3简介"></a>1. Vue3简介</h1><ul>
+<li><p>2020年9月18日，<code>Vue.js</code>发布版<code>3.0</code>版本，代号：<code>One Piece</code>（n</p>
+</li>
+<li><p>经历了：<a target="_blank" rel="noopener" href="https://github.com/vuejs/core/commits/main">4800+次提交</a>、<a target="_blank" rel="noopener" href="https://github.com/vuejs/rfcs/tree/master/active-rfcs">40+个RFC</a>、<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-next/pulls?q=is:pr+is:merged+-author:app/dependabot-preview+">600+次PR</a>、<a target="_blank" rel="noopener" href="https://github.com/vuejs/core/graphs/contributors">300+贡献者</a></p>
+</li>
+<li><p>官方发版地址：<a target="_blank" rel="noopener" href="https://github.com/vuejs/core/releases/tag/v3.0.0">Release v3.0.0 One Piece · vuejs&#x2F;core</a></p>
+</li>
+<li><p>截止2023年10月，最新的公开版本为：<code>3.3.4</code></p>
+<img src="/img/images/1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png" srcset="/img/loading.gif" lazyload alt="image.png" style="zoom:30%;" /></li>
+</ul>
+<h2 id="1-1-【性能的提升】"><a href="#1-1-【性能的提升】" class="headerlink" title="1.1. 【性能的提升】"></a>1.1. 【性能的提升】</h2><ul>
+<li><p>打包大小减少<code>41%</code>。</p>
+</li>
+<li><p>初次渲染快<code>55%</code>, 更新渲染快<code>133%</code>。</p>
+</li>
+<li><p>内存减少<code>54%</code>。</p>
+</li>
+</ul>
+<h2 id="1-2-【-源码的升级】"><a href="#1-2-【-源码的升级】" class="headerlink" title="1.2.【 源码的升级】"></a>1.2.【 源码的升级】</h2><ul>
+<li><p>使用<code>Proxy</code>代替<code>defineProperty</code>实现响应式。</p>
+</li>
+<li><p>重写虚拟<code>DOM</code>的实现和<code>Tree-Shaking</code>。</p>
+</li>
+</ul>
+<h2 id="1-3-【拥抱TypeScript】"><a href="#1-3-【拥抱TypeScript】" class="headerlink" title="1.3. 【拥抱TypeScript】"></a>1.3. 【拥抱TypeScript】</h2><ul>
+<li><code>Vue3</code>可以更好的支持<code>TypeScript</code>。</li>
+</ul>
+<h2 id="1-4-【新的特性】"><a href="#1-4-【新的特性】" class="headerlink" title="1.4. 【新的特性】"></a>1.4. 【新的特性】</h2><ol>
+<li><p><code>Composition API</code>（组合<code>API</code>）：</p>
+<ul>
+<li><p><code>setup</code></p>
+</li>
+<li><p><code>ref</code>与<code>reactive</code></p>
+</li>
+<li><p><code>computed</code>与<code>watch</code></p>
+<p>……</p>
+</li>
+</ul>
+</li>
+<li><p>新的内置组件：</p>
+<ul>
+<li><p><code>Fragment</code></p>
+</li>
+<li><p><code>Teleport</code></p>
+</li>
+<li><p><code>Suspense</code></p>
+<p>……</p>
+</li>
+</ul>
+</li>
+<li><p>其他改变：</p>
+<ul>
+<li><p>新的生命周期钩子</p>
+</li>
+<li><p><code>data</code> 选项应始终被声明为一个函数</p>
+</li>
+<li><p>移除<code>keyCode</code>支持作为<code> v-on</code> 的修饰符</p>
+<p>……</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-创建Vue3工程"><a href="#2-创建Vue3工程" class="headerlink" title="2. 创建Vue3工程"></a>2. 创建Vue3工程</h1><h2 id="2-1-【基于-vue-cli-创建】"><a href="#2-1-【基于-vue-cli-创建】" class="headerlink" title="2.1. 【基于 vue-cli 创建】"></a>2.1. 【基于 vue-cli 创建】</h2><p>点击查看<a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create">官方文档</a></p>
+<blockquote>
+<p>备注：目前<code>vue-cli</code>已处于维护模式，官方推荐基于 <code>Vite</code> 创建项目。</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment">## 查看@vue/cli版本，确保@vue/cli版本在4.5.0以上</span><br>vue <span class="hljs-literal">--version</span><br><br><span class="hljs-comment">## 安装或者升级你的@vue/cli </span><br>npm install <span class="hljs-literal">-g</span> @vue/<span class="hljs-built_in">cli</span><br><br><span class="hljs-comment">## 执行创建命令</span><br>vue create vue_test<br><br><span class="hljs-comment">##  随后选择3.x</span><br><span class="hljs-comment">##  Choose a version of Vue.js that you want to start the project with (Use arrow keys)</span><br><span class="hljs-comment">##  &gt; 3.x</span><br><span class="hljs-comment">##    2.x</span><br><br><span class="hljs-comment">## 启动</span><br><span class="hljs-built_in">cd</span> vue_test<br>npm run serve<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-2-【基于-vite-创建】-推荐"><a href="#2-2-【基于-vite-创建】-推荐" class="headerlink" title="2.2. 【基于 vite 创建】(推荐)"></a>2.2. 【基于 vite 创建】(推荐)</h2><p><code>vite</code> 是新一代前端构建工具，官网地址：<a target="_blank" rel="noopener" href="https://vitejs.cn/">https://vitejs.cn</a>，<code>vite</code>的优势如下：</p>
+<ul>
+<li>轻量快速的热重载（<code>HMR</code>），能实现极速的服务启动。</li>
+<li>对 <code>TypeScript</code>、<code>JSX</code>、<code>CSS</code> 等支持开箱即用。</li>
+<li>真正的按需编译，不再等待整个应用编译完成。</li>
+<li><code>webpack</code>构建 与 <code>vite</code>构建对比图如下：<br><img src="/img/images/1683167182037-71c78210-8217-4e7d-9a83-e463035efbbe.png" srcset="/img/loading.gif" lazyload alt="webpack构建" title="webpack构建" style="zoom:20%;box-shadow:0 0 10px black" />    <img src="/img/images/1683167204081-582dc237-72bc-499e-9589-2cdfd452e62f.png" srcset="/img/loading.gif" lazyload alt="vite构建" title="vite构建" style="zoom: 20%;box-shadow:0 0 10px black" /></li>
+</ul>
+<ul>
+<li>具体操作如下（点击查看<a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application">官方文档</a>）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment">## 1.创建命令</span><br>npm create vue@latest<br><br><span class="hljs-comment">## 2.具体配置</span><br><span class="hljs-comment">## 配置项目名称</span><br>√ Project name: vue3_test<br><span class="hljs-comment">## 是否添加TypeScript支持</span><br>√ Add TypeScript?  Yes<br><span class="hljs-comment">## 是否添加JSX支持</span><br>√ Add JSX Support?  No<br><span class="hljs-comment">## 是否添加路由环境</span><br>√ Add Vue Router <span class="hljs-keyword">for</span> Single Page Application development?  No<br><span class="hljs-comment">## 是否添加pinia环境</span><br>√ Add Pinia <span class="hljs-keyword">for</span> state management?  No<br><span class="hljs-comment">## 是否添加单元测试</span><br>√ Add Vitest <span class="hljs-keyword">for</span> Unit Testing?  No<br><span class="hljs-comment">## 是否添加端到端测试方案</span><br>√ Add an <span class="hljs-keyword">End</span><span class="hljs-literal">-to-End</span> Testing Solution? » No<br><span class="hljs-comment">## 是否添加ESLint语法检查</span><br>√ Add ESLint <span class="hljs-keyword">for</span> code quality?  Yes<br><span class="hljs-comment">## 是否添加Prettiert代码格式化</span><br>√ Add Prettier <span class="hljs-keyword">for</span> code formatting?  No<br></code></pre></td></tr></table></figure>
+
+<p>自己动手编写一个App组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;app&quot;&gt;<br>    &lt;h1&gt;你好啊！&lt;/h1&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot;&gt;<br>  export default &#123;<br>    name:&#x27;App&#x27; //组件名<br>  &#125;<br>&lt;/script&gt;<br><br>&lt;style&gt;<br>  .app &#123;<br>    background-color: #ddd;<br>    box-shadow: 0 0 10px;<br>    border-radius: 10px;<br>    padding: 20px;<br>  &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<p>安装官方推荐的<code>vscode</code>插件：</p>
+<img src="/img/images/volar.png" srcset="/img/loading.gif" lazyload alt="Snipaste_2023-10-08_20-46-34" style="zoom:50%;" /> 
+
+<img src="/img/images/image-20231218085906380.png" srcset="/img/loading.gif" lazyload alt="image-20231218085906380" style="zoom:42%;" /> 
+
+<p>总结：</p>
+<ul>
+<li><code>Vite</code> 项目中，<code>index.html</code> 是项目的入口文件，在项目最外层。</li>
+<li>加载<code>index.html</code>后，<code>Vite</code> 解析 <code>&lt;script type=&quot;module&quot; src=&quot;xxx&quot;&gt;</code> 指向的<code>JavaScript</code>。</li>
+<li><code>Vue3</code>**中是通过 **<code>createApp</code> 函数创建一个应用实例。</li>
+</ul>
+<h2 id="2-3-【一个简单的效果】"><a href="#2-3-【一个简单的效果】" class="headerlink" title="2.3. 【一个简单的效果】"></a>2.3. 【一个简单的效果】</h2><p><code>Vue3</code>向下兼容<code>Vue2</code>语法，且<code>Vue3</code>中的模板中可以没有根标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;姓名：&#123;&#123;name&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123;age&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;年龄+1&lt;/button&gt;<br>    &lt;button @click=&quot;showTel&quot;&gt;点我查看联系方式&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot;&gt;<br>  export default &#123;<br>    name:&#x27;App&#x27;,<br>    data() &#123;<br>      return &#123;<br>        name:&#x27;张三&#x27;,<br>        age:18,<br>        tel:&#x27;13888888888&#x27;<br>      &#125;<br>    &#125;,<br>    methods:&#123;<br>      changeName()&#123;<br>        this.name = &#x27;zhang-san&#x27;<br>      &#125;,<br>      changeAge()&#123;<br>        this.age += 1<br>      &#125;,<br>      showTel()&#123;<br>        alert(this.tel)<br>      &#125;<br>    &#125;,<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="3-Vue3核心语法"><a href="#3-Vue3核心语法" class="headerlink" title="3. Vue3核心语法"></a>3. Vue3核心语法</h1><h2 id="3-1-【OptionsAPI-与-CompositionAPI】"><a href="#3-1-【OptionsAPI-与-CompositionAPI】" class="headerlink" title="3.1.  【OptionsAPI 与 CompositionAPI】"></a>3.1.  【OptionsAPI 与 CompositionAPI】</h2><ul>
+<li><code>Vue2</code>的<code>API</code>设计是<code>Options</code>（配置）风格的。</li>
+<li><code>Vue3</code>的<code>API</code>设计是<code>Composition</code>（组合）风格的。</li>
+</ul>
+<h3 id="Options-API-的弊端"><a href="#Options-API-的弊端" class="headerlink" title="Options API 的弊端"></a>Options API 的弊端</h3><p><code>Options</code>类型的 <code>API</code>，数据、方法、计算属性等，是分散在：<code>data</code>、<code>methods</code>、<code>computed</code>中的，若想新增或者修改一个需求，就需要分别修改：<code>data</code>、<code>methods</code>、<code>computed</code>，不便于维护和复用。</p>
+<p><img src="/img/images/1696662197101-55d2b251-f6e5-47f4-b3f1-d8531bbf9279.gif" srcset="/img/loading.gif" lazyload alt="1.gif" style="zoom:70%;border-radius:20px" /><img src="/img/images/1696662200734-1bad8249-d7a2-423e-a3c3-ab4c110628be.gif" srcset="/img/loading.gif" lazyload alt="2.gif" style="zoom:70%;border-radius:20px" /></p>
+<h3 id="Composition-API-的优势"><a href="#Composition-API-的优势" class="headerlink" title="Composition API 的优势"></a>Composition API 的优势</h3><p>可以用函数的方式，更加优雅的组织代码，让相关功能的代码更加有序的组织在一起。</p>
+<p><img src="/img/images/1696662249851-db6403a1-acb5-481a-88e0-e1e34d2ef53a.gif" srcset="/img/loading.gif" lazyload alt="3.gif" style="height:300px;border-radius:10px"  /><img src="/img/images/1696662256560-7239b9f9-a770-43c1-9386-6cc12ef1e9c0.gif" srcset="/img/loading.gif" lazyload alt="4.gif" style="height:300px;border-radius:10px"  /></p>
+<h2 id="3-2-【拉开序幕的-setup】"><a href="#3-2-【拉开序幕的-setup】" class="headerlink" title="3.2. 【拉开序幕的 setup】"></a>3.2. 【拉开序幕的 setup】</h2><h3 id="setup-概述"><a href="#setup-概述" class="headerlink" title="setup 概述"></a>setup 概述</h3><p><code>setup</code>是<code>Vue3</code>中一个新的配置项，值是一个函数，它是 <code>Composition API</code> <strong>“表演的舞台</strong><em><strong>”</strong></em>，组件中所用到的：数据、方法、计算属性、监视……等等，均配置在<code>setup</code>中。</p>
+<p>特点如下：</p>
+<ul>
+<li><code>setup</code>函数返回的对象中的内容，可直接在模板中使用。</li>
+<li><code>setup</code>中访问<code>this</code>是<code>undefined</code>。</li>
+<li><code>setup</code>函数会在<code>beforeCreate</code>之前调用，它是“领先”所有钩子执行的。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;姓名：&#123;&#123;name&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123;age&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;年龄+1&lt;/button&gt;<br>    &lt;button @click=&quot;showTel&quot;&gt;点我查看联系方式&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot;&gt;<br>  export default &#123;<br>    name:&#x27;Person&#x27;,<br>    setup()&#123;<br>      // 数据，原来写在data中（注意：此时的name、age、tel数据都不是响应式数据）<br>      let name = &#x27;张三&#x27;<br>      let age = 18<br>      let tel = &#x27;13888888888&#x27;<br><br>      // 方法，原来写在methods中<br>      function changeName()&#123;<br>        name = &#x27;zhang-san&#x27; //注意：此时这么修改name页面是不变化的<br>        console.log(name)<br>      &#125;<br>      function changeAge()&#123;<br>        age += 1 //注意：此时这么修改age页面是不变化的<br>        console.log(age)<br>      &#125;<br>      function showTel()&#123;<br>        alert(tel)<br>      &#125;<br><br>      // 返回一个对象，对象中的内容，模板中可以直接使用<br>      return &#123;name,age,tel,changeName,changeAge,showTel&#125;<br>    &#125;<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="setup-的返回值"><a href="#setup-的返回值" class="headerlink" title="setup 的返回值"></a>setup 的返回值</h3><ul>
+<li>若返回一个<strong>对象</strong>：则对象中的：属性、方法等，在模板中均可以直接使用**（重点关注）。**</li>
+<li>若返回一个<strong>函数</strong>：则可以自定义渲染内容，代码如下：</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function">()=&gt;</span> <span class="hljs-string">&#x27;你好啊！&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="setup-与-Options-API-的关系"><a href="#setup-与-Options-API-的关系" class="headerlink" title="setup 与 Options API 的关系"></a>setup 与 Options API 的关系</h3><ul>
+<li><code>Vue2</code> 的配置（<code>data</code>、<code>methos</code>……）中<strong>可以访问到</strong> <code>setup</code>中的属性、方法。</li>
+<li>但在<code>setup</code>中<strong>不能访问到</strong><code>Vue2</code>的配置（<code>data</code>、<code>methos</code>……）。</li>
+<li>如果与<code>Vue2</code>冲突，则<code>setup</code>优先。</li>
+</ul>
+<h3 id="setup-语法糖"><a href="#setup-语法糖" class="headerlink" title="setup 语法糖"></a>setup 语法糖</h3><p><code>setup</code>函数有一个语法糖，这个语法糖，可以让我们把<code>setup</code>独立出去，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;姓名：&#123;&#123;name&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123;age&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changAge&quot;&gt;年龄+1&lt;/button&gt;<br>    &lt;button @click=&quot;showTel&quot;&gt;点我查看联系方式&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot;&gt;<br>  export default &#123;<br>    name:&#x27;Person&#x27;,<br>  &#125;<br>&lt;/script&gt;<br><br>&lt;!-- 下面的写法是setup语法糖 --&gt;<br>&lt;script setup lang=&quot;ts&quot;&gt;<br>  console.log(this) //undefined<br>  <br>  // 数据（注意：此时的name、age、tel都不是响应式数据）<br>  let name = &#x27;张三&#x27;<br>  let age = 18<br>  let tel = &#x27;13888888888&#x27;<br><br>  // 方法<br>  function changName()&#123;<br>    name = &#x27;李四&#x27;//注意：此时这么修改name页面是不变化的<br>  &#125;<br>  function changAge()&#123;<br>    console.log(age)<br>    age += 1 //注意：此时这么修改age页面是不变化的<br>  &#125;<br>  function showTel()&#123;<br>    alert(tel)<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>扩展：上述代码，还需要编写一个不写<code>setup</code>的<code>script</code>标签，去指定组件名字，比较麻烦，我们可以借助<code>vite</code>中的插件简化</p>
+<ol>
+<li>第一步：<code>npm i vite-plugin-vue-setup-extend -D</code></li>
+<li>第二步：<code>vite.config.ts</code></li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueSetupExtend</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite-plugin-vue-setup-extend&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">plugins</span>: [ <span class="hljs-title class_">VueSetupExtend</span>() ]<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>第三步：<code>&lt;script setup lang=&quot;ts&quot; name=&quot;Person&quot;&gt;</code></li>
+</ol>
+<h2 id="3-3-【ref-创建：基本类型的响应式数据】"><a href="#3-3-【ref-创建：基本类型的响应式数据】" class="headerlink" title="3.3. 【ref 创建：基本类型的响应式数据】"></a>3.3. 【ref 创建：基本类型的响应式数据】</h2><ul>
+<li>**作用：**定义响应式变量。</li>
+<li><strong>语法：</strong><code>let xxx = ref(初始值)</code>。</li>
+<li>**返回值：**一个<code>RefImpl</code>的实例对象，简称<code>ref对象</code>或<code>ref</code>，<code>ref</code>对象的<code>value</code><strong>属性是响应式的</strong>。</li>
+<li><strong>注意点：</strong><ul>
+<li><code>JS</code>中操作数据需要：<code>xxx.value</code>，但模板中不需要<code>.value</code>，直接使用即可。</li>
+<li>对于<code>let name = ref(&#39;张三&#39;)</code>来说，<code>name</code>不是响应式的，<code>name.value</code>是响应式的。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;姓名：&#123;&#123;name&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123;age&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;年龄+1&lt;/button&gt;<br>    &lt;button @click=&quot;showTel&quot;&gt;点我查看联系方式&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot; name=&quot;Person&quot;&gt;<br>  import &#123;ref&#125; from &#x27;vue&#x27;<br>  // name和age是一个RefImpl的实例对象，简称ref对象，它们的value属性是响应式的。<br>  let name = ref(&#x27;张三&#x27;)<br>  let age = ref(18)<br>  // tel就是一个普通的字符串，不是响应式的<br>  let tel = &#x27;13888888888&#x27;<br><br>  function changeName()&#123;<br>    // JS中操作ref对象时候需要.value<br>    name.value = &#x27;李四&#x27;<br>    console.log(name.value)<br><br>    // 注意：name不是响应式的，name.value是响应式的，所以如下代码并不会引起页面的更新。<br>    // name = ref(&#x27;zhang-san&#x27;)<br>  &#125;<br>  function changeAge()&#123;<br>    // JS中操作ref对象时候需要.value<br>    age.value += 1 <br>    console.log(age.value)<br>  &#125;<br>  function showTel()&#123;<br>    alert(tel)<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-4-【reactive-创建：对象类型的响应式数据】"><a href="#3-4-【reactive-创建：对象类型的响应式数据】" class="headerlink" title="3.4. 【reactive 创建：对象类型的响应式数据】"></a>3.4. 【reactive 创建：对象类型的响应式数据】</h2><ul>
+<li><strong>作用：<strong>定义一个</strong>响应式对象</strong>（基本类型不要用它，要用<code>ref</code>，否则报错）</li>
+<li><strong>语法：</strong><code>let 响应式对象= reactive(源对象)</code>。</li>
+<li>**返回值：**一个<code>Proxy</code>的实例对象，简称：响应式对象。</li>
+<li><strong>注意点：</strong><code>reactive</code>定义的响应式数据是“深层次”的。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;汽车信息：一台&#123;&#123; car.brand &#125;&#125;汽车，价值&#123;&#123; car.price &#125;&#125;万&lt;/h2&gt;<br>    &lt;h2&gt;游戏列表：&lt;/h2&gt;<br>    &lt;ul&gt;<br>      &lt;li v-for=&quot;g in games&quot; :key=&quot;g.id&quot;&gt;&#123;&#123; g.name &#125;&#125;&lt;/li&gt;<br>    &lt;/ul&gt;<br>    &lt;h2&gt;测试：&#123;&#123;obj.a.b.c.d&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeCarPrice&quot;&gt;修改汽车价格&lt;/button&gt;<br>    &lt;button @click=&quot;changeFirstGame&quot;&gt;修改第一游戏&lt;/button&gt;<br>    &lt;button @click=&quot;test&quot;&gt;测试&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>import &#123; reactive &#125; from &#x27;vue&#x27;<br><br>// 数据<br>let car = reactive(&#123; brand: &#x27;奔驰&#x27;, price: 100 &#125;)<br>let games = reactive([<br>  &#123; id: &#x27;ahsgdyfa01&#x27;, name: &#x27;英雄联盟&#x27; &#125;,<br>  &#123; id: &#x27;ahsgdyfa02&#x27;, name: &#x27;王者荣耀&#x27; &#125;,<br>  &#123; id: &#x27;ahsgdyfa03&#x27;, name: &#x27;原神&#x27; &#125;<br>])<br>let obj = reactive(&#123;<br>  a:&#123;<br>    b:&#123;<br>      c:&#123;<br>        d:666<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;)<br><br>function changeCarPrice() &#123;<br>  car.price += 10<br>&#125;<br>function changeFirstGame() &#123;<br>  games[0].name = &#x27;流星蝴蝶剑&#x27;<br>&#125;<br>function test()&#123;<br>  obj.a.b.c.d = 999<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-5-【ref-创建：对象类型的响应式数据】"><a href="#3-5-【ref-创建：对象类型的响应式数据】" class="headerlink" title="3.5. 【ref 创建：对象类型的响应式数据】"></a>3.5. 【ref 创建：对象类型的响应式数据】</h2><ul>
+<li>其实<code>ref</code>接收的数据可以是：<strong>基本类型</strong>、<strong>对象类型</strong>。</li>
+<li>若<code>ref</code>接收的是对象类型，内部其实也是调用了<code>reactive</code>函数。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;汽车信息：一台&#123;&#123; car.brand &#125;&#125;汽车，价值&#123;&#123; car.price &#125;&#125;万&lt;/h2&gt;<br>    &lt;h2&gt;游戏列表：&lt;/h2&gt;<br>    &lt;ul&gt;<br>      &lt;li v-for=&quot;g in games&quot; :key=&quot;g.id&quot;&gt;&#123;&#123; g.name &#125;&#125;&lt;/li&gt;<br>    &lt;/ul&gt;<br>    &lt;h2&gt;测试：&#123;&#123;obj.a.b.c.d&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeCarPrice&quot;&gt;修改汽车价格&lt;/button&gt;<br>    &lt;button @click=&quot;changeFirstGame&quot;&gt;修改第一游戏&lt;/button&gt;<br>    &lt;button @click=&quot;test&quot;&gt;测试&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>import &#123; ref &#125; from &#x27;vue&#x27;<br><br>// 数据<br>let car = ref(&#123; brand: &#x27;奔驰&#x27;, price: 100 &#125;)<br>let games = ref([<br>  &#123; id: &#x27;ahsgdyfa01&#x27;, name: &#x27;英雄联盟&#x27; &#125;,<br>  &#123; id: &#x27;ahsgdyfa02&#x27;, name: &#x27;王者荣耀&#x27; &#125;,<br>  &#123; id: &#x27;ahsgdyfa03&#x27;, name: &#x27;原神&#x27; &#125;<br>])<br>let obj = ref(&#123;<br>  a:&#123;<br>    b:&#123;<br>      c:&#123;<br>        d:666<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;)<br><br>console.log(car)<br><br>function changeCarPrice() &#123;<br>  car.value.price += 10<br>&#125;<br>function changeFirstGame() &#123;<br>  games.value[0].name = &#x27;流星蝴蝶剑&#x27;<br>&#125;<br>function test()&#123;<br>  obj.value.a.b.c.d = 999<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-6-【ref-对比-reactive】"><a href="#3-6-【ref-对比-reactive】" class="headerlink" title="3.6. 【ref 对比 reactive】"></a>3.6. 【ref 对比 reactive】</h2><p>宏观角度看：</p>
+<blockquote>
+<ol>
+<li><p><code>ref</code>用来定义：<strong>基本类型数据</strong>、<strong>对象类型数据</strong>；</p>
+</li>
+<li><p><code>reactive</code>用来定义：<strong>对象类型数据</strong>。</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li>区别：</li>
+</ul>
+<blockquote>
+<ol>
+<li><p><code>ref</code>创建的变量必须使用<code>.value</code>（可以使用<code>volar</code>插件自动添加<code>.value</code>）。</p>
+<img src="/img/images/自动补充value.png" srcset="/img/loading.gif" lazyload alt="自动补充value" style="zoom:50%;border-radius:20px" /> 
+</li>
+<li><p><code>reactive</code>重新分配一个新对象，会<strong>失去</strong>响应式（可以使用<code>Object.assign</code>去整体替换）。</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li>使用原则：</li>
+</ul>
+<blockquote>
+<ol>
+<li>若需要一个基本类型的响应式数据，必须使用<code>ref</code>。</li>
+<li>若需要一个响应式对象，层级不深，<code>ref</code>、<code>reactive</code>都可以。</li>
+<li>若需要一个响应式对象，且层级较深，推荐使用<code>reactive</code>。</li>
+</ol>
+</blockquote>
+<h2 id="3-7-【toRefs-与-toRef】"><a href="#3-7-【toRefs-与-toRef】" class="headerlink" title="3.7. 【toRefs 与 toRef】"></a>3.7. 【toRefs 与 toRef】</h2><ul>
+<li>作用：将一个响应式对象中的每一个属性，转换为<code>ref</code>对象。</li>
+<li>备注：<code>toRefs</code>与<code>toRef</code>功能一致，但<code>toRefs</code>可以批量转换。</li>
+<li>语法如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;姓名：&#123;&#123;person.name&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123;person.age&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;性别：&#123;&#123;person.gender&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;修改年龄&lt;/button&gt;<br>    &lt;button @click=&quot;changeGender&quot;&gt;修改性别&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;ref,reactive,toRefs,toRef&#125; from &#x27;vue&#x27;<br><br>  // 数据<br>  let person = reactive(&#123;name:&#x27;张三&#x27;, age:18, gender:&#x27;男&#x27;&#125;)<br>	<br>  // 通过toRefs将person对象中的n个属性批量取出，且依然保持响应式的能力<br>  let &#123;name,gender&#125; =  toRefs(person)<br>	<br>  // 通过toRef将person对象中的gender属性取出，且依然保持响应式的能力<br>  let age = toRef(person,&#x27;age&#x27;)<br><br>  // 方法<br>  function changeName()&#123;<br>    name.value += &#x27;~&#x27;<br>  &#125;<br>  function changeAge()&#123;<br>    age.value += 1<br>  &#125;<br>  function changeGender()&#123;<br>    gender.value = &#x27;女&#x27;<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-8-【computed】"><a href="#3-8-【computed】" class="headerlink" title="3.8. 【computed】"></a>3.8. 【computed】</h2><p>作用：根据已有数据计算出新数据（和<code>Vue2</code>中的<code>computed</code>作用一致）。</p>
+<img src="/img/images/computed.gif" srcset="/img/loading.gif" lazyload style="zoom:20%;" />  
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    姓：&lt;input type=&quot;text&quot; v-model=&quot;firstName&quot;&gt; &lt;br&gt;<br>    名：&lt;input type=&quot;text&quot; v-model=&quot;lastName&quot;&gt; &lt;br&gt;<br>    全名：&lt;span&gt;&#123;&#123;fullName&#125;&#125;&lt;/span&gt; &lt;br&gt;<br>    &lt;button @click=&quot;changeFullName&quot;&gt;全名改为：li-si&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot; name=&quot;App&quot;&gt;<br>  import &#123;ref,computed&#125; from &#x27;vue&#x27;<br><br>  let firstName = ref(&#x27;zhang&#x27;)<br>  let lastName = ref(&#x27;san&#x27;)<br><br>  // 计算属性——只读取，不修改<br>  /* let fullName = computed(()=&gt;&#123;<br>    return firstName.value + &#x27;-&#x27; + lastName.value<br>  &#125;) */<br><br><br>  // 计算属性——既读取又修改<br>  let fullName = computed(&#123;<br>    // 读取<br>    get()&#123;<br>      return firstName.value + &#x27;-&#x27; + lastName.value<br>    &#125;,<br>    // 修改<br>    set(val)&#123;<br>      console.log(&#x27;有人修改了fullName&#x27;,val)<br>      firstName.value = val.split(&#x27;-&#x27;)[0]<br>      lastName.value = val.split(&#x27;-&#x27;)[1]<br>    &#125;<br>  &#125;)<br><br>  function changeFullName()&#123;<br>    fullName.value = &#x27;li-si&#x27;<br>  &#125; <br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-9-【watch】"><a href="#3-9-【watch】" class="headerlink" title="3.9.【watch】"></a>3.9.【watch】</h2><ul>
+<li>作用：监视数据的变化（和<code>Vue2</code>中的<code>watch</code>作用一致）</li>
+<li>特点：<code>Vue3</code>中的<code>watch</code>只能监视以下<strong>四种数据</strong>：</li>
+</ul>
+<blockquote>
+<ol>
+<li><code>ref</code>定义的数据。</li>
+<li><code>reactive</code>定义的数据。</li>
+<li>函数返回一个值（<code>getter</code>函数）。</li>
+<li>一个包含上述内容的数组。</li>
+</ol>
+</blockquote>
+<p>我们在<code>Vue3</code>中使用<code>watch</code>的时候，通常会遇到以下几种情况：</p>
+<h3 id="情况一"><a href="#情况一" class="headerlink" title="* 情况一"></a>* 情况一</h3><p>监视<code>ref</code>定义的【基本类型】数据：直接写数据名即可，监视的是其<code>value</code>值的改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1&gt;情况一：监视【ref】定义的【基本类型】数据&lt;/h1&gt;<br>    &lt;h2&gt;当前求和为：&#123;&#123;sum&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeSum&quot;&gt;点我sum+1&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;ref,watch&#125; from &#x27;vue&#x27;<br>  // 数据<br>  let sum = ref(0)<br>  // 方法<br>  function changeSum()&#123;<br>    sum.value += 1<br>  &#125;<br>  // 监视，情况一：监视【ref】定义的【基本类型】数据<br>  const stopWatch = watch(sum,(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;sum变化了&#x27;,newValue,oldValue)<br>    if(newValue &gt;= 10)&#123;<br>      stopWatch()<br>    &#125;<br>  &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="情况二"><a href="#情况二" class="headerlink" title="* 情况二"></a>* 情况二</h3><p>监视<code>ref</code>定义的【对象类型】数据：直接写数据名，监视的是对象的【地址值】，若想监视对象内部的数据，要手动开启深度监视。</p>
+<blockquote>
+<p>注意：</p>
+<ul>
+<li><p>若修改的是<code>ref</code>定义的对象中的属性，<code>newValue</code> 和 <code>oldValue</code> 都是新值，因为它们是同一个对象。</p>
+</li>
+<li><p>若修改整个<code>ref</code>定义的对象，<code>newValue</code> 是新值， <code>oldValue</code> 是旧值，因为不是同一个对象了。</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1&gt;情况二：监视【ref】定义的【对象类型】数据&lt;/h1&gt;<br>    &lt;h2&gt;姓名：&#123;&#123; person.name &#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123; person.age &#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;修改年龄&lt;/button&gt;<br>    &lt;button @click=&quot;changePerson&quot;&gt;修改整个人&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;ref,watch&#125; from &#x27;vue&#x27;<br>  // 数据<br>  let person = ref(&#123;<br>    name:&#x27;张三&#x27;,<br>    age:18<br>  &#125;)<br>  // 方法<br>  function changeName()&#123;<br>    person.value.name += &#x27;~&#x27;<br>  &#125;<br>  function changeAge()&#123;<br>    person.value.age += 1<br>  &#125;<br>  function changePerson()&#123;<br>    person.value = &#123;name:&#x27;李四&#x27;,age:90&#125;<br>  &#125;<br>  /* <br>    监视，情况一：监视【ref】定义的【对象类型】数据，监视的是对象的地址值，若想监视对象内部属性的变化，需要手动开启深度监视<br>    watch的第一个参数是：被监视的数据<br>    watch的第二个参数是：监视的回调<br>    watch的第三个参数是：配置对象（deep、immediate等等.....） <br>  */<br>  watch(person,(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;person变化了&#x27;,newValue,oldValue)<br>  &#125;,&#123;deep:true&#125;)<br>  <br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="情况三"><a href="#情况三" class="headerlink" title="*  情况三"></a>*  情况三</h3><p>监视<code>reactive</code>定义的【对象类型】数据，且默认开启了深度监视。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1&gt;情况三：监视【reactive】定义的【对象类型】数据&lt;/h1&gt;<br>    &lt;h2&gt;姓名：&#123;&#123; person.name &#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123; person.age &#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;修改年龄&lt;/button&gt;<br>    &lt;button @click=&quot;changePerson&quot;&gt;修改整个人&lt;/button&gt;<br>    &lt;hr&gt;<br>    &lt;h2&gt;测试：&#123;&#123;obj.a.b.c&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;test&quot;&gt;修改obj.a.b.c&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;reactive,watch&#125; from &#x27;vue&#x27;<br>  // 数据<br>  let person = reactive(&#123;<br>    name:&#x27;张三&#x27;,<br>    age:18<br>  &#125;)<br>  let obj = reactive(&#123;<br>    a:&#123;<br>      b:&#123;<br>        c:666<br>      &#125;<br>    &#125;<br>  &#125;)<br>  // 方法<br>  function changeName()&#123;<br>    person.name += &#x27;~&#x27;<br>  &#125;<br>  function changeAge()&#123;<br>    person.age += 1<br>  &#125;<br>  function changePerson()&#123;<br>    Object.assign(person,&#123;name:&#x27;李四&#x27;,age:80&#125;)<br>  &#125;<br>  function test()&#123;<br>    obj.a.b.c = 888<br>  &#125;<br><br>  // 监视，情况三：监视【reactive】定义的【对象类型】数据，且默认是开启深度监视的<br>  watch(person,(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;person变化了&#x27;,newValue,oldValue)<br>  &#125;)<br>  watch(obj,(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;Obj变化了&#x27;,newValue,oldValue)<br>  &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="情况四"><a href="#情况四" class="headerlink" title="* 情况四"></a>* 情况四</h3><p>监视<code>ref</code>或<code>reactive</code>定义的【对象类型】数据中的<strong>某个属性</strong>，注意点如下：</p>
+<ol>
+<li>若该属性值<strong>不是</strong>【对象类型】，需要写成函数形式。</li>
+<li>若该属性值是<strong>依然</strong>是【对象类型】，可直接编，也可写成函数，建议写成函数。</li>
+</ol>
+<p>结论：监视的要是对象里的属性，那么最好写函数式，注意点：若是对象监视的是地址值，需要关注对象内部，需要手动开启深度监视。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1&gt;情况四：监视【ref】或【reactive】定义的【对象类型】数据中的某个属性&lt;/h1&gt;<br>    &lt;h2&gt;姓名：&#123;&#123; person.name &#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123; person.age &#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;汽车：&#123;&#123; person.car.c1 &#125;&#125;、&#123;&#123; person.car.c2 &#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;修改年龄&lt;/button&gt;<br>    &lt;button @click=&quot;changeC1&quot;&gt;修改第一台车&lt;/button&gt;<br>    &lt;button @click=&quot;changeC2&quot;&gt;修改第二台车&lt;/button&gt;<br>    &lt;button @click=&quot;changeCar&quot;&gt;修改整个车&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;reactive,watch&#125; from &#x27;vue&#x27;<br><br>  // 数据<br>  let person = reactive(&#123;<br>    name:&#x27;张三&#x27;,<br>    age:18,<br>    car:&#123;<br>      c1:&#x27;奔驰&#x27;,<br>      c2:&#x27;宝马&#x27;<br>    &#125;<br>  &#125;)<br>  // 方法<br>  function changeName()&#123;<br>    person.name += &#x27;~&#x27;<br>  &#125;<br>  function changeAge()&#123;<br>    person.age += 1<br>  &#125;<br>  function changeC1()&#123;<br>    person.car.c1 = &#x27;奥迪&#x27;<br>  &#125;<br>  function changeC2()&#123;<br>    person.car.c2 = &#x27;大众&#x27;<br>  &#125;<br>  function changeCar()&#123;<br>    person.car = &#123;c1:&#x27;雅迪&#x27;,c2:&#x27;爱玛&#x27;&#125;<br>  &#125;<br><br>  // 监视，情况四：监视响应式对象中的某个属性，且该属性是基本类型的，要写成函数式<br>  /* watch(()=&gt; person.name,(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;person.name变化了&#x27;,newValue,oldValue)<br>  &#125;) */<br><br>  // 监视，情况四：监视响应式对象中的某个属性，且该属性是对象类型的，可以直接写，也能写函数，更推荐写函数<br>  watch(()=&gt;person.car,(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;person.car变化了&#x27;,newValue,oldValue)<br>  &#125;,&#123;deep:true&#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="情况五"><a href="#情况五" class="headerlink" title="* 情况五"></a>* 情况五</h3><p>监视上述的多个数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1&gt;情况五：监视上述的多个数据&lt;/h1&gt;<br>    &lt;h2&gt;姓名：&#123;&#123; person.name &#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;年龄：&#123;&#123; person.age &#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;汽车：&#123;&#123; person.car.c1 &#125;&#125;、&#123;&#123; person.car.c2 &#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeName&quot;&gt;修改名字&lt;/button&gt;<br>    &lt;button @click=&quot;changeAge&quot;&gt;修改年龄&lt;/button&gt;<br>    &lt;button @click=&quot;changeC1&quot;&gt;修改第一台车&lt;/button&gt;<br>    &lt;button @click=&quot;changeC2&quot;&gt;修改第二台车&lt;/button&gt;<br>    &lt;button @click=&quot;changeCar&quot;&gt;修改整个车&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;reactive,watch&#125; from &#x27;vue&#x27;<br><br>  // 数据<br>  let person = reactive(&#123;<br>    name:&#x27;张三&#x27;,<br>    age:18,<br>    car:&#123;<br>      c1:&#x27;奔驰&#x27;,<br>      c2:&#x27;宝马&#x27;<br>    &#125;<br>  &#125;)<br>  // 方法<br>  function changeName()&#123;<br>    person.name += &#x27;~&#x27;<br>  &#125;<br>  function changeAge()&#123;<br>    person.age += 1<br>  &#125;<br>  function changeC1()&#123;<br>    person.car.c1 = &#x27;奥迪&#x27;<br>  &#125;<br>  function changeC2()&#123;<br>    person.car.c2 = &#x27;大众&#x27;<br>  &#125;<br>  function changeCar()&#123;<br>    person.car = &#123;c1:&#x27;雅迪&#x27;,c2:&#x27;爱玛&#x27;&#125;<br>  &#125;<br><br>  // 监视，情况五：监视上述的多个数据<br>  watch([()=&gt;person.name,person.car],(newValue,oldValue)=&gt;&#123;<br>    console.log(&#x27;person.car变化了&#x27;,newValue,oldValue)<br>  &#125;,&#123;deep:true&#125;)<br><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-10-【watchEffect】"><a href="#3-10-【watchEffect】" class="headerlink" title="3.10. 【watchEffect】"></a>3.10. 【watchEffect】</h2><ul>
+<li><p>官网：立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行该函数。</p>
+</li>
+<li><p><code>watch</code>对比<code>watchEffect</code></p>
+<blockquote>
+<ol>
+<li><p>都能监听响应式数据的变化，不同的是监听数据变化的方式不同</p>
+</li>
+<li><p><code>watch</code>：要明确指出监视的数据</p>
+</li>
+<li><p><code>watchEffect</code>：不用明确指出监视的数据（函数中用到哪些属性，那就监视哪些属性）。</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1&gt;需求：水温达到50℃，或水位达到20cm，则联系服务器&lt;/h1&gt;<br>    &lt;h2 id=&quot;demo&quot;&gt;水温：&#123;&#123;temp&#125;&#125;&lt;/h2&gt;<br>    &lt;h2&gt;水位：&#123;&#123;height&#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changePrice&quot;&gt;水温+1&lt;/button&gt;<br>    &lt;button @click=&quot;changeSum&quot;&gt;水位+10&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;ref,watch,watchEffect&#125; from &#x27;vue&#x27;<br>  // 数据<br>  let temp = ref(0)<br>  let height = ref(0)<br><br>  // 方法<br>  function changePrice()&#123;<br>    temp.value += 10<br>  &#125;<br>  function changeSum()&#123;<br>    height.value += 1<br>  &#125;<br><br>  // 用watch实现，需要明确的指出要监视：temp、height<br>  watch([temp,height],(value)=&gt;&#123;<br>    // 从value中获取最新的temp值、height值<br>    const [newTemp,newHeight] = value<br>    // 室温达到50℃，或水位达到20cm，立刻联系服务器<br>    if(newTemp &gt;= 50 || newHeight &gt;= 20)&#123;<br>      console.log(&#x27;联系服务器&#x27;)<br>    &#125;<br>  &#125;)<br><br>  // 用watchEffect实现，不用<br>  const stopWtach = watchEffect(()=&gt;&#123;<br>    // 室温达到50℃，或水位达到20cm，立刻联系服务器<br>    if(temp.value &gt;= 50 || height.value &gt;= 20)&#123;<br>      console.log(document.getElementById(&#x27;demo&#x27;)?.innerText)<br>      console.log(&#x27;联系服务器&#x27;)<br>    &#125;<br>    // 水温达到100，或水位达到50，取消监视<br>    if(temp.value === 100 || height.value === 50)&#123;<br>      console.log(&#x27;清理了&#x27;)<br>      stopWtach()<br>    &#125;<br>  &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-11-【标签的-ref-属性】"><a href="#3-11-【标签的-ref-属性】" class="headerlink" title="3.11. 【标签的 ref 属性】"></a>3.11. 【标签的 ref 属性】</h2><p>作用：用于注册模板引用。</p>
+<blockquote>
+<ul>
+<li><p>用在普通<code>DOM</code>标签上，获取的是<code>DOM</code>节点。</p>
+</li>
+<li><p>用在组件标签上，获取的是组件实例对象。</p>
+</li>
+</ul>
+</blockquote>
+<p>用在普通<code>DOM</code>标签上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h1 ref=&quot;title1&quot;&gt;尚硅谷&lt;/h1&gt;<br>    &lt;h2 ref=&quot;title2&quot;&gt;前端&lt;/h2&gt;<br>    &lt;h3 ref=&quot;title3&quot;&gt;Vue&lt;/h3&gt;<br>    &lt;input type=&quot;text&quot; ref=&quot;inpt&quot;&gt; &lt;br&gt;&lt;br&gt;<br>    &lt;button @click=&quot;showLog&quot;&gt;点我打印内容&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;ref&#125; from &#x27;vue&#x27;<br>	<br>  let title1 = ref()<br>  let title2 = ref()<br>  let title3 = ref()<br><br>  function showLog()&#123;<br>    // 通过id获取元素<br>    const t1 = document.getElementById(&#x27;title1&#x27;)<br>    // 打印内容<br>    console.log((t1 as HTMLElement).innerText)<br>    console.log((&lt;HTMLElement&gt;t1).innerText)<br>    console.log(t1?.innerText)<br>    <br>		/************************************/<br>		<br>    // 通过ref获取元素<br>    console.log(title1.value)<br>    console.log(title2.value)<br>    console.log(title3.value)<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>用在组件标签上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 父组件App.vue --&gt;<br>&lt;template&gt;<br>  &lt;Person ref=&quot;ren&quot;/&gt;<br>  &lt;button @click=&quot;test&quot;&gt;测试&lt;/button&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;App&quot;&gt;<br>  import Person from &#x27;./components/Person.vue&#x27;<br>  import &#123;ref&#125; from &#x27;vue&#x27;<br><br>  let ren = ref()<br><br>  function test()&#123;<br>    console.log(ren.value.name)<br>    console.log(ren.value.age)<br>  &#125;<br>&lt;/script&gt;<br><br><br>&lt;!-- 子组件Person.vue中要使用defineExpose暴露内容 --&gt;<br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123;ref,defineExpose&#125; from &#x27;vue&#x27;<br>	// 数据<br>  let name = ref(&#x27;张三&#x27;)<br>  let age = ref(18)<br>  /****************************/<br>  /****************************/<br>  // 使用defineExpose将组件中的数据交给外部<br>  defineExpose(&#123;name,age&#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-12-【props】"><a href="#3-12-【props】" class="headerlink" title="3.12. 【props】"></a>3.12. 【props】</h2><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 定义一个接口，限制每个Person对象的格式</span><br><span class="hljs-keyword">export</span> interface <span class="hljs-title class_">PersonInter</span> &#123;<br><span class="hljs-attr">id</span>:string,<br><span class="hljs-attr">name</span>:string,<br> <span class="hljs-attr">age</span>:number<br>&#125;<br><br><span class="hljs-comment">// 定义一个自定义类型Persons</span><br><span class="hljs-keyword">export</span> type <span class="hljs-title class_">Persons</span> = <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">PersonInter</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>App.vue</code>中代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;Person :list=&quot;persons&quot;/&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;App&quot;&gt;<br>import Person from &#x27;./components/Person.vue&#x27;<br>import &#123;reactive&#125; from &#x27;vue&#x27;<br> import &#123;type Persons&#125; from &#x27;./types&#x27;<br><br> let persons = reactive&lt;Persons&gt;([<br>  &#123;id:&#x27;e98219e12&#x27;,name:&#x27;张三&#x27;,age:18&#125;,<br>   &#123;id:&#x27;e98219e13&#x27;,name:&#x27;李四&#x27;,age:19&#125;,<br>    &#123;id:&#x27;e98219e14&#x27;,name:&#x27;王五&#x27;,age:20&#125;<br>  ])<br>&lt;/script&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p><code>Person.vue</code>中代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs Vue">&lt;template&gt;<br>&lt;div class=&quot;person&quot;&gt;<br>&lt;ul&gt;<br>  &lt;li v-for=&quot;item in list&quot; :key=&quot;item.id&quot;&gt;<br>     &#123;&#123;item.name&#125;&#125;--&#123;&#123;item.age&#125;&#125;<br>   &lt;/li&gt;<br> &lt;/ul&gt;<br>&lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>import &#123;defineProps&#125; from &#x27;vue&#x27;<br>import &#123;type PersonInter&#125; from &#x27;@/types&#x27;<br><br>// 第一种写法：仅接收<br>// const props = defineProps([&#x27;list&#x27;])<br><br>// 第二种写法：接收+限制类型<br>// defineProps&lt;&#123;list:Persons&#125;&gt;()<br><br>// 第三种写法：接收+限制类型+指定默认值+限制必要性<br>let props = withDefaults(defineProps&lt;&#123;list?:Persons&#125;&gt;(),&#123;<br>  list:()=&gt;[&#123;id:&#x27;asdasg01&#x27;,name:&#x27;小猪佩奇&#x27;,age:18&#125;]<br>&#125;)<br>console.log(props)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure></blockquote>
+<h2 id="3-13-【生命周期】"><a href="#3-13-【生命周期】" class="headerlink" title="3.13. 【生命周期】"></a>3.13. 【生命周期】</h2><ul>
+<li><p>概念：<code>Vue</code>组件实例在创建时要经历一系列的初始化步骤，在此过程中<code>Vue</code>会在合适的时机，调用特定的函数，从而让开发者有机会在特定阶段运行自己的代码，这些特定的函数统称为：生命周期钩子</p>
+</li>
+<li><p>规律：</p>
+<blockquote>
+<p>生命周期整体分为四个阶段，分别是：<strong>创建、挂载、更新、销毁</strong>，每个阶段都有两个钩子，一前一后。</p>
+</blockquote>
+</li>
+<li><p><code>Vue2</code>的生命周期</p>
+<blockquote>
+<p>创建阶段：<code>beforeCreate</code>、<code>created</code></p>
+<p>挂载阶段：<code>beforeMount</code>、<code>mounted</code></p>
+<p>更新阶段：<code>beforeUpdate</code>、<code>updated</code></p>
+<p>销毁阶段：<code>beforeDestroy</code>、<code>destroyed</code></p>
+</blockquote>
+</li>
+<li><p><code>Vue3</code>的生命周期</p>
+<blockquote>
+<p>创建阶段：<code>setup</code></p>
+<p>挂载阶段：<code>onBeforeMount</code>、<code>onMounted</code></p>
+<p>更新阶段：<code>onBeforeUpdate</code>、<code>onUpdated</code></p>
+<p>卸载阶段：<code>onBeforeUnmount</code>、<code>onUnmounted</code></p>
+</blockquote>
+</li>
+<li><p>常用的钩子：<code>onMounted</code>(挂载完毕)、<code>onUpdated</code>(更新完毕)、<code>onBeforeUnmount</code>(卸载之前)</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div class=&quot;person&quot;&gt;<br>    &lt;h2&gt;当前求和为：&#123;&#123; sum &#125;&#125;&lt;/h2&gt;<br>    &lt;button @click=&quot;changeSum&quot;&gt;点我sum+1&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;!-- vue3写法 --&gt;<br>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;<br>  import &#123; <br>    ref, <br>    onBeforeMount, <br>    onMounted, <br>    onBeforeUpdate, <br>    onUpdated, <br>    onBeforeUnmount, <br>    onUnmounted <br>  &#125; from &#x27;vue&#x27;<br><br>  // 数据<br>  let sum = ref(0)<br>  // 方法<br>  function changeSum() &#123;<br>    sum.value += 1<br>  &#125;<br>  console.log(&#x27;setup&#x27;)<br>  // 生命周期钩子<br>  onBeforeMount(()=&gt;&#123;<br>    console.log(&#x27;挂载之前&#x27;)<br>  &#125;)<br>  onMounted(()=&gt;&#123;<br>    console.log(&#x27;挂载完毕&#x27;)<br>  &#125;)<br>  onBeforeUpdate(()=&gt;&#123;<br>    console.log(&#x27;更新之前&#x27;)<br>  &#125;)<br>  onUpdated(()=&gt;&#123;<br>    console.log(&#x27;更新完毕&#x27;)<br>  &#125;)<br>  onBeforeUnmount(()=&gt;&#123;<br>    console.log(&#x27;卸载之前&#x27;)<br>  &#125;)<br>  onUnmounted(()=&gt;&#123;<br>    console.log(&#x27;卸载完毕&#x27;)<br>  &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-14-【自定义hook】"><a href="#3-14-【自定义hook】" class="headerlink" title="3.14. 【自定义hook】"></a>3.14. 【自定义hook】</h2><ul>
+<li><p>什么是<code>hook</code>？—— 本质是一个函数，把<code>setup</code>函数中使用的<code>Composition API</code>进行了封装，类似于<code>vue2.x</code>中的<code>mixin</code>。</p>
+</li>
+<li><p>自定义<code>hook</code>的优势：复用代码, 让<code>setup</code>中的逻辑更清楚易懂。</p>
+</li>
+</ul>
+<p>示例代码：</p>
+<ul>
+<li><p><code>useSum.ts</code>中内容如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;ref,onMounted&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">let</span> sum = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">increment</span> = (<span class="hljs-params"></span>)=&gt;&#123;<br>    sum.<span class="hljs-property">value</span> += <span class="hljs-number">1</span><br>  &#125;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">decrement</span> = (<span class="hljs-params"></span>)=&gt;&#123;<br>    sum.<span class="hljs-property">value</span> -= <span class="hljs-number">1</span><br>  &#125;<br>  <span class="hljs-title function_">onMounted</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>    <span class="hljs-title function_">increment</span>()<br>  &#125;)<br><br>  <span class="hljs-comment">//向外部暴露数据</span><br>  <span class="hljs-keyword">return</span> &#123;sum,increment,decrement&#125;<br>&#125;		<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>useDog.ts</code>中内容如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;reactive,onMounted&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> axios,&#123;<span class="hljs-title class_">AxiosError</span>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">let</span> dogList = reactive&lt;string[]&gt;([])<br><br>  <span class="hljs-comment">// 方法</span><br>  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getDog</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-comment">// 发请求</span><br>      <span class="hljs-keyword">let</span> &#123;data&#125; = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;https://dog.ceo/api/breed/pembroke/images/random&#x27;</span>)<br>      <span class="hljs-comment">// 维护数据</span><br>      dogList.<span class="hljs-title function_">push</span>(data.<span class="hljs-property">message</span>)<br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>      <span class="hljs-comment">// 处理错误</span><br>      <span class="hljs-keyword">const</span> err = &lt;<span class="hljs-title class_">AxiosError</span>&gt;error<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err.<span class="hljs-property">message</span>)<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 挂载钩子</span><br>  <span class="hljs-title function_">onMounted</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>    <span class="hljs-title function_">getDog</span>()<br>  &#125;)<br>	<br>  <span class="hljs-comment">//向外部暴露数据</span><br>  <span class="hljs-keyword">return</span> &#123;dogList,getDog&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>组件中具体使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;h2&gt;当前求和为：&#123;&#123;sum&#125;&#125;&lt;/h2&gt;<br>  &lt;button @click=&quot;increment&quot;&gt;点我+1&lt;/button&gt;<br>  &lt;button @click=&quot;decrement&quot;&gt;点我-1&lt;/button&gt;<br>  &lt;hr&gt;<br>  &lt;img v-for=&quot;(u,index) in dogList.urlList&quot; :key=&quot;index&quot; :src=&quot;(u as string)&quot;&gt; <br>  &lt;span v-show=&quot;dogList.isLoading&quot;&gt;加载中......&lt;/span&gt;&lt;br&gt;<br>  &lt;button @click=&quot;getDog&quot;&gt;再来一只狗&lt;/button&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=&quot;ts&quot;&gt;<br>  import &#123;defineComponent&#125; from &#x27;vue&#x27;<br><br>  export default defineComponent(&#123;<br>    name:&#x27;App&#x27;,<br>  &#125;)<br>&lt;/script&gt;<br><br>&lt;script setup lang=&quot;ts&quot;&gt;<br>  import useSum from &#x27;./hooks/useSum&#x27;<br>  import useDog from &#x27;./hooks/useDog&#x27;<br>	<br>  let &#123;sum,increment,decrement&#125; = useSum()<br>  let &#123;dogList,getDog&#125; = useDog()<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">Vue3学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue3/" class="print-no-link">#Vue3</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue3基础与核心语法</div>
+      <div>http://example.com/2024/06/03/Vue3基础与核心语法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/08/Vue3%E8%B7%AF%E7%94%B1/" title="Vue3路由">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue3路由</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/12/Vue2%E8%B7%AF%E7%94%B1/" title="Vue2路由">
+                        <span class="hidden-mobile">Vue2路由</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'bb016e1723be091838ebd7202526dc72'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Vue3学习笔记"
+        id="heading-8aba5e98e0d0d43111a391eb0f716feb" role="tab" data-toggle="collapse" href="#collapse-8aba5e98e0d0d43111a391eb0f716feb"
+        aria-expanded="true"
+      >
+        Vue3学习笔记
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-8aba5e98e0d0d43111a391eb0f716feb"
+           role="tabpanel" aria-labelledby="heading-8aba5e98e0d0d43111a391eb0f716feb">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/06/13/Pinia/" title="Vue3Pinia"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3Pinia</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/19/%E5%85%B6%E5%AE%83%20API/" title="Vue3其它API"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3其它API</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/03/Vue3%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AF%AD%E6%B3%95/" title="Vue3基础与核心语法"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Vue3基础与核心语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/23/Vue3%E6%96%B0%E7%BB%84%E4%BB%B6/" title="Vue3新组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3新组件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/16/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="Vue3组件通信"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3组件通信</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/08/Vue3%E8%B7%AF%E7%94%B1/" title="Vue3路由"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3路由</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

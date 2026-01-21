@@ -19,27 +19,24 @@
   <meta name="author" content="Guo HL">
   <meta name="keywords" content="">
   
-    <meta name="description" content="作为一名喜欢技术的爱好者，平时喜欢把自己学习技术的心得或者一些踩坑、易错的过程记录下来，首选的是技术平台(博客)，下面教大家如何利用Github来搭建一个自己的个人博客平台。">
+    <meta name="description" content="1. Vue3新组件1.1. 【Teleport】 什么是Teleport？—— Teleport 是一种能够将我们的组件html结构移动到指定位置的技术。  1234567&lt;teleport to&#x3D;&#x27;body&#x27; &gt;    &lt;div class&#x3D;&quot;modal&quot; v-show&#x3D;&quot;isShow&quot;&gt;      &lt;h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 Hexo+GitHub 搭建个人免费博客教程">
-<meta property="og:url" content="http://example.com/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:title" content="Vue3新组件">
+<meta property="og:url" content="http://example.com/2024/06/23/Vue3%E6%96%B0%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Guo HL&#39;s Blog">
-<meta property="og:description" content="作为一名喜欢技术的爱好者，平时喜欢把自己学习技术的心得或者一些踩坑、易错的过程记录下来，首选的是技术平台(博客)，下面教大家如何利用Github来搭建一个自己的个人博客平台。">
+<meta property="og:description" content="1. Vue3新组件1.1. 【Teleport】 什么是Teleport？—— Teleport 是一种能够将我们的组件html结构移动到指定位置的技术。  1234567&lt;teleport to&#x3D;&#x27;body&#x27; &gt;    &lt;div class&#x3D;&quot;modal&quot; v-show&#x3D;&quot;isShow&quot;&gt;      &lt;h">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/1.png">
-<meta property="og:image" content="http://example.com/img/2.png">
-<meta property="article:published_time" content="2026-01-17T07:30:23.000Z">
-<meta property="article:modified_time" content="2026-01-17T07:43:07.362Z">
+<meta property="article:published_time" content="2024-06-23T07:34:23.000Z">
+<meta property="article:modified_time" content="2026-01-21T05:36:10.827Z">
 <meta property="article:author" content="Guo HL">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="Vue3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>使用 Hexo+GitHub 搭建个人免费博客教程 - Guo HL&#39;s Blog</title>
+  <title>Vue3新组件 - Guo HL&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用 Hexo+GitHub 搭建个人免费博客教程"></span>
+            <span id="subtitle" data-typed-text="Vue3新组件"></span>
           
         </div>
 
@@ -216,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 15:30" pubdate>
-          2026年1月17日 下午
+        <time datetime="2024-06-23 15:34" pubdate>
+          2024年6月23日 下午
         </time>
       </span>
     
@@ -228,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          467 字
+          576 字
         
       </span>
     
@@ -239,7 +236,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -298,69 +295,54 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">使用 Hexo+GitHub 搭建个人免费博客教程</h1>
+            <h1 id="seo-header">Vue3新组件</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h1><p>1.访问git官方地址，下载对应的安装包，进行安装（简单的点击下一步）。</p>
-<p>2.安装好之后，鼠标右键可以看到：Git Bash Here，点击后打开了。</p>
-<p>3.输入：git –version</p>
-<p><img src="/img/1.png" srcset="/img/loading.gif" lazyload alt="image-20260117144901894"></p>
-<p>出现这个说明git安装成功。</p>
-<h1 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2.安装node.js"></a>2.安装node.js</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Nicolecocol/article/details/136788200">Node.js安装及环境配置超详细教程【Windows系统】_windows 安装nodejs-CSDN博客</a></p>
-<p>此教程里最后的npm源改为：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">npm config set registry https:<span class="hljs-comment">//registry.npmmirror.com/</span><br></code></pre></td></tr></table></figure>
+                <h1 id="1-Vue3新组件"><a href="#1-Vue3新组件" class="headerlink" title="1. Vue3新组件"></a>1. Vue3新组件</h1><h2 id="1-1-【Teleport】"><a href="#1-1-【Teleport】" class="headerlink" title="1.1. 【Teleport】"></a>1.1. 【Teleport】</h2><ul>
+<li>什么是Teleport？—— Teleport 是一种能够将我们的<strong>组件html结构</strong>移动到指定位置的技术。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">teleport</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;body&#x27;</span> &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal&quot;</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;isShow&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>我是一个弹窗<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我是弹窗中的一些内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;isShow = false&quot;</span>&gt;</span>关闭弹窗<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">teleport</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h1><p>打开终端输入：</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install -g hexo-<span class="hljs-keyword">cli</span><br></code></pre></td></tr></table></figure>
+<h2 id="1-2-【Suspense】"><a href="#1-2-【Suspense】" class="headerlink" title="1.2. 【Suspense】"></a>1.2. 【Suspense】</h2><ul>
+<li>等待异步组件时渲染一些额外内容，让应用有更好的用户体验 </li>
+<li>使用步骤： <ul>
+<li>异步引入组件</li>
+<li>使用<code>Suspense</code>包裹组件，并配置好<code>default</code> 与 <code>fallback</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; defineAsyncComponent,<span class="hljs-title class_">Suspense</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Child</span> = <span class="hljs-title function_">defineAsyncComponent</span>(<span class="hljs-function">()=&gt;</span><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./Child.vue&#x27;</span>))<br></code></pre></td></tr></table></figure>
 
-<p>创建博客：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init myblog<br><span class="hljs-built_in">cd</span> myblog<br>npm install<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div class=&quot;app&quot;&gt;<br>        &lt;h3&gt;我是App组件&lt;/h3&gt;<br>        &lt;Suspense&gt;<br>          &lt;template v-slot:default&gt;<br>            &lt;Child/&gt;<br>          &lt;/template&gt;<br>          &lt;template v-slot:fallback&gt;<br>            &lt;h3&gt;加载中.......&lt;/h3&gt;<br>          &lt;/template&gt;<br>        &lt;/Suspense&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
-<p>构建静态页面，启动本地预览：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo <span class="hljs-selector-tag">g</span><br>hexo s<br></code></pre></td></tr></table></figure>
 
-<p>然后访问：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">http:</span><span class="hljs-comment">//localhost:4000</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="4-新建Markdown文章"><a href="#4-新建Markdown文章" class="headerlink" title="4.新建Markdown文章"></a>4.新建Markdown文章</h1><p>运行：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">hexo <span class="hljs-built_in">new</span> <span class="hljs-built_in">post</span> <span class="hljs-string">&quot;我的第一篇博客&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>然后会生成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span>/_posts/我的第一篇博客.md<br></code></pre></td></tr></table></figure>
-
-<p>你用 VSCode 打开它，里面类似这样：（也可以用Typora等md软件打开编辑）</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">我的第一篇博客</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-01-16</span><br><span class="hljs-attr">categories:</span> <span class="hljs-string">学习笔记</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">深度学习</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">Python</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br><span class="hljs-string">这里开始写正文，支持</span> <span class="hljs-string">**Markdown**：</span><br><br><span class="hljs-comment">## 标题</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">列表</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">**加粗**</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">`代码块`</span><br></code></pre></td></tr></table></figure>
-
-<p>保存后：</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta">hexo <span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
-
-<p>刷新网页就能看到你的文章</p>
-<h1 id="5-分类-标签管理"><a href="#5-分类-标签管理" class="headerlink" title="5.分类&amp;标签管理"></a>5.分类&amp;标签管理</h1><p>可以直接再文章里面指定：</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs subunit">categories: 分类name<br><span class="hljs-keyword">tags:</span><br>  - 标签1<br>  - 标签2<br></code></pre></td></tr></table></figure>
-
-<p>Hexo会自动生成分类页面，标签页面，归档页面</p>
-<h1 id="6-部署到GitHub"><a href="#6-部署到GitHub" class="headerlink" title="6.部署到GitHub"></a>6.部署到GitHub</h1><h2 id="1-创建GitHub仓库："><a href="#1-创建GitHub仓库：" class="headerlink" title="1.创建GitHub仓库："></a>1.创建GitHub仓库：</h2><p>名字：你的用户名.github.io  因为这个仓库名称将作为你github博客的访问地址</p>
-<p><img src="/img/2.png" srcset="/img/loading.gif" lazyload alt="image-20260117151642558"></p>
-<h2 id="2-安装部署插件"><a href="#2-安装部署插件" class="headerlink" title="2.安装部署插件"></a>2.安装部署插件</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="3-修改-config-yml"><a href="#3-修改-config-yml" class="headerlink" title="3.修改_config.yml"></a>3.修改_config.yml</h2><p>找到最后面deploy:’’替换为：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//github.com/你的用户名/你的用户名.github.io.git</span><br><span class="hljs-symbol">  branch:</span> main<br></code></pre></td></tr></table></figure>
-
-<h2 id="4-一键部署"><a href="#4-一键部署" class="headerlink" title="4.一键部署"></a>4.一键部署</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo clean<br>hexo <span class="hljs-selector-tag">g</span><br>hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>然后访问：</p>
-<p>https:&#x2F;&#x2F;你的用户名.github.io</p>
-<h1 id="7-修改配置"><a href="#7-修改配置" class="headerlink" title="7.修改配置"></a>7.修改配置</h1><p>文件_config.yml中可以修改title，language等配置项</p>
-<h1 id="8-修改主题"><a href="#8-修改主题" class="headerlink" title="8.修改主题"></a>8.修改主题</h1><p>可以去网上搜索自己喜欢的主题，我推荐Fluid主题，以这个主题为例：(详情可以浏览用户手册<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/start/#%E4%B8%BB%E9%A2%98%E7%AE%80%E4%BB%8B">开始使用 | Hexo Fluid 用户手册</a>)</p>
-<h2 id="1-安装主题"><a href="#1-安装主题" class="headerlink" title="1.安装主题"></a>1.安装主题</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install <span class="hljs-comment">--save hexo-theme-fluid</span><br></code></pre></td></tr></table></figure>
-
-<p>然后在博客目录下创建 <code>_config.fluid.yml</code>，将主题的然后在博客目录下创建 <code>_config.fluid.yml</code>，将主题的 <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml">_config.yml (opens new window)</a>内容复制过去。内容复制过去。</p>
-<h2 id="2-指定主题"><a href="#2-指定主题" class="headerlink" title="2.指定主题"></a>2.指定主题</h2><p>修改_config.yml文件：</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">theme:</span> fluid  <span class="hljs-meta"># 指定主题</span><br><br><span class="hljs-symbol">language:</span> <span class="hljs-built_in">zh</span>-CN  <span class="hljs-meta"># 指定语言，会影响主题显示的语言，按需修改</span><br></code></pre></td></tr></table></figure>
-
-<p>其它配置自己根据用户手册自行设置</p>
+<h2 id="1-3-【全局API转移到应用对象】"><a href="#1-3-【全局API转移到应用对象】" class="headerlink" title="1.3.【全局API转移到应用对象】"></a>1.3.【全局API转移到应用对象】</h2><ul>
+<li><code>app.component</code></li>
+<li><code>app.config</code></li>
+<li><code>app.directive</code></li>
+<li><code>app.mount</code></li>
+<li><code>app.unmount</code></li>
+<li><code>app.use</code></li>
+</ul>
+<h2 id="1-4-【其他】"><a href="#1-4-【其他】" class="headerlink" title="1.4.【其他】"></a>1.4.【其他】</h2><ul>
+<li><p>过渡类名 <code>v-enter</code> 修改为 <code>v-enter-from</code>、过渡类名 <code>v-leave</code> 修改为 <code>v-leave-from</code>。</p>
+</li>
+<li><p><code>keyCode</code> 作为 <code>v-on</code> 修饰符的支持。</p>
+</li>
+<li><p><code>v-model</code> 指令在组件上的使用已经被重新设计，替换掉了 <code>v-bind.sync。</code></p>
+</li>
+<li><p><code>v-if</code> 和 <code>v-for</code> 在同一个元素身上使用时的优先级发生了变化。</p>
+</li>
+<li><p>移除了<code>$on</code>、<code>$off</code> 和 <code>$once</code> 实例方法。</p>
+</li>
+<li><p>移除了过滤器 <code>filter</code>。</p>
+</li>
+<li><p>移除了<code>$children</code> 实例 <code>propert</code>。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -379,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  <a href="/categories/Vue3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">Vue3学习笔记</a>
   
   
 
@@ -394,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog/" class="print-no-link">#blog</a>
+        <a href="/tags/Vue3/" class="print-no-link">#Vue3</a>
       
     </div>
   
@@ -406,8 +388,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用 Hexo+GitHub 搭建个人免费博客教程</div>
-      <div>http://example.com/2026/01/17/使用 Hexo+GitHub 搭建个人免费博客教程/</div>
+      <div>Vue3新组件</div>
+      <div>http://example.com/2024/06/23/Vue3新组件/</div>
     </div>
     <div class="license-meta">
       
@@ -419,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月17日</div>
+          <div>2024年6月23日</div>
         </div>
       
       
@@ -451,12 +433,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" title="使用 Hexo+GitHub 搭建个人免费博客教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 Hexo+GitHub 搭建个人免费博客教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/23/Vue3%E6%96%B0%E7%BB%84%E4%BB%B6/" title="Vue3新组件">
-                        <span class="hidden-mobile">Vue3新组件</span>
+                      <a href="/2024/06/19/%E5%85%B6%E5%AE%83%20API/" title="Vue3其它API">
+                        <span class="hidden-mobile">Vue3其它API</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -479,7 +467,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '93484c3691c7abc507fde65216a2462a'
+            id: '9163c5d9424222a40618632527b20f7a'
           }
         )
         var gitalk = new Gitalk(options);
@@ -516,17 +504,17 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="教程"
-        id="heading-b7824d5cd41d06de995a661879fefd3d" role="tab" data-toggle="collapse" href="#collapse-b7824d5cd41d06de995a661879fefd3d"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Vue3学习笔记"
+        id="heading-8aba5e98e0d0d43111a391eb0f716feb" role="tab" data-toggle="collapse" href="#collapse-8aba5e98e0d0d43111a391eb0f716feb"
         aria-expanded="true"
       >
-        教程
-        <span class="list-group-count">(1)</span>
+        Vue3学习笔记
+        <span class="list-group-count">(6)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-b7824d5cd41d06de995a661879fefd3d"
-           role="tabpanel" aria-labelledby="heading-b7824d5cd41d06de995a661879fefd3d">
+      <div class="category-collapse collapse show" id="collapse-8aba5e98e0d0d43111a391eb0f716feb"
+           role="tabpanel" aria-labelledby="heading-8aba5e98e0d0d43111a391eb0f716feb">
         
         
           
@@ -535,10 +523,55 @@
     
       
       
-        <a href="/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" title="使用 Hexo+GitHub 搭建个人免费博客教程"
+        <a href="/2024/06/13/Pinia/" title="Vue3Pinia"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3Pinia</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/19/%E5%85%B6%E5%AE%83%20API/" title="Vue3其它API"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3其它API</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/03/Vue3%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AF%AD%E6%B3%95/" title="Vue3基础与核心语法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3基础与核心语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/23/Vue3%E6%96%B0%E7%BB%84%E4%BB%B6/" title="Vue3新组件"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">使用 Hexo+GitHub 搭建个人免费博客教程</span>
+          <span class="category-post">Vue3新组件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/16/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="Vue3组件通信"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3组件通信</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/06/08/Vue3%E8%B7%AF%E7%94%B1/" title="Vue3路由"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3路由</span>
         </a>
       
     
