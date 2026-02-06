@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>修改MySQL的远程授权登录设置</title>
+    <link href="/2026/01/19/%E4%BF%AE%E6%94%B9mysql%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83/"/>
+    <url>/2026/01/19/%E4%BF%AE%E6%94%B9mysql%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-登录远程服务器的数据库"><a href="#1-登录远程服务器的数据库" class="headerlink" title="1.登录远程服务器的数据库"></a>1.登录远程服务器的数据库</h1><p><code>mysql -u root -p   ##以root登录数据库</code></p><p>输入root的登录密码，成功后会看到以下信息：</p><p><img src="/img/remotemysql/image-20260207004216868.png" alt="image-20260207004216868"></p><h1 id="2-查看mysql服务当前的默认端口"><a href="#2-查看mysql服务当前的默认端口" class="headerlink" title="2.查看mysql服务当前的默认端口"></a>2.查看mysql服务当前的默认端口</h1><p><code>use mysql;   ##选择mysql数据库</code></p><p><code>select user,host from user;     ##查看用户访问端口</code></p><p><img src="/img/remotemysql/image-20260207004450265.png" alt="image-20260207004450265"></p><!--**说明**：root用户默认的是localhost，说明只允许从本地登录mysql服务。而我们要从远程以root用户连接数据库，就必须修改host的值，改为**‘%’**：允许任何ip访问。--><h1 id="3-修改host允许任何ip访问"><a href="#3-修改host允许任何ip访问" class="headerlink" title="3.修改host允许任何ip访问"></a>3.修改host允许任何ip访问</h1><p><code>update user set host = &#39;%&#39; where user = &#39;root&#39;;</code></p><p><img src="/img/remotemysql/image-20260207004649695.png" alt="image-20260207004649695"></p><p>看到以上信息说明修改成功！</p><p>这时再使用之前的命令：<code>select user,host from user;    ## 查看用户访问端口</code></p><p>会看到：root用户的host已经修改为’%’！</p><p><img src="/img/remotemysql/image-20260207004729999.png" alt="image-20260207004729999"></p><!--修改完后需要刷新一下服务配置，不然修改不会生效，并且第4步会执行失败--><p>接着在命令面板输入：</p><p><code>mysql&gt; FLUSH PRIVILEGES;    ## 刷新服务配置项</code></p><p>显示<strong>Query OK</strong>,表示刷新完成。现在就可以配置用户权限</p><h1 id="4-授权root用户进行远程登录"><a href="#4-授权root用户进行远程登录" class="headerlink" title="4.授权root用户进行远程登录"></a>4.授权root用户进行远程登录</h1><p><code>mysql&gt; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root_pwd&#39;; ## 授权root远程登录 后面的root_pwd代表登录密码</code></p><p>输入完之后，看到<strong>Query OK</strong>，说明执行成功！</p><!--**说明**：此命令可以授权任何在mysql数据库user表中的用户以远程登录的方式访问数据库，本例中以’root’作为举例，若想授权其他用户，只需修改’root’的值为指定用户即可，'root_pwd’为’root’用户对应的登录密码，可以修改为你想要授权用户的登录密码。-->]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>开发工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用 Hexo+GitHub 搭建个人免费博客教程</title>
     <link href="/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/"/>
     <url>/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</url>
