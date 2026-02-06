@@ -19,27 +19,43 @@
   <meta name="author" content="Guo HL">
   <meta name="keywords" content="">
   
-    <meta name="description" content="作为一名喜欢技术的爱好者，平时喜欢把自己学习技术的心得或者一些踩坑、易错的过程记录下来，首选的是技术平台(博客)，下面教大家如何利用Github来搭建一个自己的个人博客平台。">
+    <meta name="description" content="安装MongoDB打开MongoDB官网的下载页面，地址为 https:&#x2F;&#x2F;www.mongodb.com&#x2F;try&#x2F;download&#x2F;community。单击 Select Package 显示版本选择界面。在 Version 下拉列表中选择版本 8.0.4，在 Platform 下拉列表中选择 Windows X64 操作系统，安装包格式选择 msi，单击 Download 按钮，开始下载，如下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 Hexo+GitHub 搭建个人免费博客教程">
-<meta property="og:url" content="http://example.com/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:title" content="Windows环境下MongoDB安装及环境配置">
+<meta property="og:url" content="http://example.com/2024/02/16/MongoDB%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Guo HL&#39;s Blog">
-<meta property="og:description" content="作为一名喜欢技术的爱好者，平时喜欢把自己学习技术的心得或者一些踩坑、易错的过程记录下来，首选的是技术平台(博客)，下面教大家如何利用Github来搭建一个自己的个人博客平台。">
+<meta property="og:description" content="安装MongoDB打开MongoDB官网的下载页面，地址为 https:&#x2F;&#x2F;www.mongodb.com&#x2F;try&#x2F;download&#x2F;community。单击 Select Package 显示版本选择界面。在 Version 下拉列表中选择版本 8.0.4，在 Platform 下拉列表中选择 Windows X64 操作系统，安装包格式选择 msi，单击 Download 按钮，开始下载，如下">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/1.png">
-<meta property="og:image" content="http://example.com/img/2.png">
-<meta property="article:published_time" content="2026-01-17T07:30:23.000Z">
-<meta property="article:modified_time" content="2026-01-17T07:43:07.362Z">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233724804.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233752203.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233809718.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233827389.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234058661.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234604014.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234642420.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234659484.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234717637.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234733567.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234819093.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234839108.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235126005.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235201031.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235217879.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235240868.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235337935.png">
+<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235425756.png">
+<meta property="article:published_time" content="2024-02-16T02:34:23.000Z">
+<meta property="article:modified_time" content="2026-02-06T15:58:15.962Z">
 <meta property="article:author" content="Guo HL">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="开发工具">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/1.png">
+<meta name="twitter:image" content="http://example.com/img/mongdb/image-20260206233724804.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>使用 Hexo+GitHub 搭建个人免费博客教程 - Guo HL&#39;s Blog</title>
+  <title>Windows环境下MongoDB安装及环境配置 - Guo HL&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +221,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用 Hexo+GitHub 搭建个人免费博客教程"></span>
+            <span id="subtitle" data-typed-text="Windows环境下MongoDB安装及环境配置"></span>
           
         </div>
 
@@ -216,8 +232,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 15:30" pubdate>
-          2026年1月17日 下午
+        <time datetime="2024-02-16 10:34" pubdate>
+          2024年2月16日 上午
         </time>
       </span>
     
@@ -228,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          467 字
+          600 字
         
       </span>
     
@@ -239,7 +255,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -298,69 +314,58 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">使用 Hexo+GitHub 搭建个人免费博客教程</h1>
+            <h1 id="seo-header">Windows环境下MongoDB安装及环境配置</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h1><p>1.访问git官方地址，下载对应的安装包，进行安装（简单的点击下一步）。</p>
-<p>2.安装好之后，鼠标右键可以看到：Git Bash Here，点击后打开了。</p>
-<p>3.输入：git –version</p>
-<p><img src="/img/1.png" srcset="/img/loading.gif" lazyload alt="image-20260117144901894"></p>
-<p>出现这个说明git安装成功。</p>
-<h1 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2.安装node.js"></a>2.安装node.js</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Nicolecocol/article/details/136788200">Node.js安装及环境配置超详细教程【Windows系统】_windows 安装nodejs-CSDN博客</a></p>
-<p>此教程里最后的npm源改为：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">npm config set registry https:<span class="hljs-comment">//registry.npmmirror.com/</span><br></code></pre></td></tr></table></figure>
+                <h1 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h1><p>打开MongoDB官网的下载页面，地址为 <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community%E3%80%82%E5%8D%95%E5%87%BB">https://www.mongodb.com/try/download/community。单击</a> Select Package 显示版本选择界面。在 Version 下拉列表中选择版本 8.0.4，在 Platform 下拉列表中选择 Windows X64 操作系统，安装包格式选择 msi，单击 Download 按钮，开始下载，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206233724804.png" srcset="/img/loading.gif" lazyload alt="image-20260206233724804"></p>
+<p>下载完成之后，双击 .msi 安装包文件开始安装。在安装过程中会弹出安装向导界面，指导使用者安装 MongoDB 以及 MongoDB 的可视化工具 MongoDB Compass。安装包运行后，界面如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206233752203.png" srcset="/img/loading.gif" lazyload alt="image-20260206233752203"></p>
+<p>安装向导提示当前安装的 MongoDB 版本信息，如下图所示，单击 Next 按钮。</p>
+<p><img src="/img/mongdb/image-20260206233809718.png" srcset="/img/loading.gif" lazyload alt="image-20260206233809718"></p>
+<p>接受当前的终端用户安装协议，选中同意协议的复选框（I accept the terms in the License Agreement），单击 Next 按钮，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206233827389.png" srcset="/img/loading.gif" lazyload alt="image-20260206233827389"></p>
+<p>选择安装类型，MongoDB 支持完整安装和个性化安装。个性化安装方式支持选择所需要的安装组件，同时也支持自定义 MongoDB 的安装路径。官方推荐的是完整安装。对于初学者或对 MongoDB 使用不熟练的使用者，建议默认完整安装。此方式会将 MongoDB 安装在路径 C:\Program Files\MongoDB\Server\8.0 下。选择 Complete 安装类型后，单击 Next 按钮，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206234058661.png" srcset="/img/loading.gif" lazyload alt="image-20260206234058661"></p>
+<p>配置服务，从 4.0 版本开始，MongoDB 可以配置为一项 Windows 服务。在这个步骤中，可以选择将 MongoDB 作为 Windows 的一个系统服务，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206234604014.png" srcset="/img/loading.gif" lazyload alt="image-20260206234604014"></p>
+<p>在这个界面中，可以配置服务的名称，一般默认为 MongoDB，同时配置 MongoDB 的数据目录和日志目录。配置完成后，单击 Next 按钮。如果这里不将 MongoDB 配置为 Windows 的服务，可以手动启动，具体可以查看后面关于手动启动 MongoDB 实例的内容。</p>
+<p>安装可视化工具 MongoDB Compass。这里为可选项，既可以安装，也可以不安装。这里选中进行安装，单击 Next 按钮进入下一步，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206234642420.png" srcset="/img/loading.gif" lazyload alt="image-20260206234642420"></p>
+<p>进入安装进程。上述所有配置完成，单击 Install 按钮进入安装进程，如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206234659484.png" srcset="/img/loading.gif" lazyload alt="image-20260206234659484"></p>
+<p>等待安装进程进行。整个过程可能会持续较长时间，与所使用的计算机配置有关，不同配置耗费的时间有所不同，耐心等待即可，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206234717637.png" srcset="/img/loading.gif" lazyload alt="image-20260206234717637"></p>
+<p>安装进程结束，完成 MongoDB 和 MongoDB Compass 的安装。单击 Finish 按钮，退出安装进程，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206234733567.png" srcset="/img/loading.gif" lazyload alt="image-20260206234733567"></p>
+<p>如果将 MongoDB 作为服务安装，那么安装结束后，会自动开启服务。要查看 MongoDB 服务的状态，可以打开系统服务界面，按 Ctrl + Shift + Esc 组合键，打开任务管理器，切换到“服务”选项卡，或者直接通过 Windows 系统的搜索找到“服务”界面，在“服务”界面中找到 MongoDB 服务，查看服务是否正在运行。在服务名称上右击，可以选择开启或停止该服务，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206234819093.png" srcset="/img/loading.gif" lazyload alt="image-20260206234819093"></p>
+<p>或者打开浏览器访问 <a href="https://localhost:27017，如下图所示：">https://localhost:27017，如下图所示：</a></p>
+<p><img src="/img/mongdb/image-20260206234839108.png" srcset="/img/loading.gif" lazyload alt="image-20260206234839108"></p>
+<p>同样，也可以通过命令查看 MongoDB 服务的状态，开启或停止 MongoDB 服务。命令如下：</p>
+<p>&#96;</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment">#查看MongoDB服务的状态</span><br>sc query MongoDB<br><span class="hljs-comment">#停止MongoDB服务</span><br>net <span class="hljs-literal">stop</span> MongoDB<br><span class="hljs-comment">#开启MongoDB服务</span><br>net <span class="hljs-literal">start</span> MongoDB<br></code></pre></td></tr></table></figure>
 
-<h1 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h1><p>打开终端输入：</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install -g hexo-<span class="hljs-keyword">cli</span><br></code></pre></td></tr></table></figure>
-
-<p>创建博客：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init myblog<br><span class="hljs-built_in">cd</span> myblog<br>npm install<br></code></pre></td></tr></table></figure>
-
-<p>构建静态页面，启动本地预览：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo <span class="hljs-selector-tag">g</span><br>hexo s<br></code></pre></td></tr></table></figure>
-
-<p>然后访问：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">http:</span><span class="hljs-comment">//localhost:4000</span><br></code></pre></td></tr></table></figure>
-
-<h1 id="4-新建Markdown文章"><a href="#4-新建Markdown文章" class="headerlink" title="4.新建Markdown文章"></a>4.新建Markdown文章</h1><p>运行：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">hexo <span class="hljs-built_in">new</span> <span class="hljs-built_in">post</span> <span class="hljs-string">&quot;我的第一篇博客&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>然后会生成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span>/_posts/我的第一篇博客.md<br></code></pre></td></tr></table></figure>
-
-<p>你用 VSCode 打开它，里面类似这样：（也可以用Typora等md软件打开编辑）</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">我的第一篇博客</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-01-16</span><br><span class="hljs-attr">categories:</span> <span class="hljs-string">学习笔记</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">深度学习</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">Python</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br><span class="hljs-string">这里开始写正文，支持</span> <span class="hljs-string">**Markdown**：</span><br><br><span class="hljs-comment">## 标题</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">列表</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">**加粗**</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">`代码块`</span><br></code></pre></td></tr></table></figure>
-
-<p>保存后：</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta">hexo <span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
-
-<p>刷新网页就能看到你的文章</p>
-<h1 id="5-分类-标签管理"><a href="#5-分类-标签管理" class="headerlink" title="5.分类&amp;标签管理"></a>5.分类&amp;标签管理</h1><p>可以直接再文章里面指定：</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs subunit">categories: 分类name<br><span class="hljs-keyword">tags:</span><br>  - 标签1<br>  - 标签2<br></code></pre></td></tr></table></figure>
-
-<p>Hexo会自动生成分类页面，标签页面，归档页面</p>
-<h1 id="6-部署到GitHub"><a href="#6-部署到GitHub" class="headerlink" title="6.部署到GitHub"></a>6.部署到GitHub</h1><h2 id="1-创建GitHub仓库："><a href="#1-创建GitHub仓库：" class="headerlink" title="1.创建GitHub仓库："></a>1.创建GitHub仓库：</h2><p>名字：你的用户名.github.io  因为这个仓库名称将作为你github博客的访问地址</p>
-<p><img src="/img/2.png" srcset="/img/loading.gif" lazyload alt="image-20260117151642558"></p>
-<h2 id="2-安装部署插件"><a href="#2-安装部署插件" class="headerlink" title="2.安装部署插件"></a>2.安装部署插件</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="3-修改-config-yml"><a href="#3-修改-config-yml" class="headerlink" title="3.修改_config.yml"></a>3.修改_config.yml</h2><p>找到最后面deploy:’’替换为：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//github.com/你的用户名/你的用户名.github.io.git</span><br><span class="hljs-symbol">  branch:</span> main<br></code></pre></td></tr></table></figure>
-
-<h2 id="4-一键部署"><a href="#4-一键部署" class="headerlink" title="4.一键部署"></a>4.一键部署</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo clean<br>hexo <span class="hljs-selector-tag">g</span><br>hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>然后访问：</p>
-<p>https:&#x2F;&#x2F;你的用户名.github.io</p>
-<h1 id="7-修改配置"><a href="#7-修改配置" class="headerlink" title="7.修改配置"></a>7.修改配置</h1><p>文件_config.yml中可以修改title，language等配置项</p>
-<h1 id="8-修改主题"><a href="#8-修改主题" class="headerlink" title="8.修改主题"></a>8.修改主题</h1><p>可以去网上搜索自己喜欢的主题，我推荐Fluid主题，以这个主题为例：(详情可以浏览用户手册<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/start/#%E4%B8%BB%E9%A2%98%E7%AE%80%E4%BB%8B">开始使用 | Hexo Fluid 用户手册</a>)</p>
-<h2 id="1-安装主题"><a href="#1-安装主题" class="headerlink" title="1.安装主题"></a>1.安装主题</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install <span class="hljs-comment">--save hexo-theme-fluid</span><br></code></pre></td></tr></table></figure>
-
-<p>然后在博客目录下创建 <code>_config.fluid.yml</code>，将主题的然后在博客目录下创建 <code>_config.fluid.yml</code>，将主题的 <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml">_config.yml (opens new window)</a>内容复制过去。内容复制过去。</p>
-<h2 id="2-指定主题"><a href="#2-指定主题" class="headerlink" title="2.指定主题"></a>2.指定主题</h2><p>修改_config.yml文件：</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">theme:</span> fluid  <span class="hljs-meta"># 指定主题</span><br><br><span class="hljs-symbol">language:</span> <span class="hljs-built_in">zh</span>-CN  <span class="hljs-meta"># 指定语言，会影响主题显示的语言，按需修改</span><br></code></pre></td></tr></table></figure>
-
-<p>其它配置自己根据用户手册自行设置</p>
+<p>&#96;</p>
+<p>执行结果如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206235126005.png" srcset="/img/loading.gif" lazyload alt="image-20260206235126005"></p>
+<p>如果不作为服务安装，那么需要手动启动 MongoDB 实例，这里需要用到 mongod 命令。该命令在 MongoDB 安装目录下的 bin 文件夹（D:\MongoDB\Server\8.0\bin）下。启动时，需要配置数据目录，例如 D:\MongoDB\data，如下图所示。</p>
+<p><img src="/img/mongdb/image-20260206235201031.png" srcset="/img/loading.gif" lazyload alt="image-20260206235201031"></p>
+<p>MongoDB 启动后，该数据目录会生成一些数据库文件，如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206235217879.png" srcset="/img/loading.gif" lazyload alt="image-20260206235217879"></p>
+<p>在 bin 目录下，存在一些关键文件，如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206235240868.png" srcset="/img/loading.gif" lazyload alt="image-20260206235240868"></p>
+<p>其中，mongod.exe 用来启动 MongoDB 服务，mongos.exe 用来管理分片集群。</p>
+<h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><p>为了方便使用 mongod 以及其他命令，可以将 MongoDB 的安装路径加入环境变量。在配置了环境变量后，以上命令就可以省略路径，只保留命令本身的名称。打开环境变量配置界面，检查是否已自动创建环境变量，如果没有，则进行手动创建。</p>
+<p>首先创建 MONGO_HOM E的系统变量，如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206235337935.png" srcset="/img/loading.gif" lazyload alt="image-20260206235337935"></p>
+<p>然后编辑环境变量 Path，在最后加入一行内容，内容为：</p>
+<p><code>%MONGO_HOME%\bin</code></p>
+<p>最终结果如下图所示：</p>
+<p><img src="/img/mongdb/image-20260206235425756.png" srcset="/img/loading.gif" lazyload alt="image-20260206235425756"></p>
+<p>这样就完成了环境变量的配置。之后使用相关命令时，不需要再进入命令所在目录。</p>
 
                 
               </div>
@@ -394,7 +399,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog/" class="print-no-link">#blog</a>
+        <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="print-no-link">#开发工具</a>
       
     </div>
   
@@ -406,8 +411,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用 Hexo+GitHub 搭建个人免费博客教程</div>
-      <div>http://example.com/2026/01/17/使用 Hexo+GitHub 搭建个人免费博客教程/</div>
+      <div>Windows环境下MongoDB安装及环境配置</div>
+      <div>http://example.com/2024/02/16/MongoDB安装及环境配置/</div>
     </div>
     <div class="license-meta">
       
@@ -419,7 +424,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月17日</div>
+          <div>2024年2月16日</div>
         </div>
       
       
@@ -451,12 +456,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/03/16/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Windows环境下Node.js安装及环境配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows环境下Node.js安装及环境配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/31/origin/" title="Webpack原理分析">
-                        <span class="hidden-mobile">Webpack原理分析</span>
+                      <a href="/2024/02/12/Vue2%E8%B7%AF%E7%94%B1/" title="Vue2路由">
+                        <span class="hidden-mobile">Vue2路由</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -479,7 +490,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '93484c3691c7abc507fde65216a2462a'
+            id: '108b5f532476c9037481e03665d9ab44'
           }
         )
         var gitalk = new Gitalk(options);
@@ -537,7 +548,7 @@
       
         <a href="/2024/02/16/MongoDB%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Windows环境下MongoDB安装及环境配置"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">Windows环境下MongoDB安装及环境配置</span>
         </a>
       
@@ -555,7 +566,7 @@
       
         <a href="/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" title="使用 Hexo+GitHub 搭建个人免费博客教程"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">使用 Hexo+GitHub 搭建个人免费博客教程</span>
         </a>
       
