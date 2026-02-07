@@ -19,43 +19,36 @@
   <meta name="author" content="Guo HL">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装MongoDB打开MongoDB官网的下载页面，地址为 https:&#x2F;&#x2F;www.mongodb.com&#x2F;try&#x2F;download&#x2F;community。单击 Select Package 显示版本选择界面。在 Version 下拉列表中选择版本 8.0.4，在 Platform 下拉列表中选择 Windows X64 操作系统，安装包格式选择 msi，单击 Download 按钮，开始下载，如下">
+    <meta name="description" content="1.新建项目 2.添加框架支持选择项目-&gt;点击全局搜索-&gt;输入Add Framework-&gt;选择Add Framework Support（添加框架支持）  3.选择Web Application 4.编辑项目添加项目需要的Jar包jsp-api.jar、servlet-api.jar   5.添加Tomcat    6.启动项目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows环境下MongoDB安装及环境配置">
-<meta property="og:url" content="http://example.com/2024/02/16/MongoDB%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="IDEA创建Java Web项目">
+<meta property="og:url" content="http://example.com/2024/05/19/IDEA%E5%88%9B%E5%BB%BAJava%20Web%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Guo HL&#39;s Blog">
-<meta property="og:description" content="安装MongoDB打开MongoDB官网的下载页面，地址为 https:&#x2F;&#x2F;www.mongodb.com&#x2F;try&#x2F;download&#x2F;community。单击 Select Package 显示版本选择界面。在 Version 下拉列表中选择版本 8.0.4，在 Platform 下拉列表中选择 Windows X64 操作系统，安装包格式选择 msi，单击 Download 按钮，开始下载，如下">
+<meta property="og:description" content="1.新建项目 2.添加框架支持选择项目-&gt;点击全局搜索-&gt;输入Add Framework-&gt;选择Add Framework Support（添加框架支持）  3.选择Web Application 4.编辑项目添加项目需要的Jar包jsp-api.jar、servlet-api.jar   5.添加Tomcat    6.启动项目">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233724804.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233752203.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233809718.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206233827389.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234058661.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234604014.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234642420.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234659484.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234717637.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234733567.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234819093.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206234839108.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235126005.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235201031.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235217879.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235240868.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235337935.png">
-<meta property="og:image" content="http://example.com/img/mongdb/image-20260206235425756.png">
-<meta property="article:published_time" content="2024-02-16T02:34:23.000Z">
-<meta property="article:modified_time" content="2026-02-06T15:58:15.962Z">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207170544426.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207170754245.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207170836184.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207170919904.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207170941125.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207171014474.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207171046304.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207171101743.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207171114340.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207171149891.png">
+<meta property="og:image" content="http://example.com/img/JavaWeb/image-20260207171202894.png">
+<meta property="article:published_time" content="2024-05-19T02:34:23.000Z">
+<meta property="article:modified_time" content="2026-02-07T09:14:17.677Z">
 <meta property="article:author" content="Guo HL">
 <meta property="article:tag" content="开发工具">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/mongdb/image-20260206233724804.png">
+<meta name="twitter:image" content="http://example.com/img/JavaWeb/image-20260207170544426.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Windows环境下MongoDB安装及环境配置 - Guo HL&#39;s Blog</title>
+  <title>IDEA创建Java Web项目 - Guo HL&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -221,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Windows环境下MongoDB安装及环境配置"></span>
+            <span id="subtitle" data-typed-text="IDEA创建Java Web项目"></span>
           
         </div>
 
@@ -232,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-16 10:34" pubdate>
-          2024年2月16日 上午
+        <time datetime="2024-05-19 10:34" pubdate>
+          2024年5月19日 上午
         </time>
       </span>
     
@@ -244,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          600 字
+          300 字
         
       </span>
     
@@ -255,7 +248,7 @@
         
         
         
-          6 分钟
+          3 分钟
         
       </span>
     
@@ -314,58 +307,24 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Windows环境下MongoDB安装及环境配置</h1>
+            <h1 id="seo-header">IDEA创建Java Web项目</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h1><p>打开MongoDB官网的下载页面，地址为 <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community%E3%80%82%E5%8D%95%E5%87%BB">https://www.mongodb.com/try/download/community。单击</a> Select Package 显示版本选择界面。在 Version 下拉列表中选择版本 8.0.4，在 Platform 下拉列表中选择 Windows X64 操作系统，安装包格式选择 msi，单击 Download 按钮，开始下载，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206233724804.png" srcset="/img/loading.gif" lazyload alt="image-20260206233724804"></p>
-<p>下载完成之后，双击 .msi 安装包文件开始安装。在安装过程中会弹出安装向导界面，指导使用者安装 MongoDB 以及 MongoDB 的可视化工具 MongoDB Compass。安装包运行后，界面如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206233752203.png" srcset="/img/loading.gif" lazyload alt="image-20260206233752203"></p>
-<p>安装向导提示当前安装的 MongoDB 版本信息，如下图所示，单击 Next 按钮。</p>
-<p><img src="/img/mongdb/image-20260206233809718.png" srcset="/img/loading.gif" lazyload alt="image-20260206233809718"></p>
-<p>接受当前的终端用户安装协议，选中同意协议的复选框（I accept the terms in the License Agreement），单击 Next 按钮，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206233827389.png" srcset="/img/loading.gif" lazyload alt="image-20260206233827389"></p>
-<p>选择安装类型，MongoDB 支持完整安装和个性化安装。个性化安装方式支持选择所需要的安装组件，同时也支持自定义 MongoDB 的安装路径。官方推荐的是完整安装。对于初学者或对 MongoDB 使用不熟练的使用者，建议默认完整安装。此方式会将 MongoDB 安装在路径 C:\Program Files\MongoDB\Server\8.0 下。选择 Complete 安装类型后，单击 Next 按钮，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206234058661.png" srcset="/img/loading.gif" lazyload alt="image-20260206234058661"></p>
-<p>配置服务，从 4.0 版本开始，MongoDB 可以配置为一项 Windows 服务。在这个步骤中，可以选择将 MongoDB 作为 Windows 的一个系统服务，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206234604014.png" srcset="/img/loading.gif" lazyload alt="image-20260206234604014"></p>
-<p>在这个界面中，可以配置服务的名称，一般默认为 MongoDB，同时配置 MongoDB 的数据目录和日志目录。配置完成后，单击 Next 按钮。如果这里不将 MongoDB 配置为 Windows 的服务，可以手动启动，具体可以查看后面关于手动启动 MongoDB 实例的内容。</p>
-<p>安装可视化工具 MongoDB Compass。这里为可选项，既可以安装，也可以不安装。这里选中进行安装，单击 Next 按钮进入下一步，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206234642420.png" srcset="/img/loading.gif" lazyload alt="image-20260206234642420"></p>
-<p>进入安装进程。上述所有配置完成，单击 Install 按钮进入安装进程，如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206234659484.png" srcset="/img/loading.gif" lazyload alt="image-20260206234659484"></p>
-<p>等待安装进程进行。整个过程可能会持续较长时间，与所使用的计算机配置有关，不同配置耗费的时间有所不同，耐心等待即可，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206234717637.png" srcset="/img/loading.gif" lazyload alt="image-20260206234717637"></p>
-<p>安装进程结束，完成 MongoDB 和 MongoDB Compass 的安装。单击 Finish 按钮，退出安装进程，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206234733567.png" srcset="/img/loading.gif" lazyload alt="image-20260206234733567"></p>
-<p>如果将 MongoDB 作为服务安装，那么安装结束后，会自动开启服务。要查看 MongoDB 服务的状态，可以打开系统服务界面，按 Ctrl + Shift + Esc 组合键，打开任务管理器，切换到“服务”选项卡，或者直接通过 Windows 系统的搜索找到“服务”界面，在“服务”界面中找到 MongoDB 服务，查看服务是否正在运行。在服务名称上右击，可以选择开启或停止该服务，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206234819093.png" srcset="/img/loading.gif" lazyload alt="image-20260206234819093"></p>
-<p>或者打开浏览器访问 <a href="https://localhost:27017，如下图所示：">https://localhost:27017，如下图所示：</a></p>
-<p><img src="/img/mongdb/image-20260206234839108.png" srcset="/img/loading.gif" lazyload alt="image-20260206234839108"></p>
-<p>同样，也可以通过命令查看 MongoDB 服务的状态，开启或停止 MongoDB 服务。命令如下：</p>
-<p>&#96;</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment">#查看MongoDB服务的状态</span><br>sc query MongoDB<br><span class="hljs-comment">#停止MongoDB服务</span><br>net <span class="hljs-literal">stop</span> MongoDB<br><span class="hljs-comment">#开启MongoDB服务</span><br>net <span class="hljs-literal">start</span> MongoDB<br></code></pre></td></tr></table></figure>
-
-<p>&#96;</p>
-<p>执行结果如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206235126005.png" srcset="/img/loading.gif" lazyload alt="image-20260206235126005"></p>
-<p>如果不作为服务安装，那么需要手动启动 MongoDB 实例，这里需要用到 mongod 命令。该命令在 MongoDB 安装目录下的 bin 文件夹（D:\MongoDB\Server\8.0\bin）下。启动时，需要配置数据目录，例如 D:\MongoDB\data，如下图所示。</p>
-<p><img src="/img/mongdb/image-20260206235201031.png" srcset="/img/loading.gif" lazyload alt="image-20260206235201031"></p>
-<p>MongoDB 启动后，该数据目录会生成一些数据库文件，如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206235217879.png" srcset="/img/loading.gif" lazyload alt="image-20260206235217879"></p>
-<p>在 bin 目录下，存在一些关键文件，如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206235240868.png" srcset="/img/loading.gif" lazyload alt="image-20260206235240868"></p>
-<p>其中，mongod.exe 用来启动 MongoDB 服务，mongos.exe 用来管理分片集群。</p>
-<h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><p>为了方便使用 mongod 以及其他命令，可以将 MongoDB 的安装路径加入环境变量。在配置了环境变量后，以上命令就可以省略路径，只保留命令本身的名称。打开环境变量配置界面，检查是否已自动创建环境变量，如果没有，则进行手动创建。</p>
-<p>首先创建 MONGO_HOM E的系统变量，如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206235337935.png" srcset="/img/loading.gif" lazyload alt="image-20260206235337935"></p>
-<p>然后编辑环境变量 Path，在最后加入一行内容，内容为：</p>
-<p><code>%MONGO_HOME%\bin</code></p>
-<p>最终结果如下图所示：</p>
-<p><img src="/img/mongdb/image-20260206235425756.png" srcset="/img/loading.gif" lazyload alt="image-20260206235425756"></p>
-<p>这样就完成了环境变量的配置。之后使用相关命令时，不需要再进入命令所在目录。</p>
+                <h1 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1.新建项目"></a>1.新建项目</h1><p><img src="/img/JavaWeb/image-20260207170544426.png" srcset="/img/loading.gif" lazyload alt="image-20260207170544426"></p>
+<h1 id="2-添加框架支持"><a href="#2-添加框架支持" class="headerlink" title="2.添加框架支持"></a>2.添加框架支持</h1><p>选择项目-&gt;点击全局搜索-&gt;输入Add Framework-&gt;选择Add Framework Support（添加框架支持）</p>
+<p><img src="/img/JavaWeb/image-20260207170754245.png" srcset="/img/loading.gif" lazyload alt="image-20260207170754245"></p>
+<h1 id="3-选择Web-Application"><a href="#3-选择Web-Application" class="headerlink" title="3.选择Web Application"></a>3.选择Web Application</h1><p><img src="/img/JavaWeb/image-20260207170836184.png" srcset="/img/loading.gif" lazyload alt="image-20260207170836184"></p>
+<h1 id="4-编辑项目"><a href="#4-编辑项目" class="headerlink" title="4.编辑项目"></a>4.编辑项目</h1><p>添加项目需要的Jar包jsp-api.jar、servlet-api.jar</p>
+<p><img src="/img/JavaWeb/image-20260207170919904.png" srcset="/img/loading.gif" lazyload alt="image-20260207170919904"></p>
+<p><img src="/img/JavaWeb/image-20260207170941125.png" srcset="/img/loading.gif" lazyload alt="image-20260207170941125"></p>
+<h1 id="5-添加Tomcat"><a href="#5-添加Tomcat" class="headerlink" title="5.添加Tomcat"></a>5.添加Tomcat</h1><p><img src="/img/JavaWeb/image-20260207171014474.png" srcset="/img/loading.gif" lazyload alt="image-20260207171014474"></p>
+<p><img src="/img/JavaWeb/image-20260207171046304.png" srcset="/img/loading.gif" lazyload alt="image-20260207171046304"></p>
+<p><img src="/img/JavaWeb/image-20260207171101743.png" srcset="/img/loading.gif" lazyload alt="image-20260207171101743"></p>
+<p><img src="/img/JavaWeb/image-20260207171114340.png" srcset="/img/loading.gif" lazyload alt="image-20260207171114340"></p>
+<h1 id="6-启动项目"><a href="#6-启动项目" class="headerlink" title="6.启动项目"></a>6.启动项目</h1><p><img src="/img/JavaWeb/image-20260207171149891.png" srcset="/img/loading.gif" lazyload alt="image-20260207171149891"></p>
+<p><img src="/img/JavaWeb/image-20260207171202894.png" srcset="/img/loading.gif" lazyload alt="image-20260207171202894"></p>
 
                 
               </div>
@@ -411,8 +370,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Windows环境下MongoDB安装及环境配置</div>
-      <div>http://example.com/2024/02/16/MongoDB安装及环境配置/</div>
+      <div>IDEA创建Java Web项目</div>
+      <div>http://example.com/2024/05/19/IDEA创建Java Web项目/</div>
     </div>
     <div class="license-meta">
       
@@ -424,7 +383,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月16日</div>
+          <div>2024年5月19日</div>
         </div>
       
       
@@ -456,9 +415,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/16/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Windows环境下Node.js安装及环境配置">
+                      <a href="/2024/06/03/Vue3%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AF%AD%E6%B3%95/" title="Vue3基础与核心语法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Windows环境下Node.js安装及环境配置</span>
+                        <span class="hidden-mobile">Vue3基础与核心语法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -466,8 +425,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/12/Vue2%E8%B7%AF%E7%94%B1/" title="Vue2路由">
-                        <span class="hidden-mobile">Vue2路由</span>
+                      <a href="/2024/03/16/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Windows环境下Node.js安装及环境配置">
+                        <span class="hidden-mobile">Windows环境下Node.js安装及环境配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -490,7 +449,7 @@
         var options = Object.assign(
           {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '108b5f532476c9037481e03665d9ab44'
+            id: 'f36ad801bf08dcb2783fce2521d776d1'
           }
         )
         var gitalk = new Gitalk(options);
@@ -548,7 +507,7 @@
       
         <a href="/2024/05/19/IDEA%E5%88%9B%E5%BB%BAJava%20Web%E9%A1%B9%E7%9B%AE/" title="IDEA创建Java Web项目"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">IDEA创建Java Web项目</span>
         </a>
       
@@ -557,7 +516,7 @@
       
         <a href="/2024/02/16/MongoDB%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Windows环境下MongoDB安装及环境配置"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">Windows环境下MongoDB安装及环境配置</span>
         </a>
       

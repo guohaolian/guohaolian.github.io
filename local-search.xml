@@ -304,6 +304,31 @@
   
   
   <entry>
+    <title>IDEA创建Java Web项目</title>
+    <link href="/2024/05/19/IDEA%E5%88%9B%E5%BB%BAJava%20Web%E9%A1%B9%E7%9B%AE/"/>
+    <url>/2024/05/19/IDEA%E5%88%9B%E5%BB%BAJava%20Web%E9%A1%B9%E7%9B%AE/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1.新建项目"></a>1.新建项目</h1><p><img src="/img/JavaWeb/image-20260207170544426.png" alt="image-20260207170544426"></p><h1 id="2-添加框架支持"><a href="#2-添加框架支持" class="headerlink" title="2.添加框架支持"></a>2.添加框架支持</h1><p>选择项目-&gt;点击全局搜索-&gt;输入Add Framework-&gt;选择Add Framework Support（添加框架支持）</p><p><img src="/img/JavaWeb/image-20260207170754245.png" alt="image-20260207170754245"></p><h1 id="3-选择Web-Application"><a href="#3-选择Web-Application" class="headerlink" title="3.选择Web Application"></a>3.选择Web Application</h1><p><img src="/img/JavaWeb/image-20260207170836184.png" alt="image-20260207170836184"></p><h1 id="4-编辑项目"><a href="#4-编辑项目" class="headerlink" title="4.编辑项目"></a>4.编辑项目</h1><p>添加项目需要的Jar包jsp-api.jar、servlet-api.jar</p><p><img src="/img/JavaWeb/image-20260207170919904.png" alt="image-20260207170919904"></p><p><img src="/img/JavaWeb/image-20260207170941125.png" alt="image-20260207170941125"></p><h1 id="5-添加Tomcat"><a href="#5-添加Tomcat" class="headerlink" title="5.添加Tomcat"></a>5.添加Tomcat</h1><p><img src="/img/JavaWeb/image-20260207171014474.png" alt="image-20260207171014474"></p><p><img src="/img/JavaWeb/image-20260207171046304.png" alt="image-20260207171046304"></p><p><img src="/img/JavaWeb/image-20260207171101743.png" alt="image-20260207171101743"></p><p><img src="/img/JavaWeb/image-20260207171114340.png" alt="image-20260207171114340"></p><h1 id="6-启动项目"><a href="#6-启动项目" class="headerlink" title="6.启动项目"></a>6.启动项目</h1><p><img src="/img/JavaWeb/image-20260207171149891.png" alt="image-20260207171149891"></p><p><img src="/img/JavaWeb/image-20260207171202894.png" alt="image-20260207171202894"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>开发工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Windows环境下Node.js安装及环境配置</title>
     <link href="/2024/03/16/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     <url>/2024/03/16/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
