@@ -19,19 +19,19 @@
   <meta name="author" content="Guo HL">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.登录远程服务器的数据库mysql -u root -p   ##以root登录数据库 输入root的登录密码，成功后会看到以下信息：  2.查看mysql服务当前的默认端口use mysql;   ##选择mysql数据库 select user,host from user;     ##查看用户访问端口    3.修改host允许任何ip访问update user set host &#x3D; &amp;">
+    <meta name="description" content="1.登录远程服务器的数据库mysql -u root -p   ##以root登录数据库 输入root的登录密码，成功后会看到以下信息：  2.查看mysql服务当前的默认端口use mysql;   ##选择mysql数据库 select user,host from user;     ##查看用户访问端口   [!CAUTION] root用户默认的是localhost，说明只允许从本地登录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="修改MySQL的远程授权登录设置">
 <meta property="og:url" content="http://example.com/2026/01/19/%E4%BF%AE%E6%94%B9mysql%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E6%8E%88%E6%9D%83/index.html">
 <meta property="og:site_name" content="Guo HL&#39;s Blog">
-<meta property="og:description" content="1.登录远程服务器的数据库mysql -u root -p   ##以root登录数据库 输入root的登录密码，成功后会看到以下信息：  2.查看mysql服务当前的默认端口use mysql;   ##选择mysql数据库 select user,host from user;     ##查看用户访问端口    3.修改host允许任何ip访问update user set host &#x3D; &amp;">
+<meta property="og:description" content="1.登录远程服务器的数据库mysql -u root -p   ##以root登录数据库 输入root的登录密码，成功后会看到以下信息：  2.查看mysql服务当前的默认端口use mysql;   ##选择mysql数据库 select user,host from user;     ##查看用户访问端口   [!CAUTION] root用户默认的是localhost，说明只允许从本地登录">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/remotemysql/image-20260207004216868.png">
 <meta property="og:image" content="http://example.com/img/remotemysql/image-20260207004450265.png">
 <meta property="og:image" content="http://example.com/img/remotemysql/image-20260207004649695.png">
 <meta property="og:image" content="http://example.com/img/remotemysql/image-20260207004729999.png">
 <meta property="article:published_time" content="2026-01-19T02:34:23.000Z">
-<meta property="article:modified_time" content="2026-02-06T16:52:31.086Z">
+<meta property="article:modified_time" content="2026-02-07T14:52:47.459Z">
 <meta property="article:author" content="Guo HL">
 <meta property="article:tag" content="开发工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -311,22 +311,29 @@
 <h1 id="2-查看mysql服务当前的默认端口"><a href="#2-查看mysql服务当前的默认端口" class="headerlink" title="2.查看mysql服务当前的默认端口"></a>2.查看mysql服务当前的默认端口</h1><p><code>use mysql;   ##选择mysql数据库</code></p>
 <p><code>select user,host from user;     ##查看用户访问端口</code></p>
 <p><img src="/img/remotemysql/image-20260207004450265.png" srcset="/img/loading.gif" lazyload alt="image-20260207004450265"></p>
-<!--**说明**：root用户默认的是localhost，说明只允许从本地登录mysql服务。而我们要从远程以root用户连接数据库，就必须修改host的值，改为**‘%’**：允许任何ip访问。-->
-
+<blockquote>
+<p>[!CAUTION]</p>
+<p>root用户默认的是localhost，说明只允许从本地登录mysql服务。而我们要从远程以root用户连接数据库，就必须修改host的值，改为**‘%’**：允许任何ip访问。</p>
+</blockquote>
 <h1 id="3-修改host允许任何ip访问"><a href="#3-修改host允许任何ip访问" class="headerlink" title="3.修改host允许任何ip访问"></a>3.修改host允许任何ip访问</h1><p><code>update user set host = &#39;%&#39; where user = &#39;root&#39;;</code></p>
 <p><img src="/img/remotemysql/image-20260207004649695.png" srcset="/img/loading.gif" lazyload alt="image-20260207004649695"></p>
 <p>看到以上信息说明修改成功！</p>
 <p>这时再使用之前的命令：<code>select user,host from user;    ## 查看用户访问端口</code></p>
 <p>会看到：root用户的host已经修改为’%’！</p>
 <p><img src="/img/remotemysql/image-20260207004729999.png" srcset="/img/loading.gif" lazyload alt="image-20260207004729999"></p>
-<!--修改完后需要刷新一下服务配置，不然修改不会生效，并且第4步会执行失败-->
-
+<blockquote>
+<p>[!CAUTION]</p>
+<p>修改完后需要刷新一下服务配置，不然修改不会生效，并且第4步会执行失败</p>
+</blockquote>
 <p>接着在命令面板输入：</p>
 <p><code>mysql&gt; FLUSH PRIVILEGES;    ## 刷新服务配置项</code></p>
 <p>显示<strong>Query OK</strong>,表示刷新完成。现在就可以配置用户权限</p>
 <h1 id="4-授权root用户进行远程登录"><a href="#4-授权root用户进行远程登录" class="headerlink" title="4.授权root用户进行远程登录"></a>4.授权root用户进行远程登录</h1><p><code>mysql&gt; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root_pwd&#39;; ## 授权root远程登录 后面的root_pwd代表登录密码</code></p>
 <p>输入完之后，看到<strong>Query OK</strong>，说明执行成功！</p>
-<!--**说明**：此命令可以授权任何在mysql数据库user表中的用户以远程登录的方式访问数据库，本例中以’root’作为举例，若想授权其他用户，只需修改’root’的值为指定用户即可，'root_pwd’为’root’用户对应的登录密码，可以修改为你想要授权用户的登录密码。-->
+<blockquote>
+<p>[!CAUTION]</p>
+<p>此命令可以授权任何在mysql数据库user表中的用户以远程登录的方式访问数据库，本例中以’root’作为举例，若想授权其他用户，只需修改’root’的值为指定用户即可，’root_pwd’为’root’用户对应的登录密码，可以修改为你想要授权用户的登录密码。</p>
+</blockquote>
 
                 
               </div>
@@ -487,7 +494,7 @@
         aria-expanded="true"
       >
         教程
-        <span class="list-group-count">(5)</span>
+        <span class="list-group-count">(6)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -541,6 +548,15 @@
            class="list-group-item list-group-item-action
            active">
           <span class="category-post">修改MySQL的远程授权登录设置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/12/19/%E5%AE%89%E8%A3%85Maven%E5%B9%B6%E7%94%A8IDEA%E4%BD%BF%E7%94%A8Maven%E6%9E%84%E5%BB%BAjavaweb%E9%A1%B9%E7%9B%AE/" title="安装Maven并用IDEA使用Maven构建javaweb项目"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">安装Maven并用IDEA使用Maven构建javaweb项目</span>
         </a>
       
     
