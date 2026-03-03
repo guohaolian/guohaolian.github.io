@@ -1,0 +1,1023 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="小程序开发能力1. 获取用户头像当小程序需要让用户完善个人资料时，我们可以通过微信提供的头像、昵称填写能力快速完善。如图：     想使用微信提供的头像填写能力，需要两步：  将 button 组件 open-type 的值设置为 chooseAvatar 当用户选择需要使用的头像之后，可以通过 bindchooseavatar 事件回调获取到头像信息的临时路径。  12345&lt;!-- 给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序开放能力">
+<meta property="og:url" content="http://example.com/2025/04/22/11-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E6%94%BE%E8%83%BD%E5%8A%9B/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="小程序开发能力1. 获取用户头像当小程序需要让用户完善个人资料时，我们可以通过微信提供的头像、昵称填写能力快速完善。如图：     想使用微信提供的头像填写能力，需要两步：  将 button 组件 open-type 的值设置为 chooseAvatar 当用户选择需要使用的头像之后，可以通过 bindchooseavatar 事件回调获取到头像信息的临时路径。  12345&lt;!-- 给">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/45-%E4%BF%AE%E6%94%B9%E5%A4%B4%E5%83%8F.gif">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E6%98%B5%E7%A7%B0.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E5%88%86%E4%BA%AB%E5%88%B0%E6%9C%8B%E5%8F%8B%E5%9C%88.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E5%B8%AE%E6%88%91%E7%A0%8D%E4%B8%80%E5%88%80.jpg">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E6%89%8B%E6%9C%BA%E5%8F%B7%E9%AA%8C%E8%AF%81%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E5%AE%A2%E6%9C%8D%E8%83%BD%E5%8A%9B.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E5%AE%A2%E6%9C%8D%E5%8A%9F%E8%83%BD.png">
+<meta property="og:image" content="http://example.com/img/miniprogram/%E5%AE%A2%E6%9C%8D%E4%BC%9A%E8%AF%9D.png">
+<meta property="article:published_time" content="2025-04-22T02:34:23.000Z">
+<meta property="article:modified_time" content="2026-03-03T07:22:44.069Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="小程序">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/miniprogram/%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>小程序开放能力 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/3.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="小程序开放能力"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-22 10:34" pubdate>
+          2025年4月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">小程序开放能力</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="小程序开发能力"><a href="#小程序开发能力" class="headerlink" title="小程序开发能力"></a>小程序开发能力</h2><h3 id="1-获取用户头像"><a href="#1-获取用户头像" class="headerlink" title="1. 获取用户头像"></a>1. 获取用户头像</h3><p>当小程序需要让用户完善个人资料时，我们可以通过微信提供的头像、昵称填写能力快速完善。如图：</p>
+<img src="/img/miniprogram/获取微信头像.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+
+
+
+<p>想使用微信提供的头像填写能力，需要两步：</p>
+<ol>
+<li>将 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html">button</a> 组件 <code>open-type</code> 的值设置为 <code>chooseAvatar</code></li>
+<li>当用户选择需要使用的头像之后，可以通过 <code>bindchooseavatar</code> 事件回调获取到头像信息的临时路径。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 给 button 添加 open-type 属性，值为 chooseAvatar --&gt;</span><br><span class="hljs-comment">&lt;!-- 绑定 bindchooseavatar 事件获取回调信息 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;chooseAvatar&quot;</span> <span class="hljs-attr">bindchooseavatar</span>=<span class="hljs-string">&quot;getAvatar&quot;</span>&gt;</span><br>  按钮<br><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>落地代码：</strong></p>
+<img src="/img/miniprogram/45-修改头像.gif" srcset="/img/loading.gif" lazyload style="zoom:67%; border: 1px solid #ccc" />
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;avatar&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;chooseAvatar&quot;</span> <span class="hljs-attr">bindchooseavatar</span>=<span class="hljs-string">&quot;getAvatar&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&#123;&#123; avatarUrl &#125;&#125;&quot;</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Page</span>(&#123;<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 页面的初始数据</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">avatarUrl</span>: <span class="hljs-string">&#x27;/assets/tom.png&#x27;</span><br>  &#125;,<br><br>  <span class="hljs-comment">// 获取用户头像信息</span><br>  <span class="hljs-title function_">getAvatar</span>(<span class="hljs-params">e</span>) &#123;<br>    <span class="hljs-comment">// 获取选中的头像</span><br>    <span class="hljs-keyword">const</span> &#123; avatarUrl &#125; = e.<span class="hljs-property">detail</span><br><br>    <span class="hljs-comment">// 将获取到的头像赋值给 data 中变量同步给页面结构</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setData</span>(&#123;<br>      avatarUrl<br>    &#125;)<br>  &#125;<br> <br>  <span class="hljs-comment">// coding...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="2-获取用户昵称"><a href="#2-获取用户昵称" class="headerlink" title="2. 获取用户昵称"></a>2. 获取用户昵称</h3><p><strong>知识点：</strong></p>
+<p>当小程序需要让用户完善个人资料时，我们可以通过微信提供的头像、昵称填写能力快速完善。如图：</p>
+<img src="/img/miniprogram/获取微信昵称.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+
+
+
+<p>想使用微信提供的昵称填写能力，需要三步：</p>
+<ol>
+<li><p>通过 form 组件中包裹住 input 以及 form-type 为 submit 的 button 组件</p>
+</li>
+<li><p>需要将 input 组件 type 的值设置为 nickname，当用户输入框输入时，键盘上方会展示微信昵称</p>
+</li>
+<li><p>给 form 绑定 submit 事件，在事件处理函数中通过事件对象获取用户昵称</p>
+</li>
+</ol>
+<p><strong>落地代码：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 需要使用 form 组件包裹住 input 以及 button 组件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">bindsubmit</span>=<span class="hljs-string">&quot;onSubmit&quot;</span>&gt;</span><br><br>  <span class="hljs-comment">&lt;!-- input 输入框组件的 type 属性设置为 nickname，用户点击输入框，键盘上方才会显示微信昵称 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- 如果添加了 name 属性，form 组件就会自动收集带有 name 属性的表单元素的值 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;nickname&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nickname&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;请输入昵称&quot;</span> /&gt;</span><br><br>  <span class="hljs-comment">&lt;!-- 如果将 form-type=&quot;submit&quot; ，就将按钮变为提交按钮 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在点击提交按钮的时候，会触发 表单的 bindsubmit 提交事件 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span> <span class="hljs-attr">plain</span> <span class="hljs-attr">form-type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>点击获取昵称<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Page</span>(&#123;<br><br><br>  <span class="hljs-comment">// 获取微信昵称</span><br>  <span class="hljs-title function_">onSubmit</span> (event) &#123;<br>    <span class="hljs-comment">// console.log(event.detail.value)</span><br>    <span class="hljs-keyword">const</span> &#123; nickname &#125; = event.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(nickname)<br>  &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="3-转发功能"><a href="#3-转发功能" class="headerlink" title="3. 转发功能"></a>3. 转发功能</h3><p>转发功能，主要帮助用户更流畅地与好友分享内容和服务</p>
+<p>想实现转发功能，有两种方式：</p>
+<ol>
+<li><p>页面 js 文件 必须声明 onShareAppMessage 事件监听函数，并自定义转发内容。只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮</p>
+</li>
+<li><p>通过给 button 组件设置属性 open-type&#x3D;“share“ ，在用户点击按钮后触发 Page.onShareAppMessage 事件监听函数</p>
+</li>
+</ol>
+<img src="/img/miniprogram/转发功能.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+
+
+
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object">官方文档 onShareAppMessage：</a></p>
+<p><strong>落地代码：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--pages/cate/cate.wxml--&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;share&quot;</span>&gt;</span>转发<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Page</span>(&#123;<br><br>  <span class="hljs-comment">// 监听页面按钮的转发 以及 右上角的转发按钮</span><br>  <span class="hljs-title function_">onShareAppMessage</span> (obj) &#123;<br>    <span class="hljs-comment">// console.log(obj)</span><br><br>    <span class="hljs-comment">// 自定义转发内容</span><br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-comment">// 转发标题</span><br>      <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;这是一个非常神奇的页面~~~&#x27;</span>,<br>      <span class="hljs-comment">// 转发路径</span><br>      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/pages/cate/cate&#x27;</span>,<br>      <span class="hljs-comment">// 自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径</span><br>      <span class="hljs-attr">imageUrl</span>: <span class="hljs-string">&#x27;../../assets/Jerry.png&#x27;</span><br>    &#125;<br><br>  &#125;<br><br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="4-分享到朋友圈"><a href="#4-分享到朋友圈" class="headerlink" title="4. 分享到朋友圈"></a>4. 分享到朋友圈</h3><p>小程序页面默认不能被分享到朋友圈，开发者需主动设置“分享到朋友圈”才可以，实现分享到朋友圈需满足两个条件：</p>
+<ol>
+<li><p>页面 必须 设置允许“发送给朋友”，页面 js 文件声明 onShareAppMessage 事件监听函数</p>
+</li>
+<li><p>页面 必须 需设置允许“分享到朋友圈”，页面 js 文件声明 onShareTimeline 事件监听函数</p>
+</li>
+</ol>
+<img src="/img/miniprogram/分享到朋友圈.png" srcset="/img/loading.gif" lazyload style="zoom:61%;" />
+
+
+
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareTimeline">官方文档 onShareTimeline：</a></p>
+<p><strong>落地代码：</strong></p>
+<img src="/img/miniprogram/帮我砍一刀.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%; border: 1px solid #ccc" />
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Page</span>(&#123;<br><br><br>  <span class="hljs-comment">// 监听右上角 分享到朋友圈 按钮</span><br>  <span class="hljs-title function_">onShareTimeline</span> () &#123;<br><br>    <span class="hljs-comment">// 自定义分享内容。</span><br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-comment">// 自定义标题，即朋友圈列表页上显示的标题</span><br>      <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;帮我砍一刀~~~&#x27;</span>,<br>      <span class="hljs-comment">// 自定义页面路径中携带的参数，如 path?a=1&amp;b=2 的 【 “?” 后面部分 】</span><br>      <span class="hljs-attr">query</span>: <span class="hljs-string">&#x27;id=1&#x27;</span>,<br>      <span class="hljs-comment">// 自定义图片路径，可以是本地文件或者网络图片</span><br>      <span class="hljs-attr">imageUrl</span>: <span class="hljs-string">&#x27;../../assets/Jerry.png&#x27;</span><br>    &#125;<br><br>  &#125;<br><br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h3 id="5-手机号验证组件"><a href="#5-手机号验证组件" class="headerlink" title="5. 手机号验证组件"></a>5. 手机号验证组件</h3><p>手机验证组件，用于帮助开发者向用户发起手机号申请，必须经过用户同意后，才能获得由平台验证后的手机号，进而为用户提供相应服务</p>
+<img src="/img/miniprogram/手机号验证组件.png" srcset="/img/loading.gif" lazyload style="zoom:67%; border: 1px solid #ccc" />
+
+
+
+<ol>
+<li><p>手机号快速验证组件：<strong>平台会对号码进行验证，但不保证是实时验证</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;getPhoneNumber&quot;</span> <span class="hljs-attr">bindgetphonenumber</span>=<span class="hljs-string">&quot;getPhoneNumber&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>手机号实时验证组件：<strong>在每次请求时，平台均会对用户选择的手机号进行实时验证</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span></span><br><span class="hljs-tag">  <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;getRealtimePhoneNumber&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">bindgetrealtimephonenumber</span>=<span class="hljs-string">&quot;getrealtimephonenumber&quot;</span></span><br><span class="hljs-tag">/&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>📌注意事项：</p>
+<p>1.目前该接口针对非个人开发者，且完成了认证的小程序开放（不包含海外主体）</p>
+<p>2.两种验证组件需要付费使用，每个小程序账号将有 1000 次体验额度</p>
+<p>其他要求和注意事项，参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html">手机号快速验证组件</a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getRealtimePhoneNumber.html">手机号实时验证组件</a></p>
+</blockquote>
+<p><strong>落地代码：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--pages/cart/cart.wxml--&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span></span><br><span class="hljs-tag">  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">plain</span></span><br><span class="hljs-tag">  <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;getPhoneNumber&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">bindgetphonenumber</span>=<span class="hljs-string">&quot;getphonenumber&quot;</span></span><br><span class="hljs-tag">&gt;</span>快速验证组件<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span></span><br><span class="hljs-tag">  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;warn&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">plain</span></span><br><span class="hljs-tag">  <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;getRealtimePhoneNumber&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">bindgetrealtimephonenumber</span>=<span class="hljs-string">&quot;getrealtimephonenumber&quot;</span></span><br><span class="hljs-tag">&gt;</span>实时验证组件<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Page</span>(&#123;<br><br>  <span class="hljs-comment">// 手机号快速验证</span><br>  <span class="hljs-title function_">getphonenumber</span> (event) &#123;<br>    <span class="hljs-comment">// 通过事件对象，可以看到，在 event.detail 中可以获取到 code</span><br>    <span class="hljs-comment">// code 动态令牌，可以使用 code 换取用户的手机号</span><br>    <span class="hljs-comment">// 需要将 code 发送给后端，后端在接收到 code 以后</span><br>    <span class="hljs-comment">// 也需要调用 API，换取用户的真正手机号</span><br>    <span class="hljs-comment">// 在换取成功以后 ，会将手机号返回给前端</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(event)<br>  &#125;,<br><br>  <span class="hljs-comment">// 手机号实时验证</span><br>  <span class="hljs-title function_">getrealtimephonenumber</span> (event) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(event)<br>  &#125;<br><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="6-客服能力"><a href="#6-客服能力" class="headerlink" title="6. 客服能力"></a>6. 客服能力</h3><p>小程序为开发者提供了客服能力，同时为客服人员提供移动端、网页端客服工作台便于及时处理消息</p>
+<img src="/img/miniprogram/客服能力.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+
+
+
+<p>使用方式：</p>
+<ol>
+<li><p>需要将 button 组件 open-type 的值设置为 contact，当用户点击后就会进入客服会话</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;warn&quot;</span> <span class="hljs-attr">plain</span> <span class="hljs-attr">open-type</span>=<span class="hljs-string">&quot;contact&quot;</span>&gt;</span>联系客服<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>在微信公众后台，绑定后的客服账号，可以登陆 <a target="_blank" rel="noopener" href="https://mpkf.weixin.qq.com/">网页端客服</a> 或 移动端小程序 客服接收、发送客服消息</p>
+</li>
+</ol>
+<img src="/img/miniprogram/客服功能.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<img src="/img/miniprogram/客服会话.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">小程序学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="print-no-link">#小程序</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>小程序开放能力</div>
+      <div>http://example.com/2025/04/22/11-小程序开放能力/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/04/23/12-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A1%A5%E5%85%85%E4%B8%8E%E6%8B%93%E5%B1%95/" title="小程序补充与拓展">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">小程序补充与拓展</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/21/10-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%86%E5%8C%85%E5%8A%A0%E8%BD%BD/" title="小程序分包加载">
+                        <span class="hidden-mobile">小程序分包加载</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '6b6e865bada0ac96dcaa7dc608da4c27'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="小程序学习笔记"
+        id="heading-864ad8c8c80ade4b684b86c2e7a82be5" role="tab" data-toggle="collapse" href="#collapse-864ad8c8c80ade4b684b86c2e7a82be5"
+        aria-expanded="true"
+      >
+        小程序学习笔记
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-864ad8c8c80ade4b684b86c2e7a82be5"
+           role="tabpanel" aria-labelledby="heading-864ad8c8c80ade4b684b86c2e7a82be5">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2025/04/18/07-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%20API/" title="小程序API"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序API</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/20/09-%E5%B0%8F%E7%A8%8B%E5%BA%8F%20npm%20%E4%BD%BF%E7%94%A8/" title="小程序npm使用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序npm使用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/24/13-%E4%B8%8A%E7%BA%BF%E5%8F%91%E5%B8%83/" title="小程序上线发布"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序上线发布</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/15/04-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="小程序事件系统"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序事件系统</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/21/10-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%86%E5%8C%85%E5%8A%A0%E8%BD%BD/" title="小程序分包加载"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序分包加载</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/12/01-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/" title="小程序基础知识"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序基础知识</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/22/11-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E6%94%BE%E8%83%BD%E5%8A%9B/" title="小程序开放能力"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">小程序开放能力</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/14/03-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A0%B7%E5%BC%8F%E4%B8%8E%E7%BB%84%E4%BB%B6/" title="小程序样式与组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序样式与组件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/16/05-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/" title="小程序模板语法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序模板语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/17/06-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="小程序生命周期"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序生命周期</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/19/08-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/" title="小程序自定义组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序自定义组件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/23/12-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A1%A5%E5%85%85%E4%B8%8E%E6%8B%93%E5%B1%95/" title="小程序补充与拓展"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序补充与拓展</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/04/13/02-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="小程序配置文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">小程序配置文件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
