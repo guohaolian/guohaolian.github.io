@@ -1,0 +1,928 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、express 介绍express 是一个基于 Node.js 平台的极简、灵活的 WEB 应用开发框架，官方网址：https:&#x2F;&#x2F;www.expressjs.com.cn&#x2F; 简单来说，express 是一个封装好的工具包，封装了很多功能，便于我们开发 WEB 应用（HTTP 服务） 二、express 使用2.1 express 下载express 本身是一个 npm 包，所以可以通过 n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express框架">
+<meta property="og:url" content="http://example.com/2025/10/11/express%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="一、express 介绍express 是一个基于 Node.js 平台的极简、灵活的 WEB 应用开发框架，官方网址：https:&#x2F;&#x2F;www.expressjs.com.cn&#x2F; 简单来说，express 是一个封装好的工具包，封装了很多功能，便于我们开发 WEB 应用（HTTP 服务） 二、express 使用2.1 express 下载express 本身是一个 npm 包，所以可以通过 n">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/node/image-20260303193941760.png">
+<meta property="og:image" content="http://example.com/img/node/image-20260303194831965.png">
+<meta property="article:published_time" content="2025-10-11T02:34:23.000Z">
+<meta property="article:modified_time" content="2026-03-03T12:45:45.836Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/node/image-20260303193941760.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>express框架 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/3.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="express框架"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-11 10:34" pubdate>
+          2025年10月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">express框架</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/img/node/image-20260303193941760.png" srcset="/img/loading.gif" lazyload alt="image-20260303193941760"></p>
+<h1 id="一、express-介绍"><a href="#一、express-介绍" class="headerlink" title="一、express 介绍"></a>一、express 介绍</h1><p>express 是一个基于 Node.js 平台的极简、灵活的 WEB 应用开发框架，官方网址：<a target="_blank" rel="noopener" href="https://www.expressjs.com.cn/">https://www.expressjs.com.cn/</a></p>
+<p>简单来说，express 是一个封装好的工具包，封装了很多功能，便于我们开发 WEB 应用（HTTP 服务）</p>
+<h1 id="二、express-使用"><a href="#二、express-使用" class="headerlink" title="二、express 使用"></a>二、express 使用</h1><h2 id="2-1-express-下载"><a href="#2-1-express-下载" class="headerlink" title="2.1 express 下载"></a>2.1 express 下载</h2><p>express 本身是一个 npm 包，所以可以通过 npm 安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i express<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-2-express-初体验"><a href="#2-2-express-初体验" class="headerlink" title="2.2 express 初体验"></a>2.2 express 初体验</h2><ol>
+<li>创建 JS 文件，键入如下代码</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1. 导入 express</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-comment">//2. 创建应用对象</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-comment">//3. 创建路由规则</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/home&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;hello express server&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//4. 监听端口 启动服务</span><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span>&#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;服务已经启动, 端口监听为 3000...&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>命令行下执行该脚本</li>
+</ol>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &lt;文件名&gt;<br><span class="hljs-comment"># 或者</span><br>nodemon &lt;文件名&gt;<br></code></pre></td></tr></table></figure>
+
+<p>3.然后在浏览器就可以访问  <a target="_blank" rel="noopener" href="http://127.0.0.1:3000/home">http://127.0.0.1:3000/home</a></p>
+<h1 id="三、express-路由"><a href="#三、express-路由" class="headerlink" title="三、express 路由"></a>三、express 路由</h1><h2 id="3-1-什么是路由"><a href="#3-1-什么是路由" class="headerlink" title="3.1 什么是路由"></a>3.1 什么是路由</h2><p>官方定义： 路由确定了应用程序如何响应客户端对特定端点的请求</p>
+<h2 id="3-2-路由的使用"><a href="#3-2-路由的使用" class="headerlink" title="3.2 路由的使用"></a>3.2 路由的使用</h2><p>一个路由的组成有 请求方法， 路径和 回调函数组成</p>
+<p>express 中提供了一系列方法，可以很方便的使用路由，使用格式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">app.&lt;method&gt;(path，callback)<br></code></pre></td></tr></table></figure>
+
+<p>代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//导入 express</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-comment">//创建应用对象</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-comment">//创建 get 路由</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/home&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;网站首页&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//首页路由</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;我才是真正的首页&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//创建 post 路由</span><br>app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/login&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;登录成功&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//匹配所有的请求方法</span><br>app.<span class="hljs-title function_">all</span>(<span class="hljs-string">&#x27;/search&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;1 秒钟为您找到相关结果约 100,000,000 个&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//自定义 404 路由</span><br>app.<span class="hljs-title function_">all</span>(<span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;&lt;h1&gt;404 Not Found&lt;/h1&gt;&#x27;</span>)<br>&#125;);<br><span class="hljs-comment">//监听端口 启动服务</span><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span>&#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;服务已经启动, 端口监听为 3000&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-3-获取请求参数"><a href="#3-3-获取请求参数" class="headerlink" title="3.3 获取请求参数"></a>3.3 获取请求参数</h2><p>express 框架封装了一些 API 来方便获取请求报文中的数据，并且兼容原生 HTTP 模块的获取方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//导入 express</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-comment">//创建应用对象</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-comment">//获取请求的路由规则</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/request&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br><span class="hljs-comment">//1. 获取报文的方式与原生 HTTP 获取方式是兼容的</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">method</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">url</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">httpVersion</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">headers</span>);<br><span class="hljs-comment">//2. express 独有的获取报文的方式</span><br><span class="hljs-comment">//获取查询字符串</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">query</span>);  <span class="hljs-comment">// 『相对重要』</span><br><span class="hljs-comment">// 获取指定的请求头</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;host&#x27;</span>));<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;请求报文的获取&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//启动服务</span><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;启动成功....&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-4-获取路由参数"><a href="#3-4-获取路由参数" class="headerlink" title="3.4 获取路由参数"></a>3.4 获取路由参数</h2><p>路由参数指的是  URL 路径中的参数（数据）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/:id.html&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;商品详情, 商品 id 为&#x27;</span> + req.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、express-响应设置"><a href="#四、express-响应设置" class="headerlink" title="四、express 响应设置"></a>四、express 响应设置</h1><p>express 框架封装了一些 API 来方便给客户端响应数据，并且兼容原生 HTTP 模块的获取方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//获取请求的路由规则</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/response&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br><span class="hljs-comment">//1. express 中设置响应的方式兼容 HTTP 模块的方式</span><br>res.<span class="hljs-property">statusCode</span> = <span class="hljs-number">404</span>;<br>res.<span class="hljs-property">statusMessage</span> = <span class="hljs-string">&#x27;xxx&#x27;</span>;<br>res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;xyz&#x27;</span>);<br>res.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;响应体&#x27;</span>);<br>res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>);<br><span class="hljs-comment">//2. express 的响应方法</span><br>res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>); <span class="hljs-comment">//设置响应状态码</span><br>res.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>,<span class="hljs-string">&#x27;yyy&#x27;</span>);<span class="hljs-comment">//设置响应头</span><br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;中文响应不乱码&#x27;</span>);<span class="hljs-comment">//设置响应体</span><br><span class="hljs-comment">//连贯操作</span><br>res.<span class="hljs-title function_">status</span>(<span class="hljs-number">404</span>).<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>,<span class="hljs-string">&#x27;yyy&#x27;</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;你好朋友&#x27;</span>)<br><span class="hljs-comment">//3. 其他响应</span><br>res.<span class="hljs-title function_">redirect</span>(<span class="hljs-string">&#x27;http://atguigu.com&#x27;</span>)<span class="hljs-comment">//重定向</span><br>res.<span class="hljs-title function_">download</span>(<span class="hljs-string">&#x27;./package.json&#x27;</span>);<span class="hljs-comment">//下载响应</span><br>res.<span class="hljs-title function_">json</span>();<span class="hljs-comment">//响应 JSON</span><br>res.<span class="hljs-title function_">sendFile</span>(__dirname + <span class="hljs-string">&#x27;/home.html&#x27;</span>) <span class="hljs-comment">//响应文件内容</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、express-中间件"><a href="#五、express-中间件" class="headerlink" title="五、express 中间件"></a>五、express 中间件</h1><h2 id="5-1-什么是中间件"><a href="#5-1-什么是中间件" class="headerlink" title="5.1 什么是中间件"></a>5.1 什么是中间件</h2><p>中间件（Middleware）本质是一个回调函数</p>
+<p>中间件函数可以像路由回调一样访问请求对象（request） ,响应对象</p>
+<h2 id="5-2-中间件的作用"><a href="#5-2-中间件的作用" class="headerlink" title="5.2 中间件的作用"></a>5.2 中间件的作用</h2><p>中间件的作用就是 使用函数封装公共操作，简化代码</p>
+<h2 id="5-3-中间件的类型"><a href="#5-3-中间件的类型" class="headerlink" title="5.3 中间件的类型"></a>5.3 中间件的类型</h2><ul>
+<li>全局中间件 </li>
+<li>路由中间件</li>
+</ul>
+<h3 id="5-3-1-定义全局中间件"><a href="#5-3-1-定义全局中间件" class="headerlink" title="5.3.1 定义全局中间件"></a>5.3.1 定义全局中间件</h3><p>每一个请求到达服务端之后都会执行全局中间件函数</p>
+<p>声明中间件函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> recordMiddleware = <span class="hljs-keyword">function</span>(<span class="hljs-params">request,response,next</span>)&#123;<br><span class="hljs-comment">//实现功能代码</span><br><span class="hljs-comment">//.....</span><br><span class="hljs-comment">//执行next函数(当如果希望执行完中间件函数之后，仍然继续执行路由中的回调函数，必须调用next)</span><br><span class="hljs-title function_">next</span>();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/node/image-20260303194831965.png" srcset="/img/loading.gif" lazyload alt="image-20260303194831965"></p>
+<p>应用中间件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">use</span>(recordMiddleware);<br></code></pre></td></tr></table></figure>
+
+<p>声明时可以直接将匿名函数传递给  use</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">request, response, next</span>) &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;定义第一个中间件&#x27;</span>);<br><span class="hljs-title function_">next</span>();<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-2-多个全局中间件"><a href="#5-3-2-多个全局中间件" class="headerlink" title="5.3.2 多个全局中间件"></a>5.3.2 多个全局中间件</h3><p>express 允许使用 app.use() 定义多个全局中间件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">request, response, next</span>) &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;定义第一个中间件&#x27;</span>);<br><span class="hljs-title function_">next</span>();<br>&#125;)<br>app.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">request, response, next</span>) &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;定义第二个中间件&#x27;</span>);<br><span class="hljs-title function_">next</span>();<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-3-定义路由中间件"><a href="#5-3-3-定义路由中间件" class="headerlink" title="5.3.3 定义路由中间件"></a>5.3.3 定义路由中间件</h3><p>如果 只需要对某一些路由进行功能封装，则就需要路由中间件</p>
+<p>调用格式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/路径&#x27;</span>,<span class="hljs-string">`中间件函数`</span>,<span class="hljs-function">(<span class="hljs-params">request,response</span>)=&gt;</span>&#123;<br>&#125;);<br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/路径&#x27;</span>,<span class="hljs-string">`中间件函数1`</span>,<span class="hljs-string">`中间件函数2`</span>,<span class="hljs-function">(<span class="hljs-params">request,response</span>)=&gt;</span>&#123;<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-4-静态资源中间件"><a href="#5-4-静态资源中间件" class="headerlink" title="5.4 静态资源中间件"></a>5.4 静态资源中间件</h2><p>express 内置处理静态资源的中间件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//引入express框架</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-comment">//创建服务对象</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-comment">//静态资源中间件的设置，将当前文件夹下的public目录作为网站的根目录</span><br>app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;./public&#x27;</span>));  <span class="hljs-comment">//当然这个目录中都是一些静态资源</span><br><span class="hljs-comment">//如果访问的内容经常变化，还是需要设置路由</span><br><span class="hljs-comment">//但是，在这里有一个问题，如果public目录下有index.html文件，单独也有index.html的路由，</span><br><span class="hljs-comment">//则谁书写在前，优先执行谁</span><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/index.html&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">request,response</span>)=&gt;</span>&#123;<br>respsonse.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;首页&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//监听端口</span><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>,<span class="hljs-function">()=&gt;</span>&#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;3000 端口启动....&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-5-获取请求体数据-body-parser"><a href="#5-5-获取请求体数据-body-parser" class="headerlink" title="5.5 获取请求体数据 body-parser"></a>5.5 获取请求体数据 body-parser</h2><p>express 可以使用  body-parser 包处理请求体</p>
+<p>第一步：安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i body-parser<br></code></pre></td></tr></table></figure>
+
+<p>第二步：导入 body-parser 包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>第三步：获取中间件函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//处理 querystring 格式的请求体</span><br><span class="hljs-keyword">let</span> urlParser = bodyParser.<span class="hljs-title function_">urlencoded</span>(&#123;<span class="hljs-attr">extended</span>:<span class="hljs-literal">false</span>&#125;)); <br><span class="hljs-comment">//处理 JSON 格式的请求体</span><br><span class="hljs-keyword">let</span> jsonParser = bodyParser.<span class="hljs-title function_">json</span>();<br></code></pre></td></tr></table></figure>
+
+<p>第四步：设置路由中间件，然后使用  request.body 来获取请求体数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/login&#x27;</span>, urlParser, <span class="hljs-function">(<span class="hljs-params">request,response</span>)=&gt;</span>&#123;<br><span class="hljs-comment">//获取请求体数据</span><br><span class="hljs-comment">//console.log(request.body);</span><br><span class="hljs-comment">//用户名</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(request.<span class="hljs-property">body</span>.<span class="hljs-property">username</span>);<br><span class="hljs-comment">//密码</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(request.<span class="hljs-property">body</span>.<span class="hljs-property">userpass</span>); <br>response.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;获取请求体数据&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>获取到的请求体数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span>Object<span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span> prototype<span class="hljs-punctuation">]</span> <span class="hljs-punctuation">&#123;</span> username<span class="hljs-punctuation">:</span> &#x27;admin&#x27;<span class="hljs-punctuation">,</span> userpass<span class="hljs-punctuation">:</span> &#x27;<span class="hljs-number">123456</span>&#x27; <span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="六、Router"><a href="#六、Router" class="headerlink" title="六、Router"></a>六、Router</h1><h2 id="6-1-什么是-Router"><a href="#6-1-什么是-Router" class="headerlink" title="6.1 什么是 Router"></a>6.1 什么是 Router</h2><p>express 中的 Router 是一个完整的中间件和路由系统，可以看做是一个小型的 app 对象。</p>
+<h2 id="6-2-Router-作用"><a href="#6-2-Router-作用" class="headerlink" title="6.2 Router 作用"></a>6.2 Router 作用</h2><p>对路由进行模块化，更好的管理路由</p>
+<h2 id="6-3-Router-使用"><a href="#6-3-Router-使用" class="headerlink" title="6.3 Router 使用"></a>6.3 Router 使用</h2><p>创建独立的 JS 文件（homeRouter.js）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1. 导入 express</span><br><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-comment">//2. 创建路由器对象</span><br><span class="hljs-keyword">const</span> router = express.<span class="hljs-title class_">Router</span>();<br><span class="hljs-comment">//3. 在 router 对象身上添加路由</span><br>router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;首页&#x27;</span>);<br>&#125;)<br>router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/cart&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;购物车&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">//4. 暴露</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = router;<br></code></pre></td></tr></table></figure>
+
+<p>主文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-comment">//5.引入子路由文件</span><br><span class="hljs-keyword">const</span> homeRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./routes/homeRouter&#x27;</span>);<br><span class="hljs-comment">//6.设置和使用中间件</span><br>app.<span class="hljs-title function_">use</span>(homeRouter);<br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>,<span class="hljs-function">()=&gt;</span>&#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;3000 端口启动....&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h1 id="七、EJS-模板引擎"><a href="#七、EJS-模板引擎" class="headerlink" title="七、EJS 模板引擎"></a>七、EJS 模板引擎</h1><h2 id="7-1-什么是模板引擎"><a href="#7-1-什么是模板引擎" class="headerlink" title="7.1 什么是模板引擎"></a>7.1 什么是模板引擎</h2><p>模板引擎是分离 用户界面和业务数据的一种技术</p>
+<h2 id="7-2-什么是-EJS"><a href="#7-2-什么是-EJS" class="headerlink" title="7.2 什么是 EJS"></a>7.2 什么是 EJS</h2><p>EJS 是一个高效的 Javascript 的模板引擎</p>
+<p>官网: <a target="_blank" rel="noopener" href="https://ejs.co/">https://ejs.co/</a> 中文站：<a target="_blank" rel="noopener" href="https://ejs.bootcss.com/">https://ejs.bootcss.com/</a></p>
+<h2 id="7-3-EJS-初体验"><a href="#7-3-EJS-初体验" class="headerlink" title="7.3 EJS 初体验"></a>7.3 EJS 初体验</h2><p>下载安装EJS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i ejs --save<br></code></pre></td></tr></table></figure>
+
+<p>代码示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//1.引入ejs</span><br><span class="hljs-keyword">const</span> ejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ejs&#x27;</span>);<br><span class="hljs-comment">//2.定义数据</span><br><span class="hljs-keyword">let</span> person = [<span class="hljs-string">&#x27;张三&#x27;</span>,<span class="hljs-string">&#x27;李四&#x27;</span>,<span class="hljs-string">&#x27;王二麻子&#x27;</span>];<br><span class="hljs-comment">//3.ejs解析模板返回结构</span><br><span class="hljs-comment">//&lt;%= %&gt; 是ejs解析内容的标记，作用是输出当前表达式的执行结构</span><br><span class="hljs-keyword">let</span> html = ejs.<span class="hljs-title function_">render</span>(‘&lt;%= person.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;,&quot;</span>) %&gt;’, &#123;<span class="hljs-attr">person</span>:person&#125;);<br><span class="hljs-comment">//4.输出结果</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(html);<br></code></pre></td></tr></table></figure>
+
+<p>命令行下运行</p>
+<h2 id="7-4-EJS-常用语法"><a href="#7-4-EJS-常用语法" class="headerlink" title="7.4 EJS 常用语法"></a>7.4 EJS 常用语法</h2><p>执行JS代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;% code %&gt;<br></code></pre></td></tr></table></figure>
+
+<p>输出转义的数据到模板上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;%= code %&gt;<br></code></pre></td></tr></table></figure>
+
+<p>输出非转义的数据到模板上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;%- code %&gt;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NodeJS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">NodeJS学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nodejs/" class="print-no-link">#nodejs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>express框架</div>
+      <div>http://example.com/2025/10/11/express框架/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/12/%E6%8E%A5%E5%8F%A3/" title="接口">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">接口</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/10/nvm/" title="nvm">
+                        <span class="hidden-mobile">nvm</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '955ec501871b3ed132e6acdfc514cec2'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="NodeJS学习笔记"
+        id="heading-3f34e39a9061b390d9b44934f69d569d" role="tab" data-toggle="collapse" href="#collapse-3f34e39a9061b390d9b44934f69d569d"
+        aria-expanded="true"
+      >
+        NodeJS学习笔记
+        <span class="list-group-count">(10)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-3f34e39a9061b390d9b44934f69d569d"
+           role="tabpanel" aria-labelledby="heading-3f34e39a9061b390d9b44934f69d569d">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2025/10/03/Buffer/" title="Buffer(缓冲器)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Buffer(缓冲器)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/07/HTTP%E5%8D%8F%E8%AE%AE/" title="HTTP协议"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">HTTP协议</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/08/Node.js%E6%A8%A1%E5%9D%97%E5%8C%96/" title="Node.js模块化"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Node.js模块化</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/11/express%E6%A1%86%E6%9E%B6/" title="express框架"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">express框架</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/05/fs%E6%A8%A1%E5%9D%97/" title="fs模块"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">fs模块</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/10/nvm/" title="nvm"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">nvm</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/06/path%E6%A8%A1%E5%9D%97/" title="path模块"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">path模块</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/13/%E4%BC%9A%E8%AF%9D%E6%8E%A7%E5%88%B6/" title="会话控制"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">会话控制</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/09/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" title="包管理工具"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">包管理工具</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/12/%E6%8E%A5%E5%8F%A3/" title="接口"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">接口</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
