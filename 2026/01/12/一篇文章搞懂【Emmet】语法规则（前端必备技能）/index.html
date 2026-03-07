@@ -1,0 +1,935 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="【Emmet】语法规则前端人员编写网页代码时可以依靠一些编辑器的语法提示加快编写速度。大多数编辑器也提供emmet插件来 更快 的编写HTML和css代码。emmet的语法规则比较简单易理解可以极大的提高编码速度，基本上是前端开发人员必备的一项技能了。下面简单介绍下常用的语法规则和效果。 以VScode编辑器为例  1.初始化HTML结构新建一个html结构后可以使用 ! + tab 建初始化HT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emmet常用语法">
+<meta property="og:url" content="http://example.com/2026/01/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82%E3%80%90Emmet%E3%80%91%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99%EF%BC%88%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%EF%BC%89/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="【Emmet】语法规则前端人员编写网页代码时可以依靠一些编辑器的语法提示加快编写速度。大多数编辑器也提供emmet插件来 更快 的编写HTML和css代码。emmet的语法规则比较简单易理解可以极大的提高编码速度，基本上是前端开发人员必备的一项技能了。下面简单介绍下常用的语法规则和效果。 以VScode编辑器为例  1.初始化HTML结构新建一个html结构后可以使用 ! + tab 建初始化HT">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/emmet/0_1.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_2.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_3.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_4.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_5.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_6.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_7.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_8.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_9.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_10.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_11.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_12.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_13.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_14.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_15.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_16.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_17.jpeg">
+<meta property="og:image" content="http://example.com/img/emmet/0_18.jpeg">
+<meta property="article:published_time" content="2026-01-12T02:34:23.000Z">
+<meta property="article:modified_time" content="2026-03-07T13:36:45.828Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/emmet/0_1.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Emmet常用语法 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Emmet常用语法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-12 10:34" pubdate>
+          2026年1月12日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Emmet常用语法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="【Emmet】语法规则"><a href="#【Emmet】语法规则" class="headerlink" title="【Emmet】语法规则"></a>【Emmet】语法规则</h1><p>前端人员编写网页代码时可以依靠一些编辑器的语法提示加快编写速度。大多数编辑器也提供emmet插件来 <strong>更快</strong> 的编写HTML和css代码。emmet的语法规则比较简单易理解可以极大的提高编码速度，基本上是前端开发人员必备的一项技能了。下面简单介绍下常用的语法规则和效果。</p>
+<p><strong>以VScode编辑器为例</strong> </p>
+<h2 id="1-初始化HTML结构"><a href="#1-初始化HTML结构" class="headerlink" title="1.初始化HTML结构"></a>1.初始化HTML结构</h2><p>新建一个html结构后可以<span style="color: rgb(51, 145, 229); user-select: auto;">使用</span> <code>!</code> + <code>tab</code> 建初始化HTML结构</p>
+<ol>
+<li>输入：</li>
+</ol>
+<p><img src="/img/emmet/0_1.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ol>
+<li><p>按tab或回车后：</p>
+<p><img src="/img/emmet/0_2.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h2 id="2-id（-）和class（-）"><a href="#2-id（-）和class（-）" class="headerlink" title="2.id（#）和class（.）"></a>2.id（#）和class（.）</h2><p>生成一个带有id或者类名的emmet语法：</p>
+<ol>
+<li><p>id： <code>div#main</code> + <code>tab</code></p>
+</li>
+<li><p>class: <code>div.head</code> + <code>tab</code> ；多个类可以继续追加 <code>div.head.box</code> + <code>tab</code></p>
+</li>
+<li><p>组合： <code>div#main2.body</code> + <code>tab</code> 和 <code>div#main2.body.box</code> + <code>tab</code></p>
+</li>
+</ol>
+<p><strong>注意</strong> ： <strong>输入完一行要紧接着按 <code>tab</code> ！！！！</strong> </p>
+<p>输入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">div#main<br>div.<span class="hljs-property">head</span><br>div.<span class="hljs-property">head</span>.<span class="hljs-property">box</span><br>div#main2.<span class="hljs-property">body</span><br>div#main2.<span class="hljs-property">body</span>.<span class="hljs-property">box</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/emmet/0_3.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>每一行后面紧接着按 <code>tab</code> 后：</p>
+<p><img src="/img/emmet/0_4.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="3-子节点（-）、上级节点（-、兄弟结点（-）"><a href="#3-子节点（-）、上级节点（-、兄弟结点（-）" class="headerlink" title="3.子节点（&gt;）、上级节点（^)、兄弟结点（+）"></a>3.子节点（&gt;）、上级节点（^)、兄弟结点（+）</h2><h4 id="子节点（-）"><a href="#子节点（-）" class="headerlink" title="子节点（&gt;）"></a>子节点（&gt;）</h4><p>使用 <code>&gt;</code> 连接两个标签名，后者会加在前者的内部（即成为前者的子元素）</p>
+<p>例如输入如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">p</span> <br><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">p</span>&gt;<span class="hljs-selector-tag">span</span><br></code></pre></td></tr></table></figure>
+
+<p>每一行按 <code>tab</code> 会生成：</p>
+<p><img src="/img/emmet/0_5.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="上级节点（-）"><a href="#上级节点（-）" class="headerlink" title="上级节点（^）"></a>上级节点（^）</h4><p>与 <code>&gt;</code> 符号常常同时使用；在 <code>^</code> 符号后的元素名会与前一各元素的父级元素同级。 <code>^</code> 可以连续使用，表示上升多级。</p>
+<p>具体看<span style="color: rgb(51, 145, 229); user-select: auto;">实例</span>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">p</span>^<span class="hljs-selector-tag">a</span><br><br><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">ul</span>&gt;<span class="hljs-selector-tag">li</span>^<span class="hljs-selector-tag">p</span><br><br><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">ul</span>&gt;<span class="hljs-selector-tag">li</span>^^<span class="hljs-selector-tag">p</span><br></code></pre></td></tr></table></figure>
+
+<p>每行会生成：</p>
+<p><img src="/img/emmet/0_6.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h4 id="兄弟结点（-）"><a href="#兄弟结点（-）" class="headerlink" title="兄弟结点（+）"></a>兄弟结点（+）</h4><p>被 <code>+</code> 符号相连的元素最后生成同级元素。</p>
+<p>输入例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>+<span class="hljs-selector-tag">p</span><br><br><span class="hljs-selector-tag">div</span>+<span class="hljs-selector-tag">a</span>+<span class="hljs-selector-tag">p</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_7.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="4-重复（-）"><a href="#4-重复（-）" class="headerlink" title="4.重复（*）"></a>4.重复（*）</h2><p>有时候需要生成多个同样的标签，可以直接yong <code>*</code> 生成而不用一个个复制。</p>
+<p>输入例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">h2</span>*<span class="hljs-number">5</span><br><br><span class="hljs-selector-tag">ul</span>&gt;<span class="hljs-selector-tag">li</span>*<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_8.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="5-属性（-attr-）"><a href="#5-属性（-attr-）" class="headerlink" title="5.属性（[attr]）"></a>5.属性（[attr]）</h2><p>与id和class比较类似，是为元素添加其它任意属性的。</p>
+<p>例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[name=<span class="hljs-string">&#x27;main&#x27;</span>]</span><br><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href=<span class="hljs-string">&quot;www.baidu.com&quot;</span> name=<span class="hljs-string">&quot;baidu&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_9.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="6-编号（-）"><a href="#6-编号（-）" class="headerlink" title="6.编号（$）"></a>6.编号（$）</h2><p>动态生成的序号， <code>$</code> 代表一位数字，后面跟的 <code>*</code> 和数字代表从1递增到紧跟的数字</p>
+<p>例子：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">ul</span>&gt;li.item$*<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_10.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>补充</strong> ：</p>
+<ul>
+<li>可以设置多位数字（一个 <code>$</code> 代表一位数字，就可以连写多个会在前面补0）</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">ul&gt;li.item<span class="hljs-symbol">$</span><span class="hljs-symbol">$</span><span class="hljs-symbol">$</span>*<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_11.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>可以在 <code>$</code> 后加 <code>@-</code> 实现倒序</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">ul&gt;li.item<span class="hljs-variable">$@</span>-<span class="hljs-number">*6</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_12.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ul>
+<li>在 <code>$</code> 后面添加 <code>@N</code> 改变编号的起始基数</li>
+</ul>
+<p>例子：(代表从3基数开始，生成共5个)</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">ul</span>&gt;li.item$@<span class="hljs-number">3</span>*<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_13.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="7-文本（-）"><a href="#7-文本（-）" class="headerlink" title="7.文本（{}）"></a>7.文本（{}）</h2><p>元素后面使用 <code>{}</code> 符号可以在元素内部加入 <code>{}</code> 内容。</p>
+<p>例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span>&#123;一段文本&#125;<br><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href=<span class="hljs-string">&quot;www.baidu.com&quot;</span>]</span>&#123;百度&#125;<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_14.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="8-分组（-）"><a href="#8-分组（-）" class="headerlink" title="8.分组（()）"></a>8.分组（()）</h2><p>可以组合代码块，写较长的emmet语法时用来分隔。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&gt;(<span class="hljs-selector-tag">ul</span>&gt;<span class="hljs-selector-tag">li</span>&gt;<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href=<span class="hljs-string">&quot;www.baidu.com&quot;</span>]</span>)+<span class="hljs-selector-tag">p</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="/img/emmet/0_15.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="综合："><a href="#综合：" class="headerlink" title="综合："></a>综合：</h2><p>这里有三个综合的题目，大家只看emmet语法看看能不能猜到会生成什么结构呢？</p>
+<ol>
+<li><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">div</span><span class="hljs-comment">#main&gt;ul&gt;li.item$*6</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/img/emmet/0_16.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ol>
+<li><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">(<span class="hljs-built_in">div</span>#head&gt;ul&gt;li&gt;a[href=<span class="hljs-string">&quot;www.baidu.com&quot;</span>])+(<span class="hljs-built_in">div</span>#main&gt;p*<span class="hljs-number">6</span>&#123;<span class="hljs-symbol">$</span>&#125;)+<span class="hljs-built_in">div</span>#footer&#123;版权&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/img/emmet/0_17.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<ol>
+<li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-id">#main</span><span class="hljs-selector-class">.main</span><span class="hljs-selector-class">.box</span>&gt;(<span class="hljs-selector-tag">ul</span>&gt;(<span class="hljs-selector-tag">li</span>&gt;<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href=<span class="hljs-string">&quot;www.baidu.com&quot;</span>]</span>&#123;百度&#125;)*<span class="hljs-number">6</span>)+<span class="hljs-selector-tag">p</span>*<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/img/emmet/0_18.jpeg" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>虽然很简单但是不要忘记多多练习嗷！！！</strong> </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Javascript/" class="print-no-link">#Javascript</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Emmet常用语法</div>
+      <div>http://example.com/2026/01/12/一篇文章搞懂【Emmet】语法规则（前端必备技能）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/17/%E4%BD%BF%E7%94%A8%20Hexo+GitHub%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" title="使用 Hexo+GitHub 搭建个人免费博客教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 Hexo+GitHub 搭建个人免费博客教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/29/2025%E6%89%8B%E5%86%99%E9%9D%A2%E8%AF%95%E9%A2%98/" title="手写面试题">
+                        <span class="hidden-mobile">手写面试题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '25f796f3e85f5697ec0d668b60c31dc9'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="学习笔记"
+        id="heading-078425eaf316a180b0989442e53f920b" role="tab" data-toggle="collapse" href="#collapse-078425eaf316a180b0989442e53f920b"
+        aria-expanded="true"
+      >
+        学习笔记
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-078425eaf316a180b0989442e53f920b"
+           role="tabpanel" aria-labelledby="heading-078425eaf316a180b0989442e53f920b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/01/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82%E3%80%90Emmet%E3%80%91%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99%EF%BC%88%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%EF%BC%89/" title="Emmet常用语法"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Emmet常用语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/01/16/hello-world/" title="Hello World"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hello World</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/12/08/Promise%E7%9A%84%E7%8A%B6%E6%80%81%E5%90%B8%E6%94%B6/" title="Promise的状态吸收"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Promise的状态吸收</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/09/11/%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%EF%BC%9AVue%203%20%E7%BC%96%E7%A8%8B%E7%9A%84%2010%20%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" title="Vue3的10个实用技巧"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3的10个实用技巧</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/08/21/%E3%80%90Vue%E3%80%9110%20Vue%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Vue%20%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E8%AF%A6%E8%A7%A3/" title="Vue的数据代理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue的数据代理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/06/28/vue_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/" title="响应式原理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">响应式原理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/" title="箭头函数的this指向"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">箭头函数的this指向</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/01/28/Vue%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6/" title="递归组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">递归组件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

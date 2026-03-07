@@ -1,0 +1,956 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="箭头函数的this指向箭头函数的 this 指向是其核心特性， 没有自己的 this ，而是 继承定义时所在词法作用域的 this 值 （即定义时的上下文），且 绑定后不可更改 。以下通过具体场景详细说明：  ⚙️ 核心规则 静态继承箭头函数的 this 在​ ​定义时确定​ ​，指向其​ ​外层第一个普通函数​ ​的 this （若无则指向全局对象）。  不可修改无法通过 call 、 appl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="箭头函数的this指向">
+<meta property="og:url" content="http://example.com/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="箭头函数的this指向箭头函数的 this 指向是其核心特性， 没有自己的 this ，而是 继承定义时所在词法作用域的 this 值 （即定义时的上下文），且 绑定后不可更改 。以下通过具体场景详细说明：  ⚙️ 核心规则 静态继承箭头函数的 this 在​ ​定义时确定​ ​，指向其​ ​外层第一个普通函数​ ​的 this （若无则指向全局对象）。  不可修改无法通过 call 、 appl">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-08T02:34:23.000Z">
+<meta property="article:modified_time" content="2026-03-07T13:27:09.023Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>箭头函数的this指向 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="箭头函数的this指向"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-08 10:34" pubdate>
+          2026年2月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          704 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">箭头函数的this指向</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="箭头函数的this指向"><a href="#箭头函数的this指向" class="headerlink" title="箭头函数的this指向"></a>箭头函数的this指向</h2><p>箭头函数的 <code>this</code> 指向是其核心特性， <strong>没有自己的 <code>this</code></strong> ，而是 <strong>继承定义时所在词法作用域的 <code>this</code> 值</strong> （即定义时的上下文），且 <strong>绑定后不可更改</strong> 。以下通过具体场景详细说明：</p>
+<hr>
+<h2 id="⚙️-核心规则"><a href="#⚙️-核心规则" class="headerlink" title="⚙️ 核心规则"></a>⚙️ <strong>核心规则</strong></h2><ol>
+<li><p><strong>静态继承</strong><br>箭头函数的 <code>this</code> 在​ <strong>​定义时确定​</strong> ​，指向其​ <strong>​外层第一个普通函数​</strong> ​的 <code>this</code> （若无则指向全局对象）。</p>
+</li>
+<li><p><strong>不可修改</strong><br>无法通过 <code>call</code> 、 <code>apply</code> 、 <code>bind</code> 改变箭头函数的 <code>this</code> 。</p>
+</li>
+</ol>
+<hr>
+<h2 id="📊-详细示例分析"><a href="#📊-详细示例分析" class="headerlink" title="📊 详细示例分析"></a>📊 <strong>详细示例分析</strong></h2><h3 id="示例-1：全局作用域定义（指向全局对象）"><a href="#示例-1：全局作用域定义（指向全局对象）" class="headerlink" title="示例 1：全局作用域定义（指向全局对象）"></a><strong>示例 1：全局作用域定义（指向全局对象）</strong></h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const arrowFunc = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(this); <br>arrowFunc(); <span class="hljs-comment">// 浏览器中输出 Window 对象（全局作用域的 this）</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>说明</strong> ：箭头函数在全局作用域定义，继承全局 <code>this</code> （浏览器中为 <code>window</code> ）。</li>
+</ul>
+<hr>
+<h3 id="示例-2：嵌套在普通函数中（继承外层函数的-this）"><a href="#示例-2：嵌套在普通函数中（继承外层函数的-this）" class="headerlink" title="示例 2：嵌套在普通函数中（继承外层函数的 this）"></a><strong>示例 2：嵌套在普通函数中（继承外层函数的 this）</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">value</span> = <span class="hljs-number">10</span>;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">arrowFunc</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">value</span>); <br>  <span class="hljs-title function_">arrowFunc</span>();<br>&#125;<br><span class="hljs-title function_">outer</span>(); <span class="hljs-comment">// 输出 10（this 指向 outer 函数的 this）</span><br><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-number">20</span>,<br>  <span class="hljs-title function_">createArrow</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">arrowFunc</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">value</span>); <br>    <span class="hljs-keyword">return</span> arrowFunc;<br>  &#125;<br>&#125;;<br><span class="hljs-keyword">const</span> arrow = obj.<span class="hljs-title function_">createArrow</span>();<br><span class="hljs-title function_">arrow</span>(); <span class="hljs-comment">// 输出 20（this 继承 createArrow 的 this，指向 obj）</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>关键</strong> ：箭头函数定义在普通函数 <code>createArrow</code> 内部，因此继承其 <code>this</code> （即调用 <code>createArrow</code> 的对象 <code>obj</code> ）。</li>
+</ul>
+<hr>
+<h3 id="示例-3：作为对象方法（不指向对象本身）"><a href="#示例-3：作为对象方法（不指向对象本身）" class="headerlink" title="示例 3：作为对象方法（不指向对象本身）"></a><strong>示例 3：作为对象方法（不指向对象本身）</strong></h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const obj = &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-number">30</span>,<br>  <span class="hljs-attr">arrowFunc</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(this.value) <br>&#125;;<br>obj.arrowFunc(); <span class="hljs-comment">// 输出 undefined（this 指向全局，而非 obj）</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>原因</strong> ：对象字面量 <code>{}</code> 不产生作用域，箭头函数直接继承全局 <code>this</code> （相当于在全局定义）。</li>
+</ul>
+<hr>
+<h3 id="示例-4：多层嵌套（继承最近普通函数的-this）"><a href="#示例-4：多层嵌套（继承最近普通函数的-this）" class="headerlink" title="示例 4：多层嵌套（继承最近普通函数的 this）"></a><strong>示例 4：多层嵌套（继承最近普通函数的 this）</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">outerValue</span> = <span class="hljs-string">&quot;outer&quot;</span>;<br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">inner</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">arrowFunc</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">outerValue</span>); <br>    <span class="hljs-title function_">arrowFunc</span>();<br>  &#125;<br>  inner.<span class="hljs-title function_">call</span>(&#123; <span class="hljs-attr">outerValue</span>: <span class="hljs-string">&quot;inner&quot;</span> &#125;); <span class="hljs-comment">// 输出 &quot;inner&quot;</span><br>&#125;<br>outer.<span class="hljs-title function_">call</span>(&#123; <span class="hljs-attr">outerValue</span>: <span class="hljs-string">&quot;outer&quot;</span> &#125;); <br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>结果</strong> ： <code>arrowFunc</code> 的 <code>this</code> 继承 <code>inner</code> 的 <code>this</code> （通过 <code>call</code> 绑定为 <code>{ outerValue: &quot;inner&quot; }</code> ）。</li>
+</ul>
+<hr>
+<h3 id="示例-5：事件处理函数（继承定义时上下文）"><a href="#示例-5：事件处理函数（继承定义时上下文）" class="headerlink" title="示例 5：事件处理函数（继承定义时上下文）"></a><strong>示例 5：事件处理函数（继承定义时上下文）</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ButtonHandler</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span> = <span class="hljs-string">&quot;Clicked!&quot;</span>;<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;myButton&quot;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span>); <span class="hljs-comment">// 输出 &quot;Clicked!&quot;（this 指向 ButtonHandler 实例）</span><br>    &#125;);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">new</span> <span class="hljs-title class_">ButtonHandler</span>();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>对比普通函数：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 普通函数需额外绑定 this</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;myButton&quot;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span>); <span class="hljs-comment">// undefined（this 指向按钮元素）</span><br>&#125;.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>));<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>优势</strong> ：箭头函数自动绑定外层 <code>this</code> （ <code>ButtonHandler</code> 实例）。</li>
+</ul>
+<hr>
+<h2 id="⚠️-易错场景"><a href="#⚠️-易错场景" class="headerlink" title="⚠️ 易错场景"></a>⚠️ <strong>易错场景</strong></h2><h3 id="误用为对象方法"><a href="#误用为对象方法" class="headerlink" title="误用为对象方法"></a><strong>误用为对象方法</strong></h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const counter = &#123;<br>  <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,<br>  <span class="hljs-attr">increment</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> this.<span class="hljs-built_in">count</span>++ <span class="hljs-comment">// this 指向全局，counter.count 不会增加</span><br>&#125;;<br>counter.increment();<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(counter.<span class="hljs-built_in">count</span>); <span class="hljs-comment">// 输出 0（未修改）</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>解决：改用普通函数或重构定义位置：</li>
+</ul>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">const</span> counter = &#123;<br>  <span class="hljs-keyword">count</span>: <span class="hljs-number">0</span>,<br>  increment() &#123; <span class="hljs-keyword">this</span>.<span class="hljs-keyword">count</span>++; &#125; <span class="hljs-comment">// 正确指向 counter</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="与-call-apply-结合无效"><a href="#与-call-apply-结合无效" class="headerlink" title="与 call&#x2F;apply 结合无效"></a><strong>与 call&#x2F;apply 结合无效</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">arrowFunc</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span> &#125;;<br>arrowFunc.<span class="hljs-title function_">call</span>(obj); <span class="hljs-comment">// 输出 undefined（this 未被修改）</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💎-总结"><a href="#💎-总结" class="headerlink" title="💎 总结"></a>💎 <strong>总结</strong></h2><table>
+<thead>
+<tr>
+<th align="center"><strong>场景</strong></th>
+<th align="center"><strong>箭头函数 <code>this</code> 指向</strong></th>
+<th align="center"><strong>引用</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">全局作用域定义</td>
+<td align="center">全局对象（如 <code>window</code> ）</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">嵌套在普通函数中</td>
+<td align="center">外层函数的 <code>this</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">作为对象方法</td>
+<td align="center">全局对象（非对象本身）</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">事件回调（类或构造函数内）</td>
+<td align="center">外层实例（如 <code>ButtonHandler</code> ）</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">多层嵌套</td>
+<td align="center">最近普通函数的 <code>this</code></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p><strong>核心结论</strong> ：箭头函数的 <code>this</code> 始终 <strong>冻结在定义时的词法环境</strong> ，与调用方式无关。适用于需要固定 <code>this</code> 的场景（如回调、事件处理），但避免用作对象方法或构造函数。</p>
+<p>箭头函数的 this 指向是其核心特性，没有自己的 this，而是继承定义时所在词法作用域的 this 值（即定义时的上下文），且绑定后不可更改。以下通过具体场景详细说明：</p>
+<hr>
+<h2 id="✅-核心机制"><a href="#✅-核心机制" class="headerlink" title="✅ 核心机制"></a>✅ <strong>核心机制</strong></h2><ol>
+<li><p><strong>箭头函数的 <code>this</code> 继承外层函数的 <code>this</code></strong><br>箭头函数自身没有 <code>this</code> ，其 <code>this</code> ​ <strong>​完全继承自包裹它的最近一层非箭头函数​</strong> ​（或全局作用域）。</p>
+</li>
+<li><p><strong>外层函数的 <code>this</code> 在调用前是不确定的</strong><br>外层函数（如 <code>createArrow</code> ）是普通函数，其 <code>this</code> ​ <strong>​由调用方式动态决定​</strong> ​（如 <code>obj.createArrow()</code> 或独立调用 <code>fn()</code> ）。</p>
+</li>
+<li><p><strong>箭头函数的 <code>this</code> 在定义时“承诺继承”，在调用时“兑现固化”</strong> </p>
+<ul>
+<li><p><strong>定义时</strong> ：箭头函数声明“我将继承外层函数的 <code>this</code> ”。</p>
+</li>
+<li><p><strong>调用时</strong> ：当外层函数被调用时，箭头函数 <strong>立即捕获外层函数当前的 <code>this</code> 值并永久固化</strong> 。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="🔍-不同调用场景下的-this-指向"><a href="#🔍-不同调用场景下的-this-指向" class="headerlink" title="🔍 不同调用场景下的 this 指向"></a>🔍 <strong>不同调用场景下的 <code>this</code> 指向</strong></h4><h5 id="1-外层函数通过-obj-调用-→-箭头函数-this-指向-obj"><a href="#1-外层函数通过-obj-调用-→-箭头函数-this-指向-obj" class="headerlink" title="1. 外层函数通过 obj 调用 → 箭头函数 this 指向 obj"></a>1. <strong>外层函数通过 <code>obj</code> 调用 → 箭头函数 <code>this</code> 指向 <code>obj</code></strong></h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-title function_">createArrow</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">arrowFunc</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// 捕获 createArrow 的 this</span><br>    <span class="hljs-keyword">return</span> arrowFunc;<br>  &#125;<br>&#125;;<br><span class="hljs-keyword">const</span> arrow = obj.<span class="hljs-title function_">createArrow</span>(); <span class="hljs-comment">// createArrow 的 this → obj</span><br><span class="hljs-title function_">arrow</span>(); <span class="hljs-comment">// 输出 obj（箭头函数继承并固化 obj）</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="2-外层函数独立调用-→-箭头函数-this-指向全局对象"><a href="#2-外层函数独立调用-→-箭头函数-this-指向全局对象" class="headerlink" title="2. 外层函数独立调用 → 箭头函数 this 指向全局对象"></a>2. <strong>外层函数独立调用 → 箭头函数 <code>this</code> 指向全局对象</strong></h5><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">const temp <span class="hljs-operator">=</span> obj.createArrow<span class="hljs-comment">; // 仅引用函数</span><br>const arrow <span class="hljs-operator">=</span> temp()<span class="hljs-comment">; // createArrow 独立调用 → this 指向 window</span><br>arrow()<span class="hljs-comment">; // 输出 window（箭头函数继承并固化 window）</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="3-外层函数通过-call-显式绑定-→-箭头函数-this-指向新对象"><a href="#3-外层函数通过-call-显式绑定-→-箭头函数-this-指向新对象" class="headerlink" title="3. 外层函数通过 call 显式绑定 → 箭头函数 this 指向新对象"></a>3. <strong>外层函数通过 <code>call</code> 显式绑定 → 箭头函数 <code>this</code> 指向新对象</strong></h5><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> newObj = &#123; value: <span class="hljs-number">30</span> &#125;;<br><span class="hljs-keyword">const</span> arrow = obj.createArrow.call(newObj); <span class="hljs-comment">// createArrow 的 this → newObj</span><br>arrow(); <span class="hljs-comment">// 输出 newObj（箭头函数继承并固化 newObj）</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="4-箭头函数调用时强制绑定-→-无效！"><a href="#4-箭头函数调用时强制绑定-→-无效！" class="headerlink" title="4. 箭头函数调用时强制绑定 → 无效！"></a>4. <strong>箭头函数调用时强制绑定 → 无效！</strong></h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> arrow = obj.createArrow(); <span class="hljs-comment">// 已固化 this → obj</span><br>arrow.call(<span class="hljs-built_in">window</span>); <span class="hljs-comment">// 仍输出 obj（无法修改箭头函数的 this）</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="💎-关键结论"><a href="#💎-关键结论" class="headerlink" title="💎 关键结论"></a>💎 <strong>关键结论</strong></h4><table>
+<thead>
+<tr>
+<th align="center"><strong>场景</strong></th>
+<th align="center">外层函数的 <code>this</code> 来源</th>
+<th align="center">箭头函数的 <code>this</code> 结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>obj.createArrow()</code></td>
+<td align="center"><code>obj</code> （隐式绑定）</td>
+<td align="center">固化 → <code>obj</code></td>
+</tr>
+<tr>
+<td align="center"><code>temp = obj.createArrow; temp()</code></td>
+<td align="center"><code>window</code> （默认绑定）</td>
+<td align="center">固化 → <code>window</code></td>
+</tr>
+<tr>
+<td align="center"><code>createArrow.call(newObj)</code></td>
+<td align="center"><code>newObj</code> （显式绑定）</td>
+<td align="center">固化 → <code>newObj</code></td>
+</tr>
+<tr>
+<td align="center"><code>arrow.call(any)</code></td>
+<td align="center">不变</td>
+<td align="center"><strong>永远不变</strong></td>
+</tr>
+</tbody></table>
+<ol>
+<li><p><strong>箭头函数的 <code>this</code> 是“惰性固化”的</strong> </p>
+<ul>
+<li><p>定义时声明继承规则，但具体值 <strong>需等待外层函数调用时才确定</strong> 。</p>
+</li>
+<li><p>一旦外层函数被调用，箭头函数的 <code>this</code> <strong>立即被赋值并永久锁定</strong> 。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>固化后不可修改</strong><br>即使后续用 <code>call</code> &#x2F; <code>apply</code> &#x2F; <code>bind</code> 强制修改，箭头函数的 <code>this</code> ​ <strong>​也永不改变​</strong> ​。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>简单总结</strong> ：<br>箭头函数的 <code>this</code> 是 ​ <strong>​“定义时承诺继承，调用时兑现固化”​</strong> ​。兑现的值由外层函数的 ​ <strong>​调用方式​</strong> ​ 决定，兑现后 ​ <strong>​永不改变​</strong> ​。<br>因此，​ <strong>​你完全理解正确！​</strong> ​ 🎉</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Javascript/" class="print-no-link">#Javascript</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>箭头函数的this指向</div>
+      <div>http://example.com/2026/02/08/箭头函数的this指向/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/28/Vue%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6/" title="递归组件">
+                        <span class="hidden-mobile">递归组件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '3b280ecf739bc2e01bdab8c84393b31a'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="学习笔记"
+        id="heading-078425eaf316a180b0989442e53f920b" role="tab" data-toggle="collapse" href="#collapse-078425eaf316a180b0989442e53f920b"
+        aria-expanded="true"
+      >
+        学习笔记
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-078425eaf316a180b0989442e53f920b"
+           role="tabpanel" aria-labelledby="heading-078425eaf316a180b0989442e53f920b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/01/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82%E3%80%90Emmet%E3%80%91%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99%EF%BC%88%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%EF%BC%89/" title="Emmet常用语法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Emmet常用语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/01/16/hello-world/" title="Hello World"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hello World</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/12/08/Promise%E7%9A%84%E7%8A%B6%E6%80%81%E5%90%B8%E6%94%B6/" title="Promise的状态吸收"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Promise的状态吸收</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/09/11/%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%EF%BC%9AVue%203%20%E7%BC%96%E7%A8%8B%E7%9A%84%2010%20%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" title="Vue3的10个实用技巧"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3的10个实用技巧</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/08/21/%E3%80%90Vue%E3%80%9110%20Vue%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Vue%20%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E8%AF%A6%E8%A7%A3/" title="Vue的数据代理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue的数据代理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/06/28/vue_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/" title="响应式原理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">响应式原理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/" title="箭头函数的this指向"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">箭头函数的this指向</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/01/28/Vue%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6/" title="递归组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">递归组件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

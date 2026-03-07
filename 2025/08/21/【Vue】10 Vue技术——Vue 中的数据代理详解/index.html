@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Vue 中的数据代理详解前言在学习 Vue 框架的过程中， 数据代理（Data Proxy） 是一个非常核心且重要的概念。它让开发者能够更方便、直观地操作 data 中的数据，而无需直接访问底层的 data 对象。本文将结合代码示例和调试截图，深入讲解 Vue 中数据代理的工作原理与实际应用。   一、什么是数据代理？数据代理 是指：Vue 将 data 对象中的属性“代理”到 Vue 实例对象（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue的数据代理">
+<meta property="og:url" content="http://example.com/2025/08/21/%E3%80%90Vue%E3%80%9110%20Vue%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Vue%20%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="Vue 中的数据代理详解前言在学习 Vue 框架的过程中， 数据代理（Data Proxy） 是一个非常核心且重要的概念。它让开发者能够更方便、直观地操作 data 中的数据，而无需直接访问底层的 data 对象。本文将结合代码示例和调试截图，深入讲解 Vue 中数据代理的工作原理与实际应用。   一、什么是数据代理？数据代理 是指：Vue 将 data 对象中的属性“代理”到 Vue 实例对象（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/proxy/0_1.png">
+<meta property="og:image" content="http://example.com/img/proxy/0_2.png">
+<meta property="og:image" content="http://example.com/img/proxy/0_3.png">
+<meta property="article:published_time" content="2025-08-21T03:23:47.000Z">
+<meta property="article:modified_time" content="2026-03-07T13:58:05.412Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/proxy/0_1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Vue的数据代理 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue的数据代理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-21 11:23" pubdate>
+          2025年8月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue的数据代理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Vue-中的数据代理详解"><a href="#Vue-中的数据代理详解" class="headerlink" title="Vue 中的数据代理详解"></a>Vue 中的数据代理详解</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在学习 Vue 框架的过程中， <strong>数据代理（Data Proxy）</strong> 是一个非常核心且重要的概念。它让开发者能够更方便、直观地操作 <code>data</code> 中的数据，而无需直接访问底层的 <code>data</code> 对象。本文将结合代码示例和调试截图，深入讲解 Vue 中数据代理的工作原理与实际应用。</p>
+<p><img src="/img/proxy/0_1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<hr>
+<h3 id="一、什么是数据代理？"><a href="#一、什么是数据代理？" class="headerlink" title="一、什么是数据代理？"></a>一、什么是数据代理？</h3><p><strong>数据代理</strong> 是指：Vue 将 <code>data</code> 对象中的属性“代理”到 Vue 实例对象（ <code>vm</code> ）上，使得我们可以通过 <code>vm.xxx</code> 的方式直接读取或修改 <code>data</code> 中的数据。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;上高山&#x27;</span>,<br>    <span class="hljs-attr">address</span>: <span class="hljs-string">&#x27;长沙&#x27;</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>虽然 <code>name</code> 和 <code>address</code> 真正存储在 <code>data</code> 对象中，但我们却可以直接通过 <code>vm.name</code> 或 <code>vm.address</code> 来访问它们，这就是 <strong>数据代理</strong> 的体现。</p>
+<hr>
+<h3 id="二、数据代理的好处"><a href="#二、数据代理的好处" class="headerlink" title="二、数据代理的好处"></a>二、数据代理的好处</h3><h4 id="✅-更加方便的操作数据"><a href="#✅-更加方便的操作数据" class="headerlink" title="✅ 更加方便的操作数据"></a>✅ 更加方便的操作数据</h4><p>在没有数据代理的情况下，我们需要写成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(vm.<span class="hljs-property">data</span>.<span class="hljs-property">name</span>) <span class="hljs-comment">// ❌ 不推荐</span><br></code></pre></td></tr></table></figure>
+
+<p>有了数据代理后，我们可以直接：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(vm.<span class="hljs-property">name</span>)     <span class="hljs-comment">// ✅ 推荐</span><br>vm.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;新学校名称&#x27;</span>   <span class="hljs-comment">// ✅ 直接修改</span><br></code></pre></td></tr></table></figure>
+
+<p>这大大提升了开发效率和代码可读性。</p>
+<hr>
+<h3 id="三、数据代理的基本原理"><a href="#三、数据代理的基本原理" class="headerlink" title="三、数据代理的基本原理"></a>三、数据代理的基本原理</h3><p>Vue 使用了 JavaScript 内置方法 <code>Object.defineProperty()</code> 来实现数据代理。</p>
+<h4 id="🔧-原理简述："><a href="#🔧-原理简述：" class="headerlink" title="🔧 原理简述："></a>🔧 原理简述：</h4><ol>
+<li><p>当创建 Vue 实例时，Vue 会遍历 <code>data</code> 对象中的每一个属性。</p>
+</li>
+<li><p>使用 <code>Object.defineProperty()</code> 将这些属性分别添加到 <code>vm</code> 实例上。</p>
+</li>
+<li><p>为每个属性设置 <code>getter</code> 和 <code>setter</code> 函数。</p>
+</li>
+<li><p>在 <code>getter</code> 中读取 <code>data</code> 中对应值，在 <code>setter</code> 中更新 <code>data</code> 中对应值。</p>
+</li>
+</ol>
+<blockquote>
+<p>💡 这个过程称为“响应式系统”的一部分，是 Vue 2.x 的核心技术之一。</p>
+</blockquote>
+<hr>
+<h3 id="四、代码演示与分析"><a href="#四、代码演示与分析" class="headerlink" title="四、代码演示与分析"></a>四、代码演示与分析</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Vue中的数据代理<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 引入Vue --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!-- </span><br><span class="hljs-comment">        1. Vue中的数据代理：</span><br><span class="hljs-comment">        通过vm对象代理data对象中属性的操作（读/写）</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">        2. Vue数据代理的好处：</span><br><span class="hljs-comment">        更加方便的操作data中的数据</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">        3. 基本原理：</span><br><span class="hljs-comment">        通过Object.defineProperty()把data对象中所有属性添加到vm上。</span><br><span class="hljs-comment">        为每一个添加到vm上的属性，都指定一个getter/setter。</span><br><span class="hljs-comment">        在getter/setter内部操作（读/写）data中对应的属性。</span><br><span class="hljs-comment">        --&gt;</span><br><br>        <span class="hljs-comment">&lt;!-- 准备好一个容器 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;root&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>学校名称：&#123;&#123;name&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>学校地址：&#123;&#123;address&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>         <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">            <span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">productionTip</span> = <span class="hljs-literal">false</span> <span class="hljs-comment">// 阻止Vue在启动时产生生产提示</span></span><br><span class="language-javascript">            <span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span><br><span class="language-javascript">                <span class="hljs-attr">el</span>:<span class="hljs-string">&#x27;#root&#x27;</span>,</span><br><span class="language-javascript">                <span class="hljs-attr">data</span>:&#123;</span><br><span class="language-javascript">                    <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;上高山&#x27;</span>,</span><br><span class="language-javascript">                    <span class="hljs-attr">address</span>:<span class="hljs-string">&#x27;长沙&#x27;</span></span><br><span class="language-javascript">                &#125;</span><br><span class="language-javascript">            &#125;)</span><br><span class="language-javascript">         </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>运行上述代码后，打开浏览器的 <strong>DevTools → Console</strong> ，输入以下命令：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(vm.<span class="hljs-property">name</span>)        <span class="hljs-comment">// 输出：上高山</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(vm.<span class="hljs-property">address</span>)     <span class="hljs-comment">// 输出：长沙</span><br></code></pre></td></tr></table></figure>
+
+<p>你会发现，尽管 <code>name</code> 和 <code>address</code> 并不在 <code>vm</code> 的顶层属性中，但依然可以正常访问。</p>
+<hr>
+<h3 id="五、调试观察：数据代理的真实结构"><a href="#五、调试观察：数据代理的真实结构" class="headerlink" title="五、调试观察：数据代理的真实结构"></a>五、调试观察：数据代理的真实结构</h3><p>打开 Chrome DevTools，查看 <code>vm</code> 实例的结构：</p>
+<p><img src="/img/proxy/0_2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>你可以在控制台中展开 <code>vm</code> 对象，发现：</p>
+<ul>
+<li><p><code>name</code> 和 <code>address</code> 并不是直接作为普通属性存在。</p>
+</li>
+<li><p>它们实际上是通过 <strong>getter&#x2F;setter</strong> 实现的。</p>
+</li>
+<li><p>查看 <code>vm.__proto__</code> 或 <code>vm._data</code> 可以看到原始的 <code>data</code> 对象。</p>
+</li>
+</ul>
+<p>此外，在 <code>vm</code> 的原型链上可以看到：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">get</span> <span class="hljs-title function_">name</span>() &#123; ... &#125;   <span class="hljs-comment">// getter</span><br><span class="hljs-keyword">set</span> <span class="hljs-title function_">name</span>(<span class="hljs-params">val</span>) &#123; ... &#125; <span class="hljs-comment">// setter</span><br></code></pre></td></tr></table></figure>
+
+<p>当你执行 <code>vm.name = &#39;新名字&#39;</code> 时，实际上触发的是这个 <code>setter</code> 方法，它会自动更新 <code>_data.name</code> 的值，并通知视图重新渲染。</p>
+<hr>
+<h3 id="六、数据代理图解说明"><a href="#六、数据代理图解说明" class="headerlink" title="六、数据代理图解说明"></a>六、数据代理图解说明</h3><p>下面是一张简化版的数据代理流程图：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xl">[ 创建 Vue 实例 ]<br>       ↓<br>[ <span class="hljs-keyword">data</span>: &#123; <span class="hljs-keyword">name</span>: <span class="hljs-string">&#x27;上高山&#x27;</span>, address: <span class="hljs-string">&#x27;长沙&#x27;</span> &#125; ]<br>       ↓<br>Vue 使用 Object.defineProperty()<br>       ↓<br>[ vm 上添加 <span class="hljs-keyword">name</span> 和 address 属性，绑定 getter/setter ]<br>       ↓<br>[ vm.<span class="hljs-keyword">name</span> → 触发 getter → 获取 <span class="hljs-keyword">data</span>.<span class="hljs-keyword">name</span> ]<br>[ vm.<span class="hljs-keyword">name</span> = <span class="hljs-string">&#x27;新值&#x27;</span> → 触发 setter → 修改 <span class="hljs-keyword">data</span>.<span class="hljs-keyword">name</span> ]<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/proxy/0_3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<blockquote>
+<p>📌 关键点：所有对 <code>vm.xxx</code> 的操作，最终都会映射到 <code>data.xxx</code> 上，从而保证数据的一致性和响应性。</p>
+</blockquote>
+<hr>
+<h3 id="七、为什么需要数据代理？"><a href="#七、为什么需要数据代理？" class="headerlink" title="七、为什么需要数据代理？"></a>七、为什么需要数据代理？</h3><h4 id="1-提高-API-可用性"><a href="#1-提高-API-可用性" class="headerlink" title="1. 提高 API 可用性"></a>1. 提高 API 可用性</h4><p>允许用户像使用普通对象一样操作数据，无需关心内部结构。</p>
+<h4 id="2-支持响应式更新"><a href="#2-支持响应式更新" class="headerlink" title="2. 支持响应式更新"></a>2. 支持响应式更新</h4><p>当 <code>vm.name</code> 被修改时，Vue 会自动检测变化并触发视图重绘。</p>
+<h4 id="3-实现双向绑定的基础"><a href="#3-实现双向绑定的基础" class="headerlink" title="3. 实现双向绑定的基础"></a>3. 实现双向绑定的基础</h4><p>数据代理是 <code>v-model</code> 、 <code>watch</code> 、 <code>computed</code> 等功能的前提条件。</p>
+<hr>
+<h3 id="八、Vue-3-的变化：从-defineProperty-到-Proxy"><a href="#八、Vue-3-的变化：从-defineProperty-到-Proxy" class="headerlink" title="八、Vue 3 的变化：从 defineProperty 到 Proxy"></a>八、Vue 3 的变化：从 <code>defineProperty</code> 到 <code>Proxy</code></h3><p>需要注意的是， <strong>Vue 3 已经不再使用 <code>Object.defineProperty()</code> ，而是改用 <code>Proxy</code></strong> 来实现响应式系统。</p>
+<table>
+<thead>
+<tr>
+<th align="center">特性</th>
+<th align="center">Vue 2</th>
+<th align="center">Vue 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">响应式机制</td>
+<td align="center"><code>Object.defineProperty()</code></td>
+<td align="center"><code>Proxy</code></td>
+</tr>
+<tr>
+<td align="center">支持数组</td>
+<td align="center">有限支持（需特殊处理）</td>
+<td align="center">完全支持</td>
+</tr>
+<tr>
+<td align="center">性能</td>
+<td align="center">较慢</td>
+<td align="center">更快</td>
+</tr>
+<tr>
+<td align="center">功能扩展</td>
+<td align="center">有限</td>
+<td align="center">更强大</td>
+</tr>
+</tbody></table>
+<p>但在 Vue 2 中， <code>Object.defineProperty()</code> 仍然是实现数据代理的核心技术。</p>
+<hr>
+<h3 id="九、总结"><a href="#九、总结" class="headerlink" title="九、总结"></a>九、总结</h3><table>
+<thead>
+<tr>
+<th align="center">项目</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>定义</strong></td>
+<td align="center">Vue 将 <code>data</code> 中的属性代理到 <code>vm</code> 实例上</td>
+</tr>
+<tr>
+<td align="center"><strong>目的</strong></td>
+<td align="center">方便开发者操作数据，提升开发体验</td>
+</tr>
+<tr>
+<td align="center"><strong>实现方式</strong></td>
+<td align="center">使用 <code>Object.defineProperty()</code> 设置 getter&#x2F;setter</td>
+</tr>
+<tr>
+<td align="center"><strong>作用</strong></td>
+<td align="center">实现响应式更新，支撑模板渲染和事件响应</td>
+</tr>
+<tr>
+<td align="center"><strong>优点</strong></td>
+<td align="center">代码简洁、语义清晰、易于维护</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="十、拓展思考"><a href="#十、拓展思考" class="headerlink" title="十、拓展思考"></a>十、拓展思考</h3><ul>
+<li><p>如果你在 <code>data</code> 中新增一个属性（如 <code>phone</code> ），是否也能被代理？<br>➤ 是的，只要在 <code>new Vue()</code> 之前定义，就会被自动代理。</p>
+</li>
+<li><p>如何手动添加一个响应式属性？<br>➤ 使用 <code>vm.$data.xxx = value</code> 或 <code>Vue.set()</code> 方法。</p>
+</li>
+</ul>
+<hr>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>Vue 的数据代理机制不仅是一个语法糖，更是其响应式系统的重要基石。理解这一机制，有助于我们更好地掌握 Vue 的工作原理，写出更高效、更优雅的代码。</p>
+<blockquote>
+<p>✅ 推荐练习：尝试在控制台打印 <code>vm.name</code> ，然后修改它，观察页面是否自动更新，同时查看 DevTools 中的变化路径。</p>
+</blockquote>
+<hr>
+<p>📌 <strong>关键词</strong> ：Vue、数据代理、Object.defineProperty、getter、setter、响应式、vm、data、Vue2、Vue3、Proxy</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/" class="print-no-link">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue的数据代理</div>
+      <div>http://example.com/2025/08/21/【Vue】10 Vue技术——Vue 中的数据代理详解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/11/%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%EF%BC%9AVue%203%20%E7%BC%96%E7%A8%8B%E7%9A%84%2010%20%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" title="Vue3的10个实用技巧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue3的10个实用技巧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/28/vue_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/" title="响应式原理">
+                        <span class="hidden-mobile">响应式原理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'bb432ea40b5af43e6d2556dea5c35c6d'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="学习笔记"
+        id="heading-078425eaf316a180b0989442e53f920b" role="tab" data-toggle="collapse" href="#collapse-078425eaf316a180b0989442e53f920b"
+        aria-expanded="true"
+      >
+        学习笔记
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-078425eaf316a180b0989442e53f920b"
+           role="tabpanel" aria-labelledby="heading-078425eaf316a180b0989442e53f920b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/01/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82%E3%80%90Emmet%E3%80%91%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99%EF%BC%88%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%EF%BC%89/" title="Emmet常用语法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Emmet常用语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/01/16/hello-world/" title="Hello World"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hello World</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/12/08/Promise%E7%9A%84%E7%8A%B6%E6%80%81%E5%90%B8%E6%94%B6/" title="Promise的状态吸收"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Promise的状态吸收</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/09/11/%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%EF%BC%9AVue%203%20%E7%BC%96%E7%A8%8B%E7%9A%84%2010%20%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" title="Vue3的10个实用技巧"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3的10个实用技巧</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/08/21/%E3%80%90Vue%E3%80%9110%20Vue%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Vue%20%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E8%AF%A6%E8%A7%A3/" title="Vue的数据代理"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Vue的数据代理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/06/28/vue_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/" title="响应式原理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">响应式原理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/" title="箭头函数的this指向"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">箭头函数的this指向</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/01/28/Vue%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6/" title="递归组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">递归组件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
