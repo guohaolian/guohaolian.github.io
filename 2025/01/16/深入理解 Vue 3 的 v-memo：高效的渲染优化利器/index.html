@@ -1,0 +1,965 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/a.png">
+  <link rel="icon" href="/img/a.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Guo HL">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Vue 3 的 v-memo：高效的渲染优化利器在日常的Vue项目开发中，我们经常会遇到这样的情况：父组件更新了，但子组件明明没有用到相关数据，却也跟着无意义地重新渲染。这不仅浪费性能，还可能导致页面卡顿。 Vue 3 在 3.2 版本 引入了一个新的指令 —— v-memo ，它的作用就是帮助我们 跳过不必要的渲染 ，让应用运行得更加丝滑。 本文将从概念、场景、示例、性能对比，再到和大家熟悉的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 3 的 v-memo：高效的渲染优化利器">
+<meta property="og:url" content="http://example.com/2025/01/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Vue%203%20%E7%9A%84%20v-memo%EF%BC%9A%E9%AB%98%E6%95%88%E7%9A%84%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E5%88%A9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Guo HL&#39;s Blog">
+<meta property="og:description" content="Vue 3 的 v-memo：高效的渲染优化利器在日常的Vue项目开发中，我们经常会遇到这样的情况：父组件更新了，但子组件明明没有用到相关数据，却也跟着无意义地重新渲染。这不仅浪费性能，还可能导致页面卡顿。 Vue 3 在 3.2 版本 引入了一个新的指令 —— v-memo ，它的作用就是帮助我们 跳过不必要的渲染 ，让应用运行得更加丝滑。 本文将从概念、场景、示例、性能对比，再到和大家熟悉的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-16T03:23:47.000Z">
+<meta property="article:modified_time" content="2026-03-08T03:12:10.415Z">
+<meta property="article:author" content="Guo HL">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Vue 3 的 v-memo：高效的渲染优化利器 - Guo HL&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GuoHL的代码世界</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue 3 的 v-memo：高效的渲染优化利器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-16 11:23" pubdate>
+          2025年1月16日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue 3 的 v-memo：高效的渲染优化利器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Vue-3-的-v-memo：高效的渲染优化利器"><a href="#Vue-3-的-v-memo：高效的渲染优化利器" class="headerlink" title="Vue 3 的 v-memo：高效的渲染优化利器"></a>Vue 3 的 v-memo：高效的渲染优化利器</h1><p>在日常的Vue项目开发中，我们经常会遇到这样的情况：<br>父组件更新了，但子组件明明没有用到相关<span style="color: rgb(51, 145, 229); user-select: auto;">数据</span>，却也跟着无意义地重新渲染。这不仅浪费性能，还可能导致页面卡顿。</p>
+<p><code>Vue 3</code> 在 <strong>3.2 版本</strong> 引入了一个新的指令 —— <strong><code>v-memo</code></strong> ，它的作用就是帮助我们 <strong>跳过不必要的渲染</strong> ，让应用运行得更加丝滑。</p>
+<p>本文将从概念、场景、示例、性能对比，再到和大家熟悉的 <code>v-if</code> 、 <code>v-show</code> 的比较，带你全面理解 <code>v-memo</code> 。</p>
+<hr>
+<h3 id="1-什么是-v-memo"><a href="#1-什么是-v-memo" class="headerlink" title="1. 什么是 v-memo"></a>1. 什么是 <code>v-memo</code></h3><ul>
+<li><p><code>v-memo</code> 是 <code>Vue 3.2</code> 新增的一个 <strong>渲染优化指令</strong> 。</p>
+</li>
+<li><p>它接收一个依赖数组作为参数。</p>
+</li>
+<li><p><strong>当依赖数组中的值没有发生变化时，Vue 会直接复用上一次的虚拟 DOM，跳过这部分的渲染更新。</strong></p>
+</li>
+</ul>
+<p>基本语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div v-memo=&quot;[dep1, dep2, dep3]&quot;&gt;<br>  &lt;!-- 只有 dep1 / dep2 / dep3 变化时才会重新渲染 --&gt;<br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="和-v-once-的区别"><a href="#和-v-once-的区别" class="headerlink" title="和 v-once 的区别"></a>和 <code>v-once</code> 的区别</h4><ul>
+<li><p><code>v-once</code> ：只渲染一次，完全静态，后续不会更新。</p>
+</li>
+<li><p><code>v-memo</code> ：依赖没变就跳过更新，但依赖变了还是会更新。</p>
+</li>
+</ul>
+<hr>
+<h3 id="2-适用场景"><a href="#2-适用场景" class="headerlink" title="2. 适用场景"></a>2. 适用场景</h3><ol>
+<li><p><strong>静态内容多、动态依赖少</strong><br>大部分内容不变，只有少数依赖可能发生变化。</p>
+</li>
+<li><p><strong>复杂子组件</strong><br>父组件频繁更新时，避免子组件跟着无意义刷新。</p>
+</li>
+<li><p><strong>长列表渲染</strong><br>大量数据时， <code>v-memo</code> 可以显著减少 DOM diff。</p>
+</li>
+</ol>
+<hr>
+<h3 id="3-基础示例"><a href="#3-基础示例" class="headerlink" title="3. 基础示例"></a>3. 基础示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div&gt;<br>    &lt;button @click=&quot;count++&quot;&gt;Count: &#123;&#123; count &#125;&#125;&lt;/button&gt;<br>    <br>    &lt;!-- 只有 user.name 变化时才会重新渲染 --&gt;<br>    &lt;div v-memo=&quot;[user.name]&quot;&gt;<br>      &lt;p&gt;&#123;&#123; user.name &#125;&#125;&lt;/p&gt;<br>      &lt;p&gt;当前时间：&#123;&#123; new Date().toLocaleTimeString() &#125;&#125;&lt;/p&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup&gt;<br>import &#123; ref &#125; from &quot;vue&quot;;<br><br>const count = ref(0);<br>const user = ref(&#123; name: &quot;Alice&quot; &#125;);<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><ul>
+<li><p>点击按钮 <code>count++</code> ：父组件更新，但 <code>user.name</code> 没变， <code>v-memo</code> 区域不会刷新。</p>
+</li>
+<li><p>修改 <code>user.name</code> ：依赖变化 → <code>v-memo</code> 区域正常更新。</p>
+</li>
+</ul>
+<hr>
+<h3 id="4-性能对比Demo（1000-子组件）"><a href="#4-性能对比Demo（1000-子组件）" class="headerlink" title="4. 性能对比Demo（1000 子组件）"></a>4. 性能对比<span style="color: rgb(51, 145, 229); user-select: auto;">Demo</span>（1000 子组件）</h3><p>我们再来看一个更典型的场景：渲染 <strong>1000 个子组件</strong> 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div&gt;<br>    &lt;h2&gt;v-memo 性能对比 Demo&lt;/h2&gt;<br>    &lt;button @click=&quot;count++&quot;&gt;点我增加 count: &#123;&#123; count &#125;&#125;&lt;/button&gt;<br>    &lt;button @click=&quot;toggleName&quot;&gt;修改名字&lt;/button&gt;<br><br>    &lt;h3&gt;❌ 没有 v-memo（每次都会更新）&lt;/h3&gt;<br>    &lt;div class=&quot;list&quot;&gt;<br>      &lt;ChildNoMemo v-for=&quot;i in 1000&quot; :key=&quot;i&quot; :index=&quot;i&quot; :name=&quot;user.name&quot; /&gt;<br>    &lt;/div&gt;<br><br>    &lt;h3&gt;✅ 使用 v-memo（只有 name 改变才更新）&lt;/h3&gt;<br>    &lt;div class=&quot;list&quot;&gt;<br>      &lt;ChildWithMemo v-for=&quot;i in 1000&quot; :key=&quot;i&quot; :index=&quot;i&quot; :name=&quot;user.name&quot; /&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup&gt;<br>import &#123; ref &#125; from &quot;vue&quot;;<br><br>const count = ref(0);<br>const user = ref(&#123; name: &quot;Alice&quot; &#125;);<br><br>function toggleName() &#123;<br>  user.value.name = user.value.name === &quot;Alice&quot; ? &quot;Bob&quot; : &quot;Alice&quot;;<br>&#125;<br><br>// 子组件 A：不使用 v-memo<br>const ChildNoMemo = &#123;<br>  props: [&quot;index&quot;, &quot;name&quot;],<br>  template: `<br>    &lt;div&gt;<br>      &lt;span&gt;子项 &#123;&#123; index &#125;&#125; - &#123;&#123; name &#125;&#125; - &#123;&#123; new Date().toLocaleTimeString() &#125;&#125;&lt;/span&gt;<br>    &lt;/div&gt;<br>  `<br>&#125;<br><br>// 子组件 B：使用 v-memo<br>const ChildWithMemo = &#123;<br>  props: [&quot;index&quot;, &quot;name&quot;],<br>  template: `<br>    &lt;div v-memo=&quot;[name]&quot;&gt;<br>      &lt;span&gt;子项 &#123;&#123; index &#125;&#125; - &#123;&#123; name &#125;&#125; - &#123;&#123; new Date().toLocaleTimeString() &#125;&#125;&lt;/span&gt;<br>    &lt;/div&gt;<br>  `<br>&#125;<br>&lt;/script&gt;<br><br>&lt;style&gt;<br>.list &#123;<br>  max-height: 300px;<br>  overflow-y: auto;<br>  border: 1px solid #ddd;<br>  margin-bottom: 20px;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h4><ol>
+<li><p><strong>点击「增加 count」</strong> </p>
+<ul>
+<li><p>无 <code>v-memo</code> ：1000 个子组件全部更新，时间刷新。</p>
+</li>
+<li><p>有 <code>v-memo</code> ：没有子组件更新，时间保持不变。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>点击「修改名字」</strong> </p>
+<ul>
+<li><code>user.name</code> 改变时，有 <code>v-memo</code> 的子组件才会更新。</li>
+</ul>
+</li>
+</ol>
+<p>👉 在开发者工具里可以直观看到， <code>v-memo</code> 大幅减少了渲染次数。</p>
+<hr>
+<h3 id="5-和-v-if-、-v-show-的区别"><a href="#5-和-v-if-、-v-show-的区别" class="headerlink" title="5. 和 v-if 、 v-show 的区别"></a>5. 和 <code>v-if</code> 、 <code>v-show</code> 的区别</h3><p>在 Vue 中，大家更熟悉的还是 <strong><code>v-if</code></strong> 和 <strong><code>v-show</code></strong> ，那它们和 <code>v-memo</code> 有什么不同呢？</p>
+<table>
+<thead>
+<tr>
+<th align="center">特性</th>
+<th align="center"><code>v-if</code></th>
+<th align="center"><code>v-show</code></th>
+<th align="center"><code>v-memo</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">控制方式</td>
+<td align="center"><strong>条件渲染</strong> ：决定是否创建&#x2F;销毁 DOM</td>
+<td align="center"><strong>条件展示</strong> ：DOM 始终存在，只是切换 <code>display: none</code></td>
+<td align="center"><strong>依赖缓存</strong> ：DOM 始终存在，但依赖没变时跳过更新</td>
+</tr>
+<tr>
+<td align="center">性能消耗</td>
+<td align="center">创建&#x2F;销毁 DOM 开销大</td>
+<td align="center">首次渲染开销大，后续切换性能好</td>
+<td align="center">渲染时 diff 开销小，适合避免无意义更新</td>
+</tr>
+<tr>
+<td align="center">使用场景</td>
+<td align="center">条件性显示&#x2F;隐藏（较少切换）</td>
+<td align="center">频繁切换显隐（如 tab 页）</td>
+<td align="center">避免父组件更新导致的无意义刷新</td>
+</tr>
+</tbody></table>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><ul>
+<li><p><strong><code>v-if</code></strong> ：用户是否已登录 → 渲染「登录框」或「用户中心」。</p>
+</li>
+<li><p><strong><code>v-show</code></strong> ：tab 切换 → DOM 保留，只切换显示状态。</p>
+</li>
+<li><p><strong><code>v-memo</code></strong> ：父组件频繁更新 → 子区域依赖没变时直接跳过更新。</p>
+</li>
+</ul>
+<p>👉 一句话总结：<br><strong><code>if</code> 管生死， <code>show</code> 管显隐， <code>memo</code> 管性能。</strong> </p>
+<hr>
+<h3 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h3><ol>
+<li><p><code>v-memo</code> 不是万能优化，应该只在性能瓶颈处精准使用。</p>
+</li>
+<li><p>依赖数组要完整，确保包含所有决定渲染结果的变量。</p>
+</li>
+<li><p>调试时可以在子组件 <code>mounted / updated</code> 里加 <code>console.log</code> ，观察更新次数。</p>
+</li>
+</ol>
+<hr>
+<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><ul>
+<li><p><code>v-memo</code> 是 <code>Vue 3.2</code> 引入的性能优化工具。</p>
+</li>
+<li><p>它通过缓存依赖，避免了无意义的渲染。</p>
+</li>
+<li><p>特别适合 <strong>复杂子组件</strong> 和 <strong>长列表场景</strong> 。</p>
+</li>
+<li><p>和 <code>v-if</code> 、 <code>v-show</code> 不同，它的关注点在于 <strong>优化性能</strong> 而不是 <strong>控制渲染逻辑</strong> 。</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/" class="print-no-link">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue 3 的 v-memo：高效的渲染优化利器</div>
+      <div>http://example.com/2025/01/16/深入理解 Vue 3 的 v-memo：高效的渲染优化利器/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Guo HL</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/16/Vue%E7%A7%98%E7%B1%8D%EF%BC%9A%E5%A6%82%E4%BD%95%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9%E9%A1%B5%E9%9D%A2%20Title%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E7%AD%BE%E5%90%8D%E7%A7%B0%EF%BC%89%EF%BC%9F/" title="Vue3动态修改页面 Title">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue3动态修改页面 Title</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/31/origin/" title="Webpack原理分析">
+                        <span class="hidden-mobile">Webpack原理分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23liKOCdzyG4kpTUXA","clientSecret":"afc4bb61a74bc5ec2d9922bfffc3190475b00965","repo":"gitalk-comments","owner":"guohaolian","admin":["guohaolian"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '6a3cd2f6dee5c93b09c7fe9e0bc6b166'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="学习笔记"
+        id="heading-078425eaf316a180b0989442e53f920b" role="tab" data-toggle="collapse" href="#collapse-078425eaf316a180b0989442e53f920b"
+        aria-expanded="true"
+      >
+        学习笔记
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-078425eaf316a180b0989442e53f920b"
+           role="tabpanel" aria-labelledby="heading-078425eaf316a180b0989442e53f920b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2026/01/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E6%90%9E%E6%87%82%E3%80%90Emmet%E3%80%91%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99%EF%BC%88%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%EF%BC%89/" title="Emmet常用语法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Emmet常用语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/01/16/hello-world/" title="Hello World"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hello World</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/12/08/Promise%E7%9A%84%E7%8A%B6%E6%80%81%E5%90%B8%E6%94%B6/" title="Promise的状态吸收"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Promise的状态吸收</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/01/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Vue%203%20%E7%9A%84%20v-memo%EF%BC%9A%E9%AB%98%E6%95%88%E7%9A%84%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E5%88%A9%E5%99%A8/" title="Vue 3 的 v-memo：高效的渲染优化利器"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Vue 3 的 v-memo：高效的渲染优化利器</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/03/16/Vue%E7%A7%98%E7%B1%8D%EF%BC%9A%E5%A6%82%E4%BD%95%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9%E9%A1%B5%E9%9D%A2%20Title%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%E9%A1%B5%E7%AD%BE%E5%90%8D%E7%A7%B0%EF%BC%89%EF%BC%9F/" title="Vue3动态修改页面 Title"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3动态修改页面 Title</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/09/11/%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%EF%BC%9AVue%203%20%E7%BC%96%E7%A8%8B%E7%9A%84%2010%20%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" title="Vue3的10个实用技巧"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue3的10个实用技巧</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/11/11/%E3%80%90%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98%E3%80%91%E6%9E%84%E5%BB%BA%20Vue%20%E5%85%A8%E5%B1%80%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%BD%93%E7%B3%BB%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%B8%9A%E5%8A%A1%E4%B8%8E%E9%94%99%E8%AF%AF%E7%9A%84%E6%B8%85%E6%99%B0%E8%A7%A3%E8%80%A6/" title="Vue全局错误处理体系"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue全局错误处理体系</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/11/11/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%20Vue%20$set%20%E5%8E%9F%E7%90%86%EF%BC%9A%E6%94%BB%E5%85%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E6%9B%B4%E6%96%B0%E5%A4%B1%E6%95%88%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%A1%88/" title="Vue的$set"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue的$set</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/08/21/%E3%80%90Vue%E3%80%9110%20Vue%E6%8A%80%E6%9C%AF%E2%80%94%E2%80%94Vue%20%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E8%AF%A6%E8%A7%A3/" title="Vue的数据代理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Vue的数据代理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/06/28/vue_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F/" title="响应式原理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">响应式原理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/05/11/%E5%9F%BA%E4%BA%8Evue.js%E7%9A%84%E6%97%A0%E7%BC%9D%E6%BB%9A%E5%8A%A8/" title="基于vue.js的无缝滚动"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">基于vue.js的无缝滚动</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/" title="箭头函数的this指向"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">箭头函数的this指向</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2026/01/28/Vue%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6/" title="递归组件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">递归组件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>guohaolian</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/guohoalian" target="_blank" rel="nofollow noopener"><span>GuoHL</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
