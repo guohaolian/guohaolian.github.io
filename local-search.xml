@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>vue项目，如何修改Element-Plus等UI组件库的样式，三种方式搞定！！！</title>
+    <link href="/2026/03/02/vue%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9Element-Plus%E7%AD%89UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E6%A0%B7%E5%BC%8F%EF%BC%8C%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%90%9E%E5%AE%9A%EF%BC%81%EF%BC%81%EF%BC%81/"/>
+    <url>/2026/03/02/vue%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9Element-Plus%E7%AD%89UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E6%A0%B7%E5%BC%8F%EF%BC%8C%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%90%9E%E5%AE%9A%EF%BC%81%EF%BC%81%EF%BC%81/</url>
+    
+    <content type="html"><![CDATA[<h1 id="vue项目，如何修改Element-Plus等UI组件库的样式，三种方式搞定！！！"><a href="#vue项目，如何修改Element-Plus等UI组件库的样式，三种方式搞定！！！" class="headerlink" title="vue项目，如何修改Element-Plus等UI组件库的样式，三种方式搞定！！！"></a>vue项目，如何修改Element-Plus等UI组件库的样式，三种方式搞定！！！</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在学习和<span style="color: rgb(51, 145, 229); user-select: auto;">使用</span>组件库构建页面的时候，时常会遇到这样的问题。<br>即，尽管组件库已经提供了较多的功能，来帮助我们构建自定义的效果，但有时仍不能使我们满意。<br>这个时候我们就不得不修改UI库的样式，来达到想要的状态。<br>以Element-Plus为例，在<span style="color: rgb(51, 145, 229); user-select: auto;">Vue3</span>中，主要有三种方式可以实现自定义第三方组件库的样式。</p><h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>例如，我希望调节Element-Plus中的Autocomplete（自动补全输入框） 组件的输入框宽度，但是查看文档，却发现官方并没有提供这样的接口。<br>这个时候，我就不得不手动的查看组件的HTML实现，并且对样式进行调整。<br>首先F12来查看其HTML源码，如下所示。</p><p><img src="/img/1234.png" alt="源码"></p><p>这时候我们可以快速发现需要调整样式的div层，然后在Vue项目中通过三种方式进行调整。</p><h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><h3 id="全局样式"><a href="#全局样式" class="headerlink" title="全局样式"></a>全局样式</h3><p>默认的 <code>&lt;style&gt;</code> 标签中的样式就是全局样式，这意味着，其中的任何样式都会对整个项目生效，因此需要谨慎使用。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.el-input__wrapper</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure><h3 id="全局选择器-global-）"><a href="#全局选择器-global-）" class="headerlink" title="全局选择器 :global(）"></a>全局选择器 <code>:global(）</code></h3><p>全局选择器的效果和全局样式基本一致，但是它可以被用在 <code>&lt;style scoped&gt;</code> 中，这样你的组件中既能够定义非全局的样式，又能定义全局样式。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css">:<span class="hljs-built_in">global</span>(.el-input__wrapper) &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure><h3 id="深度选择器（推荐）"><a href="#深度选择器（推荐）" class="headerlink" title="深度选择器（推荐）"></a>深度选择器（推荐）</h3><p>深度选择器可以用于定义子组件的专属样式，不易发生冲突。因而相对于前两种定义全局样式的方式更加合适。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css">:<span class="hljs-built_in">deep</span>(.el-input__wrapper) &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span></span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Vue</tag>
+      
+      <tag>CSS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>箭头函数的this指向</title>
     <link href="/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/"/>
     <url>/2026/02/08/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84this%E6%8C%87%E5%90%91/</url>
